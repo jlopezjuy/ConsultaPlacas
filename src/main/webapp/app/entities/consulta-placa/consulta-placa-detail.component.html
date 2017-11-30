@@ -1,0 +1,61 @@
+
+<div *ngIf="consultaPlaca">
+    <h2><span jhiTranslate="consultaPlacasApp.consultaPlaca.detail.title">Consulta Placa</span> {{consultaPlaca.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.issi">Issi</span></dt>
+        <dd>
+            <span>{{consultaPlaca.issi}}</span>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.responsable">Responsable</span></dt>
+        <dd>
+            <span>{{consultaPlaca.responsable}}</span>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.fecha">Fecha</span></dt>
+        <dd>
+            <span>{{consultaPlaca.fecha | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.consulta">Consulta</span></dt>
+        <dd>
+            <span>{{consultaPlaca.consulta}}</span>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.metodo">Metodo</span></dt>
+        <dd>
+            <span>{{consultaPlaca.metodo}}</span>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.estado">Estado</span></dt>
+        <dd>
+            <span>{{consultaPlaca.estado}}</span>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.resultado">Resultado</span></dt>
+        <dd>
+            <span>{{consultaPlaca.resultado}}</span>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.municipio">Municipio</span></dt>
+        <dd>
+            <div *ngIf="consultaPlaca.municipioId">
+                <a [routerLink]="['/municipio', consultaPlaca.municipioId]">{{consultaPlaca.municipioDescripcion}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.corporacion">Corporacion</span></dt>
+        <dd>
+            <div *ngIf="consultaPlaca.corporacionId">
+                <a [routerLink]="['/corporacion', consultaPlaca.corporacionId]">{{consultaPlaca.corporacionDescripcion}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'consulta-placa/'+ consultaPlaca.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

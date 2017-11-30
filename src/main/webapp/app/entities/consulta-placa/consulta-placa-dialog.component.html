@@ -1,0 +1,133 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myConsultaPlacaLabel" jhiTranslate="consultaPlacasApp.consultaPlaca.home.createOrEditLabel">Create or edit a Consulta Placa</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!consultaPlaca.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="consultaPlaca.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.issi" for="field_issi">Issi</label>
+            <input type="text" class="form-control" name="issi" id="field_issi"
+                [(ngModel)]="consultaPlaca.issi" required/>
+            <div [hidden]="!(editForm.controls.issi?.dirty && editForm.controls.issi?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.issi?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.responsable" for="field_responsable">Responsable</label>
+            <input type="text" class="form-control" name="responsable" id="field_responsable"
+                [(ngModel)]="consultaPlaca.responsable" required/>
+            <div [hidden]="!(editForm.controls.responsable?.dirty && editForm.controls.responsable?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.responsable?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.fecha" for="field_fecha">Fecha</label>
+            <div class="input-group">
+                <input id="field_fecha" type="text" class="form-control" name="fecha" ngbDatepicker  #fechaDp="ngbDatepicker" [(ngModel)]="consultaPlaca.fecha"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.fecha?.dirty && editForm.controls.fecha?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fecha?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.consulta" for="field_consulta">Consulta</label>
+            <input type="text" class="form-control" name="consulta" id="field_consulta"
+                [(ngModel)]="consultaPlaca.consulta" required/>
+            <div [hidden]="!(editForm.controls.consulta?.dirty && editForm.controls.consulta?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.consulta?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.metodo" for="field_metodo">Metodo</label>
+            <input type="text" class="form-control" name="metodo" id="field_metodo"
+                [(ngModel)]="consultaPlaca.metodo" required/>
+            <div [hidden]="!(editForm.controls.metodo?.dirty && editForm.controls.metodo?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.metodo?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.estado" for="field_estado">Estado</label>
+            <input type="checkbox" class="form-control" name="estado" id="field_estado"
+                [(ngModel)]="consultaPlaca.estado" />
+            <div [hidden]="!(editForm.controls.estado?.dirty && editForm.controls.estado?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.estado?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.resultado" for="field_resultado">Resultado</label>
+            <input type="text" class="form-control" name="resultado" id="field_resultado"
+                [(ngModel)]="consultaPlaca.resultado" required/>
+            <div [hidden]="!(editForm.controls.resultado?.dirty && editForm.controls.resultado?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.resultado?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.municipio" for="field_municipio">Municipio</label>
+            <select class="form-control" id="field_municipio" name="municipio" [(ngModel)]="consultaPlaca.municipioId"  required>
+                <option *ngIf="!editForm.value.municipio" [ngValue]="null" selected></option>
+                <option [ngValue]="municipioOption.id" *ngFor="let municipioOption of municipios; trackBy: trackMunicipioById">{{municipioOption.descripcion}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.municipio?.dirty && editForm.controls.municipio?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.municipio?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.corporacion" for="field_corporacion">Corporacion</label>
+            <select class="form-control" id="field_corporacion" name="corporacion" [(ngModel)]="consultaPlaca.corporacionId"  required>
+                <option *ngIf="!editForm.value.corporacion" [ngValue]="null" selected></option>
+                <option [ngValue]="corporacionOption.id" *ngFor="let corporacionOption of corporacions; trackBy: trackCorporacionById">{{corporacionOption.descripcion}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.corporacion?.dirty && editForm.controls.corporacion?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.corporacion?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,29 @@
+{
+    "consultaPlacasApp": {
+        "consultaPlaca" : {
+            "home": {
+                "title": "Reporde Consulta de Placas",
+                "createLabel": "Crear nuevo Consulta Placa",
+                "createOrEditLabel": "Crear o editar Consulta Placa"
+            },
+            "created": "Un nuevo Consulta Placa ha sido creado con el identificador {{ param }}",
+            "updated": "Un Consulta Placa ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Consulta Placa ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Consulta Placa {{ id }}?"
+            },
+            "detail": {
+                "title": "Consulta de Placa"
+            },
+            "issi": "Issi",
+            "responsable": "Responsable",
+            "fecha": "Fecha",
+            "consulta": "Consulta",
+            "metodo": "Metodo",
+            "estado": "Estado",
+            "resultado": "Resultado",
+            "municipio": "Municipio",
+            "corporacion": "Corporación"
+        }
+    }
+}

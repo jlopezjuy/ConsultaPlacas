@@ -1,0 +1,42 @@
+package org.seguritech.cp.service;
+
+import org.seguritech.cp.service.dto.ConsultaPlacaDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+/**
+ * Service Interface for managing ConsultaPlaca.
+ */
+public interface ConsultaPlacaService {
+
+    /**
+     * Save a consultaPlaca.
+     *
+     * @param consultaPlacaDTO the entity to save
+     * @return the persisted entity
+     */
+    ConsultaPlacaDTO save(ConsultaPlacaDTO consultaPlacaDTO);
+
+    /**
+     * Get all the consultaPlacas.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    Page<ConsultaPlacaDTO> findAll(Pageable pageable);
+
+    /**
+     * Get the "id" consultaPlaca.
+     *
+     * @param id the id of the entity
+     * @return the entity
+     */
+    ConsultaPlacaDTO findOne(Long id);
+
+    /**
+     * Delete the "id" consultaPlaca.
+     *
+     * @param id the id of the entity
+     */
+    void delete(Long id);
+}

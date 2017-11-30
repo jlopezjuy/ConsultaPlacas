@@ -1,0 +1,80 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "municipio",
+            "otherEntityName": "municipio",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "descripcion"
+        },
+        {
+            "relationshipName": "corporacion",
+            "otherEntityName": "corporacion",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "descripcion"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "issi",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "responsable",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "consulta",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "metodo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "estado",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "resultado",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171130204141",
+    "dto": "mapstruct",
+    "service": "serviceImpl",
+    "entityTableName": "consulta_placa",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

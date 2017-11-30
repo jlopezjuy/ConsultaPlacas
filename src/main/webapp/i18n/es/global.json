@@ -12,6 +12,7 @@
                 "corporacion": "Corporación",
                 "radio": "Radio",
                 "tipoRadio": "Tipo de Radio",
+                "consultaPlaca": "Reporte Consulta de Placa",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
