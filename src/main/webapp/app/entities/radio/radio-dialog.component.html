@@ -25,8 +25,15 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="consultaPlacasApp.radio.tipoDeRadio" for="field_tipoDeRadio">Tipo De Radio</label>
-            <input type="text" class="form-control" name="tipoDeRadio" id="field_tipoDeRadio"
-                [(ngModel)]="radio.tipoDeRadio" required/>
+            <!--<input type="text" class="form-control" name="tipoDeRadio" id="field_tipoDeRadio"-->
+                <!--[(ngModel)]="radio.tipoDeRadio" required/>-->
+            <select class="form-control" id="field_tipoDeRadio"  name="tipoDeRadio" [(ngModel)]="radio.tipoDeRadio"  required>
+                <option [ngValue]="null" selected></option>
+                <option value="Móvil">Móvil</option>
+                <option value="Portatil">Portátil</option>
+            </select>
+
+
             <div [hidden]="!(editForm.controls.tipoDeRadio?.dirty && editForm.controls.tipoDeRadio?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.tipoDeRadio?.errors?.required" jhiTranslate="entity.validation.required">
