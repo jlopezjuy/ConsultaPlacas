@@ -1,0 +1,23 @@
+{
+    "consultaPlacasApp": {
+        "radio" : {
+            "home": {
+                "title": "Radios",
+                "createLabel": "Crear nuevo Radio",
+                "createOrEditLabel": "Crear o editar Radio"
+            },
+            "created": "Un nuevo Radio ha sido creado con el identificador {{ param }}",
+            "updated": "Un Radio ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Radio ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Radio {{ id }}?"
+            },
+            "detail": {
+                "title": "Radio"
+            },
+            "descripcion": "Descripcion",
+            "tipoDeRadio": "Tipo De Radio",
+            "marca": "Marca"
+        }
+    }
+}
