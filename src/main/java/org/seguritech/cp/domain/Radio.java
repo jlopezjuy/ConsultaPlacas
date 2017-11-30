@@ -31,9 +31,21 @@ public class Radio implements Serializable {
     @Column(name = "tipo_de_radio", nullable = false)
     private String tipoDeRadio;
 
+    @NotNull
+    @Column(name = "permiso", nullable = false)
+    private String permiso;
+
     @ManyToOne(optional = false)
     @NotNull
     private Marca marca;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    private Municipio municipio;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    private Corporacion corporacion;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -70,6 +82,19 @@ public class Radio implements Serializable {
         this.tipoDeRadio = tipoDeRadio;
     }
 
+    public String getPermiso() {
+        return permiso;
+    }
+
+    public Radio permiso(String permiso) {
+        this.permiso = permiso;
+        return this;
+    }
+
+    public void setPermiso(String permiso) {
+        this.permiso = permiso;
+    }
+
     public Marca getMarca() {
         return marca;
     }
@@ -81,6 +106,32 @@ public class Radio implements Serializable {
 
     public void setMarca(Marca marca) {
         this.marca = marca;
+    }
+
+    public Municipio getMunicipio() {
+        return municipio;
+    }
+
+    public Radio municipio(Municipio municipio) {
+        this.municipio = municipio;
+        return this;
+    }
+
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
+    }
+
+    public Corporacion getCorporacion() {
+        return corporacion;
+    }
+
+    public Radio corporacion(Corporacion corporacion) {
+        this.corporacion = corporacion;
+        return this;
+    }
+
+    public void setCorporacion(Corporacion corporacion) {
+        this.corporacion = corporacion;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -110,6 +161,7 @@ public class Radio implements Serializable {
             "id=" + getId() +
             ", descripcion='" + getDescripcion() + "'" +
             ", tipoDeRadio='" + getTipoDeRadio() + "'" +
+            ", permiso='" + getPermiso() + "'" +
             "}";
     }
 }

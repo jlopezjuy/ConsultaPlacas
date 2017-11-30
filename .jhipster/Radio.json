@@ -9,6 +9,24 @@
                 "required"
             ],
             "otherEntityField": "descripcion"
+        },
+        {
+            "relationshipName": "municipio",
+            "otherEntityName": "municipio",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "descripcion"
+        },
+        {
+            "relationshipName": "corporacion",
+            "otherEntityName": "corporacion",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "descripcion"
         }
     ],
     "fields": [
@@ -21,6 +39,13 @@
         },
         {
             "fieldName": "tipoDeRadio",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "permiso",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"

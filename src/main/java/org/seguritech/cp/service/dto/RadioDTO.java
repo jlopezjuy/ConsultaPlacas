@@ -20,9 +20,20 @@ public class RadioDTO implements Serializable {
     @NotNull
     private String tipoDeRadio;
 
+    @NotNull
+    private String permiso;
+
     private Long marcaId;
 
     private String marcaDescripcion;
+
+    private Long municipioId;
+
+    private String municipioDescripcion;
+
+    private Long corporacionId;
+
+    private String corporacionDescripcion;
 
     public Long getId() {
         return id;
@@ -48,6 +59,14 @@ public class RadioDTO implements Serializable {
         this.tipoDeRadio = tipoDeRadio;
     }
 
+    public String getPermiso() {
+        return permiso;
+    }
+
+    public void setPermiso(String permiso) {
+        this.permiso = permiso;
+    }
+
     public Long getMarcaId() {
         return marcaId;
     }
@@ -62,6 +81,38 @@ public class RadioDTO implements Serializable {
 
     public void setMarcaDescripcion(String marcaDescripcion) {
         this.marcaDescripcion = marcaDescripcion;
+    }
+
+    public Long getMunicipioId() {
+        return municipioId;
+    }
+
+    public void setMunicipioId(Long municipioId) {
+        this.municipioId = municipioId;
+    }
+
+    public String getMunicipioDescripcion() {
+        return municipioDescripcion;
+    }
+
+    public void setMunicipioDescripcion(String municipioDescripcion) {
+        this.municipioDescripcion = municipioDescripcion;
+    }
+
+    public Long getCorporacionId() {
+        return corporacionId;
+    }
+
+    public void setCorporacionId(Long corporacionId) {
+        this.corporacionId = corporacionId;
+    }
+
+    public String getCorporacionDescripcion() {
+        return corporacionDescripcion;
+    }
+
+    public void setCorporacionDescripcion(String corporacionDescripcion) {
+        this.corporacionDescripcion = corporacionDescripcion;
     }
 
     @Override
@@ -91,6 +142,7 @@ public class RadioDTO implements Serializable {
             "id=" + getId() +
             ", descripcion='" + getDescripcion() + "'" +
             ", tipoDeRadio='" + getTipoDeRadio() + "'" +
+            ", permiso='" + getPermiso() + "'" +
             "}";
     }
 }

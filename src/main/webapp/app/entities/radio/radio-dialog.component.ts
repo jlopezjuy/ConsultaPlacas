@@ -10,6 +10,8 @@ import { Radio } from './radio.model';
 import { RadioPopupService } from './radio-popup.service';
 import { RadioService } from './radio.service';
 import { Marca, MarcaService } from '../marca';
+import { Municipio, MunicipioService } from '../municipio';
+import { Corporacion, CorporacionService } from '../corporacion';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -23,11 +25,17 @@ export class RadioDialogComponent implements OnInit {
 
     marcas: Marca[];
 
+    municipios: Municipio[];
+
+    corporacions: Corporacion[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private radioService: RadioService,
         private marcaService: MarcaService,
+        private municipioService: MunicipioService,
+        private corporacionService: CorporacionService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -36,6 +44,10 @@ export class RadioDialogComponent implements OnInit {
         this.isSaving = false;
         this.marcaService.query()
             .subscribe((res: ResponseWrapper) => { this.marcas = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.municipioService.query()
+            .subscribe((res: ResponseWrapper) => { this.municipios = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.corporacionService.query()
+            .subscribe((res: ResponseWrapper) => { this.corporacions = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -73,6 +85,14 @@ export class RadioDialogComponent implements OnInit {
     }
 
     trackMarcaById(index: number, item: Marca) {
+        return item.id;
+    }
+
+    trackMunicipioById(index: number, item: Municipio) {
+        return item.id;
+    }
+
+    trackCorporacionById(index: number, item: Corporacion) {
         return item.id;
     }
 }

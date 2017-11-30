@@ -19,7 +19,10 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="descripcion"><span jhiTranslate="consultaPlacasApp.radio.descripcion">Descripcion</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="tipoDeRadio"><span jhiTranslate="consultaPlacasApp.radio.tipoDeRadio">Tipo De Radio</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="permiso"><span jhiTranslate="consultaPlacasApp.radio.permiso">Permiso</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="marcaDescripcion"><span jhiTranslate="consultaPlacasApp.radio.marca">Marca</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="municipioDescripcion"><span jhiTranslate="consultaPlacasApp.radio.municipio">Municipio</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="corporacionDescripcion"><span jhiTranslate="consultaPlacasApp.radio.corporacion">Corporacion</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -28,9 +31,20 @@
                 <td><a [routerLink]="['../radio', radio.id ]">{{radio.id}}</a></td>
                 <td>{{radio.descripcion}}</td>
                 <td>{{radio.tipoDeRadio}}</td>
+                <td>{{radio.permiso}}</td>
                 <td>
                     <div *ngIf="radio.marcaId">
                         <a [routerLink]="['../marca', radio.marcaId  ]" >{{radio.marcaDescripcion}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="radio.municipioId">
+                        <a [routerLink]="['../municipio', radio.municipioId  ]" >{{radio.municipioDescripcion}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="radio.corporacionId">
+                        <a [routerLink]="['../corporacion', radio.corporacionId  ]" >{{radio.corporacionDescripcion}}</a>
                     </div>
                 </td>
                 <td class="text-right">

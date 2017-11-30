@@ -14,5 +14,17 @@
                                  referencedColumnNames="id"
                                  referencedTableName="marca"/>
 
+        <addForeignKeyConstraint baseColumnNames="municipio_id"
+                                 baseTableName="radio"
+                                 constraintName="fk_radio_municipio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="municipio"/>
+
+        <addForeignKeyConstraint baseColumnNames="corporacion_id"
+                                 baseTableName="radio"
+                                 constraintName="fk_radio_corporacion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="corporacion"/>
+
     </changeSet>
 </databaseChangeLog>

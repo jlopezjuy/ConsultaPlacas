@@ -30,7 +30,19 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="permiso" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
             <column name="marca_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="municipio_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="corporacion_id" type="bigint">
                 <constraints nullable="false" />
             </column>
 

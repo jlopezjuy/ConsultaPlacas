@@ -34,6 +34,17 @@
                 </small>
             </div>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.radio.permiso" for="field_permiso">Permiso</label>
+            <input type="text" class="form-control" name="permiso" id="field_permiso"
+                [(ngModel)]="radio.permiso" required/>
+            <div [hidden]="!(editForm.controls.permiso?.dirty && editForm.controls.permiso?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.permiso?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="consultaPlacasApp.radio.marca" for="field_marca">Marca</label>
@@ -45,6 +56,32 @@
         <div [hidden]="!(editForm.controls.marca?.dirty && editForm.controls.marca?.invalid)">
             <small class="form-text text-danger"
                 [hidden]="!editForm.controls.marca?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.radio.municipio" for="field_municipio">Municipio</label>
+            <select class="form-control" id="field_municipio" name="municipio" [(ngModel)]="radio.municipioId"  required>
+                <option *ngIf="!editForm.value.municipio" [ngValue]="null" selected></option>
+                <option [ngValue]="municipioOption.id" *ngFor="let municipioOption of municipios; trackBy: trackMunicipioById">{{municipioOption.descripcion}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.municipio?.dirty && editForm.controls.municipio?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.municipio?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.radio.corporacion" for="field_corporacion">Corporacion</label>
+            <select class="form-control" id="field_corporacion" name="corporacion" [(ngModel)]="radio.corporacionId"  required>
+                <option *ngIf="!editForm.value.corporacion" [ngValue]="null" selected></option>
+                <option [ngValue]="corporacionOption.id" *ngFor="let corporacionOption of corporacions; trackBy: trackCorporacionById">{{corporacionOption.descripcion}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.corporacion?.dirty && editForm.controls.corporacion?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.corporacion?.errors?.required" jhiTranslate="entity.validation.required">
                 This field is required.
             </small>
         </div>

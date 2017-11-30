@@ -12,10 +12,26 @@
         <dd>
             <span>{{radio.tipoDeRadio}}</span>
         </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.radio.permiso">Permiso</span></dt>
+        <dd>
+            <span>{{radio.permiso}}</span>
+        </dd>
         <dt><span jhiTranslate="consultaPlacasApp.radio.marca">Marca</span></dt>
         <dd>
             <div *ngIf="radio.marcaId">
                 <a [routerLink]="['/marca', radio.marcaId]">{{radio.marcaDescripcion}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.radio.municipio">Municipio</span></dt>
+        <dd>
+            <div *ngIf="radio.municipioId">
+                <a [routerLink]="['/municipio', radio.municipioId]">{{radio.municipioDescripcion}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.radio.corporacion">Corporacion</span></dt>
+        <dd>
+            <div *ngIf="radio.corporacionId">
+                <a [routerLink]="['/corporacion', radio.corporacionId]">{{radio.corporacionDescripcion}}</a>
             </div>
         </dd>
     </dl>

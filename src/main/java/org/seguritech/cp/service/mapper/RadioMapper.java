@@ -8,14 +8,20 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Radio and its DTO RadioDTO.
  */
-@Mapper(componentModel = "spring", uses = {MarcaMapper.class})
+@Mapper(componentModel = "spring", uses = {MarcaMapper.class, MunicipioMapper.class, CorporacionMapper.class})
 public interface RadioMapper extends EntityMapper<RadioDTO, Radio> {
 
     @Mapping(source = "marca.id", target = "marcaId")
     @Mapping(source = "marca.descripcion", target = "marcaDescripcion")
+    @Mapping(source = "municipio.id", target = "municipioId")
+    @Mapping(source = "municipio.descripcion", target = "municipioDescripcion")
+    @Mapping(source = "corporacion.id", target = "corporacionId")
+    @Mapping(source = "corporacion.descripcion", target = "corporacionDescripcion")
     RadioDTO toDto(Radio radio); 
 
     @Mapping(source = "marcaId", target = "marca")
+    @Mapping(source = "municipioId", target = "municipio")
+    @Mapping(source = "corporacionId", target = "corporacion")
     Radio toEntity(RadioDTO radioDTO);
 
     default Radio fromId(Long id) {
