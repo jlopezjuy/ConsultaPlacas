@@ -11,6 +11,7 @@ export class Radio implements BaseEntity {
         public id?: number,
         public descripcion?: string,
         public permiso?: Permiso,
+        public idRadio?: string,
         public marcaId?: number,
         public municipioId?: number,
         public corporacionId?: number,

@@ -50,6 +50,13 @@
             "fieldName": "permiso",
             "fieldType": "Permiso",
             "fieldValues": "AUTOS_ROBADOS, PADRON_VEHICULAR, AMBOS"
+        },
+        {
+            "fieldName": "idRadio",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20171130175833",

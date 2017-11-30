@@ -17,6 +17,7 @@
             },
             "descripcion": "Descripción",
             "permiso": "Permiso",
+            "idRadio": "Id Radio",
             "marca": "Marca",
             "municipio": "Municipio",
             "corporacion": "Corporación",

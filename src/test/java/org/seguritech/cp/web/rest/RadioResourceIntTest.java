@@ -52,6 +52,9 @@ public class RadioResourceIntTest {
     private static final Permiso DEFAULT_PERMISO = Permiso.AUTOS_ROBADOS;
     private static final Permiso UPDATED_PERMISO = Permiso.PADRON_VEHICULAR;
 
+    private static final String DEFAULT_ID_RADIO = "AAAAAAAAAA";
+    private static final String UPDATED_ID_RADIO = "BBBBBBBBBB";
+
     @Autowired
     private RadioRepository radioRepository;
 
@@ -97,7 +100,8 @@ public class RadioResourceIntTest {
     public static Radio createEntity(EntityManager em) {
         Radio radio = new Radio()
             .descripcion(DEFAULT_DESCRIPCION)
-            .permiso(DEFAULT_PERMISO);
+            .permiso(DEFAULT_PERMISO)
+            .idRadio(DEFAULT_ID_RADIO);
         // Add required entity
         Marca marca = MarcaResourceIntTest.createEntity(em);
         em.persist(marca);
@@ -144,6 +148,7 @@ public class RadioResourceIntTest {
         Radio testRadio = radioList.get(radioList.size() - 1);
         assertThat(testRadio.getDescripcion()).isEqualTo(DEFAULT_DESCRIPCION);
         assertThat(testRadio.getPermiso()).isEqualTo(DEFAULT_PERMISO);
+        assertThat(testRadio.getIdRadio()).isEqualTo(DEFAULT_ID_RADIO);
     }
 
     @Test
@@ -187,6 +192,25 @@ public class RadioResourceIntTest {
 
     @Test
     @Transactional
+    public void checkIdRadioIsRequired() throws Exception {
+        int databaseSizeBeforeTest = radioRepository.findAll().size();
+        // set the field null
+        radio.setIdRadio(null);
+
+        // Create the Radio, which fails.
+        RadioDTO radioDTO = radioMapper.toDto(radio);
+
+        restRadioMockMvc.perform(post("/api/radios")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(radioDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Radio> radioList = radioRepository.findAll();
+        assertThat(radioList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllRadios() throws Exception {
         // Initialize the database
         radioRepository.saveAndFlush(radio);
@@ -197,7 +221,8 @@ public class RadioResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(radio.getId().intValue())))
             .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION.toString())))
-            .andExpect(jsonPath("$.[*].permiso").value(hasItem(DEFAULT_PERMISO.toString())));
+            .andExpect(jsonPath("$.[*].permiso").value(hasItem(DEFAULT_PERMISO.toString())))
+            .andExpect(jsonPath("$.[*].idRadio").value(hasItem(DEFAULT_ID_RADIO.toString())));
     }
 
     @Test
@@ -212,7 +237,8 @@ public class RadioResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(radio.getId().intValue()))
             .andExpect(jsonPath("$.descripcion").value(DEFAULT_DESCRIPCION.toString()))
-            .andExpect(jsonPath("$.permiso").value(DEFAULT_PERMISO.toString()));
+            .andExpect(jsonPath("$.permiso").value(DEFAULT_PERMISO.toString()))
+            .andExpect(jsonPath("$.idRadio").value(DEFAULT_ID_RADIO.toString()));
     }
 
     @Test
@@ -236,7 +262,8 @@ public class RadioResourceIntTest {
         em.detach(updatedRadio);
         updatedRadio
             .descripcion(UPDATED_DESCRIPCION)
-            .permiso(UPDATED_PERMISO);
+            .permiso(UPDATED_PERMISO)
+            .idRadio(UPDATED_ID_RADIO);
         RadioDTO radioDTO = radioMapper.toDto(updatedRadio);
 
         restRadioMockMvc.perform(put("/api/radios")
@@ -250,6 +277,7 @@ public class RadioResourceIntTest {
         Radio testRadio = radioList.get(radioList.size() - 1);
         assertThat(testRadio.getDescripcion()).isEqualTo(UPDATED_DESCRIPCION);
         assertThat(testRadio.getPermiso()).isEqualTo(UPDATED_PERMISO);
+        assertThat(testRadio.getIdRadio()).isEqualTo(UPDATED_ID_RADIO);
     }
 
     @Test
