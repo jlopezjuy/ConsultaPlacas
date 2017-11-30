@@ -27,6 +27,15 @@
                 "required"
             ],
             "otherEntityField": "descripcion"
+        },
+        {
+            "relationshipName": "tipoRadio",
+            "otherEntityName": "tipoRadio",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "descripcion"
         }
     ],
     "fields": [
@@ -38,18 +47,9 @@
             ]
         },
         {
-            "fieldName": "tipoDeRadio",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "permiso",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "Permiso",
+            "fieldValues": "AUTOS_ROBADOS, PADRON_VEHICULAR, AMBOS"
         }
     ],
     "changelogDate": "20171130175833",

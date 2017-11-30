@@ -24,33 +24,12 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="consultaPlacasApp.radio.tipoDeRadio" for="field_tipoDeRadio">Tipo De Radio</label>
-            <!--<input type="text" class="form-control" name="tipoDeRadio" id="field_tipoDeRadio"-->
-                <!--[(ngModel)]="radio.tipoDeRadio" required/>-->
-            <select class="form-control" id="field_tipoDeRadio"  name="tipoDeRadio" [(ngModel)]="radio.tipoDeRadio"  required>
-                <option [ngValue]="null" selected></option>
-                <option value="Móvil">Móvil</option>
-                <option value="Portatil">Portátil</option>
-            </select>
-
-
-            <div [hidden]="!(editForm.controls.tipoDeRadio?.dirty && editForm.controls.tipoDeRadio?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.tipoDeRadio?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="consultaPlacasApp.radio.permiso" for="field_permiso">Permiso</label>
-            <input type="text" class="form-control" name="permiso" id="field_permiso"
-                [(ngModel)]="radio.permiso" required/>
-            <div [hidden]="!(editForm.controls.permiso?.dirty && editForm.controls.permiso?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.permiso?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
+            <select class="form-control" name="permiso" [(ngModel)]="radio.permiso" id="field_permiso" >
+                <option value="AUTOS_ROBADOS">{{'consultaPlacasApp.Permiso.AUTOS_ROBADOS' | translate}}</option>
+                <option value="PADRON_VEHICULAR">{{'consultaPlacasApp.Permiso.PADRON_VEHICULAR' | translate}}</option>
+                <option value="AMBOS">{{'consultaPlacasApp.Permiso.AMBOS' | translate}}</option>
+            </select>
         </div>
 
         <div class="form-group">
@@ -89,6 +68,19 @@
         <div [hidden]="!(editForm.controls.corporacion?.dirty && editForm.controls.corporacion?.invalid)">
             <small class="form-text text-danger"
                 [hidden]="!editForm.controls.corporacion?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.radio.tipoRadio" for="field_tipoRadio">Tipo Radio</label>
+            <select class="form-control" id="field_tipoRadio" name="tipoRadio" [(ngModel)]="radio.tipoRadioId"  required>
+                <option *ngIf="!editForm.value.tipoRadio" [ngValue]="null" selected></option>
+                <option [ngValue]="tipoRadioOption.id" *ngFor="let tipoRadioOption of tiporadios; trackBy: trackTipoRadioById">{{tipoRadioOption.descripcion}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.tipoRadio?.dirty && editForm.controls.tipoRadio?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.tipoRadio?.errors?.required" jhiTranslate="entity.validation.required">
                 This field is required.
             </small>
         </div>

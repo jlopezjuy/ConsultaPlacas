@@ -53,6 +53,12 @@
                             <span jhiTranslate="global.menu.entities.radio">Radio</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="tipo-radio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.tipoRadio">Tipo Radio</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>

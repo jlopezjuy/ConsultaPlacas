@@ -15,34 +15,14 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Radio.
+        Added the entity TipoRadio.
     -->
-    <changeSet id="20171130175833-1" author="jhipster">
-        <createTable tableName="radio">
+    <changeSet id="20171130184108-1" author="jhipster">
+        <createTable tableName="tipo_radio">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="descripcion" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="permiso" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="marca_id" type="bigint">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="municipio_id" type="bigint">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="corporacion_id" type="bigint">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="tipo_radio_id" type="bigint">
                 <constraints nullable="false" />
             </column>
 

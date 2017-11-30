@@ -8,13 +8,9 @@
         <dd>
             <span>{{radio.descripcion}}</span>
         </dd>
-        <dt><span jhiTranslate="consultaPlacasApp.radio.tipoDeRadio">Tipo De Radio</span></dt>
-        <dd>
-            <span>{{radio.tipoDeRadio}}</span>
-        </dd>
         <dt><span jhiTranslate="consultaPlacasApp.radio.permiso">Permiso</span></dt>
         <dd>
-            <span>{{radio.permiso}}</span>
+            <span jhiTranslate="{{'consultaPlacasApp.Permiso.' + radio.permiso}}">{{radio.permiso}}</span>
         </dd>
         <dt><span jhiTranslate="consultaPlacasApp.radio.marca">Marca</span></dt>
         <dd>
@@ -32,6 +28,12 @@
         <dd>
             <div *ngIf="radio.corporacionId">
                 <a [routerLink]="['/corporacion', radio.corporacionId]">{{radio.corporacionDescripcion}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.radio.tipoRadio">Tipo Radio</span></dt>
+        <dd>
+            <div *ngIf="radio.tipoRadioId">
+                <a [routerLink]="['/tipo-radio', radio.tipoRadioId]">{{radio.tipoRadioDescripcion}}</a>
             </div>
         </dd>
     </dl>

@@ -16,11 +16,11 @@
                 "title": "Radio"
             },
             "descripcion": "Descripcion",
-            "tipoDeRadio": "Tipo De Radio",
             "permiso": "Permiso",
             "marca": "Marca",
             "municipio": "Municipio",
-            "corporacion": "Corporacion"
+            "corporacion": "Corporacion",
+            "tipoRadio": "Tipo Radio"
         }
     }
 }

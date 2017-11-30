@@ -11,6 +11,7 @@
                 "municipio": "Municipio",
                 "corporacion": "Corporacion",
                 "radio": "Radio",
+                "tipoRadio": "Tipo Radio",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

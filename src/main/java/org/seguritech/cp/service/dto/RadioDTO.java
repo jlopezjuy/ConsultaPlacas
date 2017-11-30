@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+import org.seguritech.cp.domain.enumeration.Permiso;
 
 /**
  * A DTO for the Radio entity.
@@ -17,11 +18,7 @@ public class RadioDTO implements Serializable {
     @NotNull
     private String descripcion;
 
-    @NotNull
-    private String tipoDeRadio;
-
-    @NotNull
-    private String permiso;
+    private Permiso permiso;
 
     private Long marcaId;
 
@@ -34,6 +31,10 @@ public class RadioDTO implements Serializable {
     private Long corporacionId;
 
     private String corporacionDescripcion;
+
+    private Long tipoRadioId;
+
+    private String tipoRadioDescripcion;
 
     public Long getId() {
         return id;
@@ -51,19 +52,11 @@ public class RadioDTO implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getTipoDeRadio() {
-        return tipoDeRadio;
-    }
-
-    public void setTipoDeRadio(String tipoDeRadio) {
-        this.tipoDeRadio = tipoDeRadio;
-    }
-
-    public String getPermiso() {
+    public Permiso getPermiso() {
         return permiso;
     }
 
-    public void setPermiso(String permiso) {
+    public void setPermiso(Permiso permiso) {
         this.permiso = permiso;
     }
 
@@ -115,6 +108,22 @@ public class RadioDTO implements Serializable {
         this.corporacionDescripcion = corporacionDescripcion;
     }
 
+    public Long getTipoRadioId() {
+        return tipoRadioId;
+    }
+
+    public void setTipoRadioId(Long tipoRadioId) {
+        this.tipoRadioId = tipoRadioId;
+    }
+
+    public String getTipoRadioDescripcion() {
+        return tipoRadioDescripcion;
+    }
+
+    public void setTipoRadioDescripcion(String tipoRadioDescripcion) {
+        this.tipoRadioDescripcion = tipoRadioDescripcion;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -141,7 +150,6 @@ public class RadioDTO implements Serializable {
         return "RadioDTO{" +
             "id=" + getId() +
             ", descripcion='" + getDescripcion() + "'" +
-            ", tipoDeRadio='" + getTipoDeRadio() + "'" +
             ", permiso='" + getPermiso() + "'" +
             "}";
     }

@@ -8,6 +8,8 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.seguritech.cp.domain.enumeration.Permiso;
+
 
 /**
  * A Radio.
@@ -27,13 +29,9 @@ public class Radio implements Serializable {
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
-    @NotNull
-    @Column(name = "tipo_de_radio", nullable = false)
-    private String tipoDeRadio;
-
-    @NotNull
-    @Column(name = "permiso", nullable = false)
-    private String permiso;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "permiso")
+    private Permiso permiso;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -46,6 +44,10 @@ public class Radio implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     private Corporacion corporacion;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    private TipoRadio tipoRadio;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -69,29 +71,16 @@ public class Radio implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getTipoDeRadio() {
-        return tipoDeRadio;
-    }
-
-    public Radio tipoDeRadio(String tipoDeRadio) {
-        this.tipoDeRadio = tipoDeRadio;
-        return this;
-    }
-
-    public void setTipoDeRadio(String tipoDeRadio) {
-        this.tipoDeRadio = tipoDeRadio;
-    }
-
-    public String getPermiso() {
+    public Permiso getPermiso() {
         return permiso;
     }
 
-    public Radio permiso(String permiso) {
+    public Radio permiso(Permiso permiso) {
         this.permiso = permiso;
         return this;
     }
 
-    public void setPermiso(String permiso) {
+    public void setPermiso(Permiso permiso) {
         this.permiso = permiso;
     }
 
@@ -133,6 +122,19 @@ public class Radio implements Serializable {
     public void setCorporacion(Corporacion corporacion) {
         this.corporacion = corporacion;
     }
+
+    public TipoRadio getTipoRadio() {
+        return tipoRadio;
+    }
+
+    public Radio tipoRadio(TipoRadio tipoRadio) {
+        this.tipoRadio = tipoRadio;
+        return this;
+    }
+
+    public void setTipoRadio(TipoRadio tipoRadio) {
+        this.tipoRadio = tipoRadio;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -160,7 +162,6 @@ public class Radio implements Serializable {
         return "Radio{" +
             "id=" + getId() +
             ", descripcion='" + getDescripcion() + "'" +
-            ", tipoDeRadio='" + getTipoDeRadio() + "'" +
             ", permiso='" + getPermiso() + "'" +
             "}";
     }

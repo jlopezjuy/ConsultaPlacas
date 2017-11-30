@@ -4,6 +4,7 @@ import { ConsultaPlacasMarcaModule } from './marca/marca.module';
 import { ConsultaPlacasMunicipioModule } from './municipio/municipio.module';
 import { ConsultaPlacasCorporacionModule } from './corporacion/corporacion.module';
 import { ConsultaPlacasRadioModule } from './radio/radio.module';
+import { ConsultaPlacasTipoRadioModule } from './tipo-radio/tipo-radio.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -12,6 +13,7 @@ import { ConsultaPlacasRadioModule } from './radio/radio.module';
         ConsultaPlacasMunicipioModule,
         ConsultaPlacasCorporacionModule,
         ConsultaPlacasRadioModule,
+        ConsultaPlacasTipoRadioModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

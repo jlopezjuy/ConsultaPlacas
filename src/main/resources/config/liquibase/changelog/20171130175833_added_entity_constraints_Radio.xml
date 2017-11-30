@@ -26,5 +26,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="corporacion"/>
 
+        <addForeignKeyConstraint baseColumnNames="tipo_radio_id"
+                                 baseTableName="radio"
+                                 constraintName="fk_radio_tipo_radio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_radio"/>
+
     </changeSet>
 </databaseChangeLog>
