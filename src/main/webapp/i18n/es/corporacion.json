@@ -1,0 +1,21 @@
+{
+    "consultaPlacasApp": {
+        "corporacion" : {
+            "home": {
+                "title": "Corporacions",
+                "createLabel": "Crear nuevo Corporacion",
+                "createOrEditLabel": "Crear o editar Corporacion"
+            },
+            "created": "Un nuevo Corporacion ha sido creado con el identificador {{ param }}",
+            "updated": "Un Corporacion ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Corporacion ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Corporacion {{ id }}?"
+            },
+            "detail": {
+                "title": "Corporacion"
+            },
+            "descripcion": "Descripcion"
+        }
+    }
+}

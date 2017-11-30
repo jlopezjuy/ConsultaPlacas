@@ -9,6 +9,7 @@
                 "main": "Entidades",
                 "marca": "Marca",
                 "municipio": "Municipio",
+                "corporacion": "Corporacion",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
