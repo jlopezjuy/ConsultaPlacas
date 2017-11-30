@@ -3,24 +3,24 @@
         "radio" : {
             "home": {
                 "title": "Radios",
-                "createLabel": "Crear nuevo Radio",
+                "createLabel": "Crear nueva Radio",
                 "createOrEditLabel": "Crear o editar Radio"
             },
-            "created": "Un nuevo Radio ha sido creado con el identificador {{ param }}",
+            "created": "Una nueva Radio ha sido creado con el identificador {{ param }}",
             "updated": "Un Radio ha sido actualizado con el identificador {{ param }}",
             "deleted": "Un Radio ha sido eliminado con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Radio {{ id }}?"
+                "question": "¿Seguro que quiere eliminar la Radio {{ id }}?"
             },
             "detail": {
                 "title": "Radio"
             },
-            "descripcion": "Descripcion",
+            "descripcion": "Descripción",
             "permiso": "Permiso",
             "marca": "Marca",
             "municipio": "Municipio",
-            "corporacion": "Corporacion",
-            "tipoRadio": "Tipo Radio"
+            "corporacion": "Corporación",
+            "tipoRadio": "Tipo de Radio"
         }
     }
 }

@@ -2,20 +2,20 @@
     "consultaPlacasApp": {
         "corporacion" : {
             "home": {
-                "title": "Corporacions",
-                "createLabel": "Crear nuevo Corporacion",
-                "createOrEditLabel": "Crear o editar Corporacion"
+                "title": "Corporaciones",
+                "createLabel": "Crear nueva Corporación",
+                "createOrEditLabel": "Crear o editar Corporación"
             },
-            "created": "Un nuevo Corporacion ha sido creado con el identificador {{ param }}",
-            "updated": "Un Corporacion ha sido actualizado con el identificador {{ param }}",
-            "deleted": "Un Corporacion ha sido eliminado con el identificador {{ param }}",
+            "created": "Una nueva Corporación ha sido creada con el identificador {{ param }}",
+            "updated": "Una Corporación ha sido actualizada con el identificador {{ param }}",
+            "deleted": "Una Corporación ha sido eliminada con el identificador {{ param }}",
             "delete": {
-                "question": "¿Seguro que quiere eliminar Corporacion {{ id }}?"
+                "question": "¿Seguro que quiere eliminar la Corporación {{ id }}?"
             },
             "detail": {
-                "title": "Corporacion"
+                "title": "Corporación"
             },
-            "descripcion": "Descripcion"
+            "descripcion": "Descripción"
         }
     }
 }

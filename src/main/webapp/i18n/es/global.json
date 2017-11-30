@@ -9,9 +9,9 @@
                 "main": "Entidades",
                 "marca": "Marca",
                 "municipio": "Municipio",
-                "corporacion": "Corporacion",
+                "corporacion": "Corporación",
                 "radio": "Radio",
-                "tipoRadio": "Tipo Radio",
+                "tipoRadio": "Tipo de Radio",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
