@@ -19,7 +19,7 @@ public interface RadioMapper extends EntityMapper<RadioDTO, Radio> {
     @Mapping(source = "corporacion.descripcion", target = "corporacionDescripcion")
     @Mapping(source = "tipoRadio.id", target = "tipoRadioId")
     @Mapping(source = "tipoRadio.descripcion", target = "tipoRadioDescripcion")
-    RadioDTO toDto(Radio radio); 
+    RadioDTO toDto(Radio radio);
 
     @Mapping(source = "marcaId", target = "marca")
     @Mapping(source = "municipioId", target = "municipio")
@@ -27,12 +27,12 @@ public interface RadioMapper extends EntityMapper<RadioDTO, Radio> {
     @Mapping(source = "tipoRadioId", target = "tipoRadio")
     Radio toEntity(RadioDTO radioDTO);
 
-    default Radio fromId(Long id) {
-        if (id == null) {
+    default Radio fromId(Long issi) {
+        if (issi == null) {
             return null;
         }
         Radio radio = new Radio();
-        radio.setId(id);
+        radio.setIssi(issi);
         return radio;
     }
 }

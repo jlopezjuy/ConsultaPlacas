@@ -157,7 +157,7 @@ public class RadioResourceIntTest {
         int databaseSizeBeforeCreate = radioRepository.findAll().size();
 
         // Create the Radio with an existing ID
-        radio.setId(1L);
+        radio.setIssi(1L);
         RadioDTO radioDTO = radioMapper.toDto(radio);
 
         // An entity with an existing ID cannot be created, so this API call must fail
@@ -219,7 +219,7 @@ public class RadioResourceIntTest {
         restRadioMockMvc.perform(get("/api/radios?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(radio.getId().intValue())))
+            .andExpect(jsonPath("$.[*].issi").value(hasItem(radio.getIssi().intValue())))
             .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION.toString())))
             .andExpect(jsonPath("$.[*].permiso").value(hasItem(DEFAULT_PERMISO.toString())))
             .andExpect(jsonPath("$.[*].idRadio").value(hasItem(DEFAULT_ID_RADIO.toString())));
@@ -232,10 +232,10 @@ public class RadioResourceIntTest {
         radioRepository.saveAndFlush(radio);
 
         // Get the radio
-        restRadioMockMvc.perform(get("/api/radios/{id}", radio.getId()))
+        restRadioMockMvc.perform(get("/api/radios/{issi}", radio.getIssi()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(radio.getId().intValue()))
+            .andExpect(jsonPath("$.issi").value(radio.getIssi().intValue()))
             .andExpect(jsonPath("$.descripcion").value(DEFAULT_DESCRIPCION.toString()))
             .andExpect(jsonPath("$.permiso").value(DEFAULT_PERMISO.toString()))
             .andExpect(jsonPath("$.idRadio").value(DEFAULT_ID_RADIO.toString()));
@@ -245,7 +245,7 @@ public class RadioResourceIntTest {
     @Transactional
     public void getNonExistingRadio() throws Exception {
         // Get the radio
-        restRadioMockMvc.perform(get("/api/radios/{id}", Long.MAX_VALUE))
+        restRadioMockMvc.perform(get("/api/radios/{issi}", Long.MAX_VALUE))
             .andExpect(status().isNotFound());
     }
 
@@ -257,7 +257,7 @@ public class RadioResourceIntTest {
         int databaseSizeBeforeUpdate = radioRepository.findAll().size();
 
         // Update the radio
-        Radio updatedRadio = radioRepository.findOne(radio.getId());
+        Radio updatedRadio = radioRepository.findOne(radio.getIssi());
         // Disconnect from session so that the updates on updatedRadio are not directly saved in db
         em.detach(updatedRadio);
         updatedRadio
@@ -307,7 +307,7 @@ public class RadioResourceIntTest {
         int databaseSizeBeforeDelete = radioRepository.findAll().size();
 
         // Get the radio
-        restRadioMockMvc.perform(delete("/api/radios/{id}", radio.getId())
+        restRadioMockMvc.perform(delete("/api/radios/{issi}", radio.getIssi())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
@@ -321,13 +321,13 @@ public class RadioResourceIntTest {
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Radio.class);
         Radio radio1 = new Radio();
-        radio1.setId(1L);
+        radio1.setIssi(1L);
         Radio radio2 = new Radio();
-        radio2.setId(radio1.getId());
+        radio2.setIssi(radio1.getIssi());
         assertThat(radio1).isEqualTo(radio2);
-        radio2.setId(2L);
+        radio2.setIssi(2L);
         assertThat(radio1).isNotEqualTo(radio2);
-        radio1.setId(null);
+        radio1.setIssi(null);
         assertThat(radio1).isNotEqualTo(radio2);
     }
 
@@ -336,21 +336,21 @@ public class RadioResourceIntTest {
     public void dtoEqualsVerifier() throws Exception {
         TestUtil.equalsVerifier(RadioDTO.class);
         RadioDTO radioDTO1 = new RadioDTO();
-        radioDTO1.setId(1L);
+        radioDTO1.setIssi(1L);
         RadioDTO radioDTO2 = new RadioDTO();
         assertThat(radioDTO1).isNotEqualTo(radioDTO2);
-        radioDTO2.setId(radioDTO1.getId());
+        radioDTO2.setIssi(radioDTO1.getIssi());
         assertThat(radioDTO1).isEqualTo(radioDTO2);
-        radioDTO2.setId(2L);
+        radioDTO2.setIssi(2L);
         assertThat(radioDTO1).isNotEqualTo(radioDTO2);
-        radioDTO1.setId(null);
+        radioDTO1.setIssi(null);
         assertThat(radioDTO1).isNotEqualTo(radioDTO2);
     }
 
     @Test
     @Transactional
     public void testEntityFromId() {
-        assertThat(radioMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(radioMapper.fromId(42L).getIssi()).isEqualTo(42);
         assertThat(radioMapper.fromId(null)).isNull();
     }
 }

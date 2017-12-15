@@ -51,12 +51,12 @@ public class RadioResource {
     @Timed
     public ResponseEntity<RadioDTO> createRadio(@Valid @RequestBody RadioDTO radioDTO) throws URISyntaxException {
         log.debug("REST request to save Radio : {}", radioDTO);
-        if (radioDTO.getId() != null) {
+        if (radioDTO.getIssi() != null) {
             throw new BadRequestAlertException("A new radio cannot already have an ID", ENTITY_NAME, "idexists");
         }
         RadioDTO result = radioService.save(radioDTO);
-        return ResponseEntity.created(new URI("/api/radios/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+        return ResponseEntity.created(new URI("/api/radios/" + result.getIssi()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getIssi().toString()))
             .body(result);
     }
 
@@ -73,12 +73,12 @@ public class RadioResource {
     @Timed
     public ResponseEntity<RadioDTO> updateRadio(@Valid @RequestBody RadioDTO radioDTO) throws URISyntaxException {
         log.debug("REST request to update Radio : {}", radioDTO);
-        if (radioDTO.getId() == null) {
+        if (radioDTO.getIssi() == null) {
             return createRadio(radioDTO);
         }
         RadioDTO result = radioService.save(radioDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, radioDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, radioDTO.getIssi().toString()))
             .body(result);
     }
 
@@ -105,9 +105,9 @@ public class RadioResource {
      */
     @GetMapping("/radios/{id}")
     @Timed
-    public ResponseEntity<RadioDTO> getRadio(@PathVariable Long id) {
-        log.debug("REST request to get Radio : {}", id);
-        RadioDTO radioDTO = radioService.findOne(id);
+    public ResponseEntity<RadioDTO> getRadio(@PathVariable Long issi) {
+        log.debug("REST request to get Radio : {}", issi);
+        RadioDTO radioDTO = radioService.findOne(issi);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(radioDTO));
     }
 

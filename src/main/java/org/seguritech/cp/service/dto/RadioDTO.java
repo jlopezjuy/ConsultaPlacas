@@ -13,7 +13,7 @@ import org.seguritech.cp.domain.enumeration.Permiso;
  */
 public class RadioDTO implements Serializable {
 
-    private Long id;
+    private Long issi;
 
     @NotNull
     private String descripcion;
@@ -39,12 +39,12 @@ public class RadioDTO implements Serializable {
 
     private String tipoRadioDescripcion;
 
-    public Long getId() {
-        return id;
+    public Long getIssi() {
+        return issi;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIssi(Long issi) {
+        this.issi = issi;
     }
 
     public String getDescripcion() {
@@ -145,21 +145,21 @@ public class RadioDTO implements Serializable {
         }
 
         RadioDTO radioDTO = (RadioDTO) o;
-        if(radioDTO.getId() == null || getId() == null) {
+        if(radioDTO.getIssi() == null || getIssi() == null) {
             return false;
         }
-        return Objects.equals(getId(), radioDTO.getId());
+        return Objects.equals(getIssi(), radioDTO.getIssi());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return Objects.hashCode(getIssi());
     }
 
     @Override
     public String toString() {
         return "RadioDTO{" +
-            "id=" + getId() +
+            "id=" + getIssi() +
             ", descripcion='" + getDescripcion() + "'" +
             ", permiso='" + getPermiso() + "'" +
             ", idRadio='" + getIdRadio() + "'" +

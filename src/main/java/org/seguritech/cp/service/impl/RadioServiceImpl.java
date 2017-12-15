@@ -67,9 +67,9 @@ public class RadioServiceImpl implements RadioService{
      */
     @Override
     @Transactional(readOnly = true)
-    public RadioDTO findOne(Long id) {
-        log.debug("Request to get Radio : {}", id);
-        Radio radio = radioRepository.findOne(id);
+    public RadioDTO findOne(Long issi) {
+        log.debug("Request to get Radio : {}", issi);
+        Radio radio = radioRepository.findOne(issi);
         return radioMapper.toDto(radio);
     }
 

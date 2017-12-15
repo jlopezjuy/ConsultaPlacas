@@ -31,7 +31,7 @@ public interface RadioService {
      * @param id the id of the entity
      * @return the entity
      */
-    RadioDTO findOne(Long id);
+    RadioDTO findOne(Long issi);
 
     /**
      * Delete the "id" radio.
