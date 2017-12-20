@@ -30,8 +30,8 @@ export class RadioDetailComponent implements OnInit, OnDestroy {
         this.registerChangeInRadios();
     }
 
-    load(id) {
-        this.radioService.find(id).subscribe((radio) => {
+    load(issi) {
+        this.radioService.find(issi).subscribe((radio) => {
             this.radio = radio;
         });
     }

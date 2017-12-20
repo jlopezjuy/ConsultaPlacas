@@ -33,10 +33,6 @@ public class Radio implements Serializable {
     @Column(name = "permiso")
     private Permiso permiso;
 
-    @NotNull
-    @Column(name = "id_radio", nullable = false)
-    private String idRadio;
-
     @ManyToOne(optional = false)
     @NotNull
     private Marca marca;
@@ -88,18 +84,6 @@ public class Radio implements Serializable {
         this.permiso = permiso;
     }
 
-    public String getIdRadio() {
-        return idRadio;
-    }
-
-    public Radio idRadio(String idRadio) {
-        this.idRadio = idRadio;
-        return this;
-    }
-
-    public void setIdRadio(String idRadio) {
-        this.idRadio = idRadio;
-    }
 
     public Marca getMarca() {
         return marca;
@@ -180,7 +164,6 @@ public class Radio implements Serializable {
             "id=" + getIssi() +
             ", descripcion='" + getDescripcion() + "'" +
             ", permiso='" + getPermiso() + "'" +
-            ", idRadio='" + getIdRadio() + "'" +
             "}";
     }
 }
