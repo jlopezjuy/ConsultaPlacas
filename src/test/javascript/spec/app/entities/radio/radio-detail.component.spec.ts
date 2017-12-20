@@ -53,7 +53,7 @@ describe('Component Tests', () => {
 
             // THEN
             expect(service.find).toHaveBeenCalledWith(123);
-            expect(comp.radio).toEqual(jasmine.objectContaining({id: 10}));
+            expect(comp.radio).toEqual(jasmine.objectContaining({issi: 10}));
             });
         });
     });
