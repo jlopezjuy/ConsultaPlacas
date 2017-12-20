@@ -98,7 +98,7 @@ jhipster:
             jwt:
                 secret: 340dabf8d6d56cb0d336ec94e063dd88a925b047
                 # Token is valid 24 hours
-                token-validity-in-seconds: 86400
+                token-validity-in-seconds: 31536000 #365 dias
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: ConsultaPlacas@localhost
