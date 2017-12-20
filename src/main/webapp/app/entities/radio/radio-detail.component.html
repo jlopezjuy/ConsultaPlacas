@@ -4,7 +4,7 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="consultaPlacasApp.radio.idRadio">Id Radio</span></dt>
+        <dt><span>ISSI</span></dt>
         <dd>
             <span>{{radio.idRadio}}</span>
         </dd>
@@ -49,7 +49,7 @@
     </button>
 
     <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'radio/'+ radio.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'radio/'+ radio.issi + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">
         <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>

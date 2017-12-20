@@ -112,7 +112,7 @@ public class RadioResource {
     }
 
     /**
-     * DELETE  /radios/:issi : delete the "id" radio.
+     * DELETE  /radios/:issi : delete the "issi" radio.
      *
      * @param issi the id of the radioDTO to delete
      * @return the ResponseEntity with status 200 (OK)
