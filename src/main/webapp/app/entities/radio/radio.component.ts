@@ -93,7 +93,7 @@ currentAccount: any;
     }
 
     trackId(index: number, item: Radio) {
-        return item.id;
+        return item.issi;
     }
     registerChangeInRadios() {
         this.eventSubscriber = this.eventManager.subscribe('radioListModification', (response) => this.loadAll());
@@ -101,8 +101,8 @@ currentAccount: any;
 
     sort() {
         const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
-        if (this.predicate !== 'id') {
-            result.push('id');
+        if (this.predicate !== 'issi') {
+            result.push('issi');
         }
         return result;
     }

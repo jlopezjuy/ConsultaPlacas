@@ -38,7 +38,7 @@ export const radioRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'radio/:id',
+        path: 'radio/:issi',
         component: RadioDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -60,7 +60,7 @@ export const radioPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'radio/:id/edit',
+        path: 'radio/:issi/edit',
         component: RadioPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -70,7 +70,7 @@ export const radioPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'radio/:id/delete',
+        path: 'radio/:issi/delete',
         component: RadioDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],

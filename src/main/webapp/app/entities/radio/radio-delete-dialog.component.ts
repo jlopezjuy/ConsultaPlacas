@@ -54,7 +54,7 @@ export class RadioDeletePopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             this.radioPopupService
-                .open(RadioDeleteDialogComponent as Component, params['id']);
+                .open(RadioDeleteDialogComponent as Component, params['issi']);
         });
     }
 

@@ -47,7 +47,7 @@ export class RadioDetailComponent implements OnInit, OnDestroy {
     registerChangeInRadios() {
         this.eventSubscriber = this.eventManager.subscribe(
             'radioListModification',
-            (response) => this.load(this.radio.id)
+            (response) => this.load(this.radio.issi)
         );
     }
 }

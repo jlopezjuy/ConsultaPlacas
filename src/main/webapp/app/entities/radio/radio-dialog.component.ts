@@ -62,7 +62,7 @@ export class RadioDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.radio.id !== undefined) {
+        if (this.radio.issi !== undefined) {
             this.subscribeToSaveResponse(
                 this.radioService.update(this.radio));
         } else {

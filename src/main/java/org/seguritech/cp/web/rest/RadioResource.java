@@ -100,10 +100,10 @@ public class RadioResource {
     /**
      * GET  /radios/:id : get the "id" radio.
      *
-     * @param id the id of the radioDTO to retrieve
+     * @param issi the id of the radioDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the radioDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/radios/{id}")
+    @GetMapping("/radios/{issi}")
     @Timed
     public ResponseEntity<RadioDTO> getRadio(@PathVariable Long issi) {
         log.debug("REST request to get Radio : {}", issi);
@@ -112,16 +112,16 @@ public class RadioResource {
     }
 
     /**
-     * DELETE  /radios/:id : delete the "id" radio.
+     * DELETE  /radios/:issi : delete the "id" radio.
      *
-     * @param id the id of the radioDTO to delete
+     * @param issi the id of the radioDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/radios/{id}")
+    @DeleteMapping("/radios/{issi}")
     @Timed
-    public ResponseEntity<Void> deleteRadio(@PathVariable Long id) {
-        log.debug("REST request to delete Radio : {}", id);
-        radioService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    public ResponseEntity<Void> deleteRadio(@PathVariable Long issi) {
+        log.debug("REST request to delete Radio : {}", issi);
+        radioService.delete(issi);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, issi.toString())).build();
     }
 }

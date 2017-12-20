@@ -29,8 +29,8 @@ export class RadioService {
         });
     }
 
-    find(id: number): Observable<Radio> {
-        return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
+    find(issi: number): Observable<Radio> {
+        return this.http.get(`${this.resourceUrl}/${issi}`).map((res: Response) => {
             const jsonResponse = res.json();
             return this.convertItemFromServer(jsonResponse);
         });
@@ -42,8 +42,8 @@ export class RadioService {
             .map((res: Response) => this.convertResponse(res));
     }
 
-    delete(id: number): Observable<Response> {
-        return this.http.delete(`${this.resourceUrl}/${id}`);
+    delete(issi: number): Observable<Response> {
+        return this.http.delete(`${this.resourceUrl}/${issi}`);
     }
 
     private convertResponse(res: Response): ResponseWrapper {
