@@ -1,19 +1,23 @@
 <div>
     <h2>
         <span jhiTranslate="consultaPlacasApp.consultaPlaca.home.title">Consulta Placas</span>
-        <!--<button class="btn btn-primary float-right jh-create-entity create-consulta-placa" [routerLink]="['/', { outlets: { popup: ['consulta-placa-new'] } }]">-->
-            <!--<span class="fa fa-plus"></span>-->
-            <!--<span  jhiTranslate="consultaPlacasApp.consultaPlaca.home.createLabel">-->
-            <!--Create new Consulta Placa-->
-            <!--</span>-->
-        <!--</button>-->
+        <button class="btn btn-primary float-right jh-create-entity create-consulta-placa" [routerLink]="['/', { outlets: { popup: ['consulta-placa-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="consultaPlacasApp.consultaPlaca.home.createLabel">
+            Create new Consulta Placa
+            </span>
+        </button>
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
     </div>
     <br/>
+    <a href="#" (click)="exportAction('csv')"> Export CSV</a><br/><br/>
+    <a href="#" (click)="exportAction('excel')"> Export Excel</a><br/><br/>
+    <a href="#" (click)="exportAction('doc')"> Export Doc</a><br/><br/>
+    <a href="#" (click)="exportAction('pdf')"> Export Pdf</a><br/><br/>
     <div class="table-responsive" *ngIf="consultaPlacas">
-        <table class="table table-striped">
+        <table class="export-table table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>

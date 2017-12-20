@@ -22,7 +22,13 @@
             "content/css/vendor.css",
             "content/css/global.css"
         ],
-        "scripts": []
+        "scripts": [
+            "content/js/base64.js",
+            "content/js/tableExport.js",
+            "content/js/jquery.base64.js",
+            "content/js/jspdf.js",
+            "content/js/sprintf.js"
+        ]
     }],
     "lint": [{
             "project": "../../../tsconfig.json"
