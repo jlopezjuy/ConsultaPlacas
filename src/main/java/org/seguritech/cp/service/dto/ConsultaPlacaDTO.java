@@ -36,6 +36,9 @@ public class ConsultaPlacaDTO implements Serializable {
     @NotNull
     private String resultado;
 
+    @NotNull
+    private String coordenadas;
+
     private Long municipioId;
 
     private String municipioDescripcion;
@@ -108,6 +111,14 @@ public class ConsultaPlacaDTO implements Serializable {
         this.resultado = resultado;
     }
 
+    public String getCoordenadas() {
+        return coordenadas;
+    }
+
+    public void setCoordenadas(String coordenadas) {
+        this.coordenadas = coordenadas;
+    }
+
     public Long getMunicipioId() {
         return municipioId;
     }
@@ -172,6 +183,7 @@ public class ConsultaPlacaDTO implements Serializable {
             ", metodo='" + getMetodo() + "'" +
             ", estado='" + isEstado() + "'" +
             ", resultado='" + getResultado() + "'" +
+            ", coordenadas='" + getCoordenadas() + "'" +
             "}";
     }
 }

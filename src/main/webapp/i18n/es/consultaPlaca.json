@@ -2,7 +2,7 @@
     "consultaPlacasApp": {
         "consultaPlaca" : {
             "home": {
-                "title": "Reporde Consulta de Placas",
+                "title": "Reporte consulta de Placas",
                 "createLabel": "Crear nuevo Consulta Placa",
                 "createOrEditLabel": "Crear o editar Consulta Placa"
             },
@@ -22,6 +22,7 @@
             "metodo": "Metodo",
             "estado": "Estado",
             "resultado": "Resultado",
+            "coordenadas": "Coordenadas",
             "municipio": "Municipio",
             "corporacion": "Corporación"
         }

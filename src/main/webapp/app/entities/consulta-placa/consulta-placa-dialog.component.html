@@ -94,6 +94,17 @@
                 </small>
             </div>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.coordenadas" for="field_coordenadas">Coordenadas</label>
+            <input type="text" class="form-control" name="coordenadas" id="field_coordenadas"
+                [(ngModel)]="consultaPlaca.coordenadas" required/>
+            <div [hidden]="!(editForm.controls.coordenadas?.dirty && editForm.controls.coordenadas?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.coordenadas?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.municipio" for="field_municipio">Municipio</label>

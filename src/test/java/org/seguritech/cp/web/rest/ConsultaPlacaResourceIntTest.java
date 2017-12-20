@@ -66,6 +66,9 @@ public class ConsultaPlacaResourceIntTest {
     private static final String DEFAULT_RESULTADO = "AAAAAAAAAA";
     private static final String UPDATED_RESULTADO = "BBBBBBBBBB";
 
+    private static final String DEFAULT_COORDENADAS = "AAAAAAAAAA";
+    private static final String UPDATED_COORDENADAS = "BBBBBBBBBB";
+
     @Autowired
     private ConsultaPlacaRepository consultaPlacaRepository;
 
@@ -116,7 +119,8 @@ public class ConsultaPlacaResourceIntTest {
             .consulta(DEFAULT_CONSULTA)
             .metodo(DEFAULT_METODO)
             .estado(DEFAULT_ESTADO)
-            .resultado(DEFAULT_RESULTADO);
+            .resultado(DEFAULT_RESULTADO)
+            .coordenadas(DEFAULT_COORDENADAS);
         // Add required entity
         Municipio municipio = MunicipioResourceIntTest.createEntity(em);
         em.persist(municipio);
@@ -158,6 +162,7 @@ public class ConsultaPlacaResourceIntTest {
         assertThat(testConsultaPlaca.getMetodo()).isEqualTo(DEFAULT_METODO);
         assertThat(testConsultaPlaca.isEstado()).isEqualTo(DEFAULT_ESTADO);
         assertThat(testConsultaPlaca.getResultado()).isEqualTo(DEFAULT_RESULTADO);
+        assertThat(testConsultaPlaca.getCoordenadas()).isEqualTo(DEFAULT_COORDENADAS);
     }
 
     @Test
@@ -315,6 +320,25 @@ public class ConsultaPlacaResourceIntTest {
 
     @Test
     @Transactional
+    public void checkCoordenadasIsRequired() throws Exception {
+        int databaseSizeBeforeTest = consultaPlacaRepository.findAll().size();
+        // set the field null
+        consultaPlaca.setCoordenadas(null);
+
+        // Create the ConsultaPlaca, which fails.
+        ConsultaPlacaDTO consultaPlacaDTO = consultaPlacaMapper.toDto(consultaPlaca);
+
+        restConsultaPlacaMockMvc.perform(post("/api/consulta-placas")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(consultaPlacaDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<ConsultaPlaca> consultaPlacaList = consultaPlacaRepository.findAll();
+        assertThat(consultaPlacaList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllConsultaPlacas() throws Exception {
         // Initialize the database
         consultaPlacaRepository.saveAndFlush(consultaPlaca);
@@ -330,7 +354,8 @@ public class ConsultaPlacaResourceIntTest {
             .andExpect(jsonPath("$.[*].consulta").value(hasItem(DEFAULT_CONSULTA.toString())))
             .andExpect(jsonPath("$.[*].metodo").value(hasItem(DEFAULT_METODO.toString())))
             .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO.booleanValue())))
-            .andExpect(jsonPath("$.[*].resultado").value(hasItem(DEFAULT_RESULTADO.toString())));
+            .andExpect(jsonPath("$.[*].resultado").value(hasItem(DEFAULT_RESULTADO.toString())))
+            .andExpect(jsonPath("$.[*].coordenadas").value(hasItem(DEFAULT_COORDENADAS.toString())));
     }
 
     @Test
@@ -350,7 +375,8 @@ public class ConsultaPlacaResourceIntTest {
             .andExpect(jsonPath("$.consulta").value(DEFAULT_CONSULTA.toString()))
             .andExpect(jsonPath("$.metodo").value(DEFAULT_METODO.toString()))
             .andExpect(jsonPath("$.estado").value(DEFAULT_ESTADO.booleanValue()))
-            .andExpect(jsonPath("$.resultado").value(DEFAULT_RESULTADO.toString()));
+            .andExpect(jsonPath("$.resultado").value(DEFAULT_RESULTADO.toString()))
+            .andExpect(jsonPath("$.coordenadas").value(DEFAULT_COORDENADAS.toString()));
     }
 
     @Test
@@ -379,7 +405,8 @@ public class ConsultaPlacaResourceIntTest {
             .consulta(UPDATED_CONSULTA)
             .metodo(UPDATED_METODO)
             .estado(UPDATED_ESTADO)
-            .resultado(UPDATED_RESULTADO);
+            .resultado(UPDATED_RESULTADO)
+            .coordenadas(UPDATED_COORDENADAS);
         ConsultaPlacaDTO consultaPlacaDTO = consultaPlacaMapper.toDto(updatedConsultaPlaca);
 
         restConsultaPlacaMockMvc.perform(put("/api/consulta-placas")
@@ -398,6 +425,7 @@ public class ConsultaPlacaResourceIntTest {
         assertThat(testConsultaPlaca.getMetodo()).isEqualTo(UPDATED_METODO);
         assertThat(testConsultaPlaca.isEstado()).isEqualTo(UPDATED_ESTADO);
         assertThat(testConsultaPlaca.getResultado()).isEqualTo(UPDATED_RESULTADO);
+        assertThat(testConsultaPlaca.getCoordenadas()).isEqualTo(UPDATED_COORDENADAS);
     }
 
     @Test

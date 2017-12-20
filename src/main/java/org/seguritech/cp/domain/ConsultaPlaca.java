@@ -52,6 +52,10 @@ public class ConsultaPlaca implements Serializable {
     @Column(name = "resultado", nullable = false)
     private String resultado;
 
+    @NotNull
+    @Column(name = "coordenadas", nullable = false)
+    private String coordenadas;
+
     @ManyToOne(optional = false)
     @NotNull
     private Municipio municipio;
@@ -160,6 +164,19 @@ public class ConsultaPlaca implements Serializable {
         this.resultado = resultado;
     }
 
+    public String getCoordenadas() {
+        return coordenadas;
+    }
+
+    public ConsultaPlaca coordenadas(String coordenadas) {
+        this.coordenadas = coordenadas;
+        return this;
+    }
+
+    public void setCoordenadas(String coordenadas) {
+        this.coordenadas = coordenadas;
+    }
+
     public Municipio getMunicipio() {
         return municipio;
     }
@@ -218,6 +235,7 @@ public class ConsultaPlaca implements Serializable {
             ", metodo='" + getMetodo() + "'" +
             ", estado='" + isEstado() + "'" +
             ", resultado='" + getResultado() + "'" +
+            ", coordenadas='" + getCoordenadas() + "'" +
             "}";
     }
 }
