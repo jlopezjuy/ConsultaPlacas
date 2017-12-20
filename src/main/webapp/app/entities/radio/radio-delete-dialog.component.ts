@@ -27,8 +27,8 @@ export class RadioDeleteDialogComponent {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete(id: number) {
-        this.radioService.delete(id).subscribe((response) => {
+    confirmDelete(issi: number) {
+        this.radioService.delete(issi).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'radioListModification',
                 content: 'Deleted an radio'

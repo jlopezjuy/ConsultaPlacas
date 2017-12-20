@@ -27,7 +27,7 @@ describe('Component Tests', () => {
                     DatePipe,
                     {
                         provide: ActivatedRoute,
-                        useValue: new MockActivatedRoute({id: 123})
+                        useValue: new MockActivatedRoute({issi: 123})
                     },
                     RadioService,
                     JhiEventManager
