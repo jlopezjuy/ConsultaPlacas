@@ -216,7 +216,7 @@ public class RadioResourceIntTest {
         radioRepository.saveAndFlush(radio);
 
         // Get all the radioList
-        restRadioMockMvc.perform(get("/api/radios?sort=id,desc"))
+        restRadioMockMvc.perform(get("/api/radios?sort=issi,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].issi").value(hasItem(radio.getIssi().intValue())))
