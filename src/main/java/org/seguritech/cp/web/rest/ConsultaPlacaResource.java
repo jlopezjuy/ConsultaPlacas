@@ -17,12 +17,27 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
 
+import org.seguritech.cp.service.dto.PlacaDTO;
+import org.springframework.context.annotation.Bean;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.json.BasicJsonParser;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.seguritech.cp.service.soap.client.ClientWebService;
+import org.seguritech.cp.service.soap.ConsultaBDResponse;
+import org.seguritech.cp.service.dto.PlacaResponseArDTO;
+import org.seguritech.cp.service.dto.PlacaResponsePadronDTO;
+import java.util.ArrayList;
 /**
  * REST controller for managing ConsultaPlaca.
  */
@@ -35,6 +50,10 @@ public class ConsultaPlacaResource {
     private static final String ENTITY_NAME = "consultaPlaca";
 
     private final ConsultaPlacaService consultaPlacaService;
+
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
+    private ClientWebService clientService;
 
     public ConsultaPlacaResource(ConsultaPlacaService consultaPlacaService) {
         this.consultaPlacaService = consultaPlacaService;
@@ -123,5 +142,106 @@ public class ConsultaPlacaResource {
         log.debug("REST request to delete ConsultaPlaca : {}", id);
         consultaPlacaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping(value = "/search",produces = "text/html")
+    public String placa(@RequestParam("query") String placa) {
+
+        System.out.println("Got " + placa);
+        PlacaDTO placaObject=null;
+        try {
+            placaObject = OBJECT_MAPPER.readValue(placa, PlacaDTO.class);
+        }
+        catch(IOException e){
+            System.err.println("No pudo mapear la placa");
+        }
+        BasicJsonParser parser;
+        ConsultaBDResponse response = this.clientService.getConsultaDBResponse("WasConBD",placaObject.getPlaca(),placaObject.getTipo());
+
+        System.out.println(response.getConsultaBDResult());
+        String respuestaPadron=response.getConsultaBDResult();
+        String respuestaAR=response.getConsultaBDResult();
+        if(placaObject.getTipo().trim().equals("Padron"))
+        {	//System.out.println(respuestaPadron);
+            if(!respuestaPadron.equals("[]"))
+            {	respuestaPadron=respuestaPadron.replace("]", "");
+                respuestaPadron=respuestaPadron.replace("[", "");
+
+                PlacaResponsePadronDTO placaObjectResponse=null;
+                try {
+                    placaObjectResponse = OBJECT_MAPPER.readValue(respuestaPadron, PlacaResponsePadronDTO.class);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                respuestaPadron=respuestaPadron.replace("{", "");
+                respuestaPadron=respuestaPadron.replace("}", "");
+                respuestaPadron=respuestaPadron.replaceAll("\""," ");
+                if(placaObjectResponse.getPlaca().trim().equals(placaObject.getPlaca().trim()))
+                    return  respuestaPadron;
+            }
+            else
+                return placaObject.getPlaca() +" sin reporte";
+
+        }
+
+        if(placaObject.getTipo().trim().equals("AR"))
+        {
+            if(!respuestaAR.equals("[]"))
+            {ArrayList<PlacaResponseArDTO> placasAR=null;
+                try {
+                     placasAR = OBJECT_MAPPER.readValue(respuestaAR, new TypeReference<ArrayList<PlacaResponseArDTO>>() {});
+                }
+                catch(IOException E)
+                {
+
+                }
+
+                for(int i=0;i<placasAR.size();i++)
+                {
+                    if(!placaObject.getPlaca().toUpperCase().equals(placasAR.get(i).getPlaca()))
+                    {
+                        placasAR.remove(i);
+                        i--;
+                    }
+
+                }
+                if(placasAR.size()>0)
+                {
+                    String placasArFinal= placasAR.toString();
+                    placasArFinal= placasArFinal.replace("[", "");
+                    placasArFinal=  placasArFinal.replace("]", "");
+                    placasArFinal=placasArFinal.replace("=", ":");
+                    placasArFinal=placasArFinal.replace("PlacaResponseAR", "");
+                    return placasArFinal;
+                }
+                else
+                    return placaObject.getPlaca() +" sin reportes";
+
+            }
+            else
+            {
+                return placaObject.getPlaca() +" sin reportes";
+            }
+
+        }
+
+
+        return "";
+    }
+    @Bean
+    CommandLineRunner lookup(ClientWebService serviceClient) {
+        return args -> {
+            this.clientService=serviceClient;
+            String code = "WasConBD";
+            String placa= "Abc123";
+            String tipo= "PV";
+            if (args.length > 0) {
+                code = args[0];
+                placa= args[1];
+                tipo= args[2];
+            }
+            ConsultaBDResponse response = serviceClient.getConsultaDBResponse(code,placa,tipo);
+        };
+
     }
 }
