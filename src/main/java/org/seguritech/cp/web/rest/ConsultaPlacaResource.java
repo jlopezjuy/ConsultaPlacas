@@ -1,11 +1,13 @@
 package org.seguritech.cp.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import org.seguritech.cp.domain.enumeration.Permiso;
 import org.seguritech.cp.service.ConsultaPlacaService;
+import org.seguritech.cp.service.RadioService;
+import org.seguritech.cp.service.dto.*;
 import org.seguritech.cp.web.rest.errors.BadRequestAlertException;
 import org.seguritech.cp.web.rest.util.HeaderUtil;
 import org.seguritech.cp.web.rest.util.PaginationUtil;
-import org.seguritech.cp.service.dto.ConsultaPlacaDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +26,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
-import org.seguritech.cp.service.dto.PlacaDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.json.BasicJsonParser;
@@ -35,8 +36,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.seguritech.cp.service.soap.client.ClientWebService;
 import org.seguritech.cp.service.soap.ConsultaBDResponse;
-import org.seguritech.cp.service.dto.PlacaResponseArDTO;
-import org.seguritech.cp.service.dto.PlacaResponsePadronDTO;
+
 import java.util.ArrayList;
 /**
  * REST controller for managing ConsultaPlaca.
@@ -53,10 +53,13 @@ public class ConsultaPlacaResource {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    private ClientWebService clientService;
+    private  ClientWebService clientService;
 
-    public ConsultaPlacaResource(ConsultaPlacaService consultaPlacaService) {
+    private final RadioService radioService;
+
+    public ConsultaPlacaResource(ConsultaPlacaService consultaPlacaService,RadioService radioService) {
         this.consultaPlacaService = consultaPlacaService;
+        this.radioService = radioService;
     }
 
     /**
@@ -155,7 +158,8 @@ public class ConsultaPlacaResource {
         catch(IOException e){
             System.err.println("No pudo mapear la placa");
         }
-        BasicJsonParser parser;
+        RadioDTO resultRadioDto=radioService.findOne((long) placaObject.getIssi());
+
         ConsultaBDResponse response = this.clientService.getConsultaDBResponse("WasConBD",placaObject.getPlaca(),placaObject.getTipo());
 
         System.out.println(response.getConsultaBDResult());
@@ -163,67 +167,78 @@ public class ConsultaPlacaResource {
         String respuestaAR=response.getConsultaBDResult();
         if(placaObject.getTipo().trim().equals("Padron"))
         {	//System.out.println(respuestaPadron);
-            if(!respuestaPadron.equals("[]"))
-            {	respuestaPadron=respuestaPadron.replace("]", "");
-                respuestaPadron=respuestaPadron.replace("[", "");
+            if(resultRadioDto.getPermiso().compareTo(Permiso.PADRON_VEHICULAR)==0)
+            {
 
-                PlacaResponsePadronDTO placaObjectResponse=null;
-                try {
-                    placaObjectResponse = OBJECT_MAPPER.readValue(respuestaPadron, PlacaResponsePadronDTO.class);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                respuestaPadron=respuestaPadron.replace("{", "");
-                respuestaPadron=respuestaPadron.replace("}", "");
-                respuestaPadron=respuestaPadron.replaceAll("\""," ");
-                if(placaObjectResponse.getPlaca().trim().equals(placaObject.getPlaca().trim()))
-                    return  respuestaPadron;
+                if (!respuestaPadron.equals("[]")) {
+                    respuestaPadron = respuestaPadron.replace("]", "");
+                    respuestaPadron = respuestaPadron.replace("[", "");
+
+                    PlacaResponsePadronDTO placaObjectResponse = null;
+                    try {
+                        placaObjectResponse = OBJECT_MAPPER.readValue(respuestaPadron, PlacaResponsePadronDTO.class);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    respuestaPadron = respuestaPadron.replace("{", "");
+                    respuestaPadron = respuestaPadron.replace("}", "");
+                    respuestaPadron = respuestaPadron.replaceAll("\"", " ");
+                    if (placaObjectResponse.getPlaca().toUpperCase().trim().equals(placaObject.getPlaca().toUpperCase().trim()))
+                        return respuestaPadron;
+                } else
+                    return placaObject.getPlaca() + " sin reporte";
             }
             else
-                return placaObject.getPlaca() +" sin reporte";
+            {
+                return "La radio "+resultRadioDto.getIssi() + " no cuenta con permiso de consulta a la base de datos de padron vehicular";
+
+            }
 
         }
 
         if(placaObject.getTipo().trim().equals("AR"))
         {
-            if(!respuestaAR.equals("[]"))
-            {ArrayList<PlacaResponseArDTO> placasAR=null;
-                try {
-                     placasAR = OBJECT_MAPPER.readValue(respuestaAR, new TypeReference<ArrayList<PlacaResponseArDTO>>() {});
-                }
-                catch(IOException E)
-                {
-
-                }
-
-                for(int i=0;i<placasAR.size();i++)
-                {
-                    if(!placaObject.getPlaca().toUpperCase().equals(placasAR.get(i).getPlaca()))
+            if(resultRadioDto.getPermiso().compareTo(Permiso.AUTOS_ROBADOS)==0)
+            {
+                if (!respuestaAR.equals("[]")) {
+                    ArrayList<PlacaResponseArDTO> placasAR = null;
+                    try
                     {
-                        placasAR.remove(i);
-                        i--;
+                        placasAR = OBJECT_MAPPER.readValue(respuestaAR, new TypeReference<ArrayList<PlacaResponseArDTO>>() {
+                        });
+                    }
+                    catch (IOException E)
+                    {
+
                     }
 
-                }
-                if(placasAR.size()>0)
-                {
-                    String placasArFinal= placasAR.toString();
-                    placasArFinal= placasArFinal.replace("[", "");
-                    placasArFinal=  placasArFinal.replace("]", "");
-                    placasArFinal=placasArFinal.replace("=", ":");
-                    placasArFinal=placasArFinal.replace("PlacaResponseAR", "");
-                    return placasArFinal;
-                }
-                else
-                    return placaObject.getPlaca() +" sin reportes";
+                    for (int i = 0; i < placasAR.size(); i++) {
+                        if (!placaObject.getPlaca().toUpperCase().equals(placasAR.get(i).getPlaca())) {
+                            placasAR.remove(i);
+                            i--;
+                        }
 
+                    }
+                    if (placasAR.size() > 0) {
+                        String placasArFinal = placasAR.toString();
+                        placasArFinal = placasArFinal.replace("[", "");
+                        placasArFinal = placasArFinal.replace("]", "");
+                        placasArFinal = placasArFinal.replace("=", ":");
+                        placasArFinal = placasArFinal.replace("PlacaResponseAR", "");
+                        return placasArFinal;
+                    } else
+                        return placaObject.getPlaca() + " sin reportes";
+
+                } else {
+                    return placaObject.getPlaca() + " sin reportes";
+                }
             }
             else
             {
-                return placaObject.getPlaca() +" sin reportes";
+                return "La radio "+resultRadioDto.getIssi() + " no cuenta con permiso de consulta a la base de datos de Autos robados";
             }
-
         }
+
 
 
         return "";

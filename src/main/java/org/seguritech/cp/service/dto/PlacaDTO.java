@@ -9,7 +9,7 @@ public class PlacaDTO {
 
 
     private String placa;
-    private String issi;
+    private long issi;
     private String tipo;
     private String clase;
     private String marca;
@@ -23,10 +23,10 @@ public class PlacaDTO {
     {
         this.tipo="";
         this.placa="";
-        this.issi="";
+        this.issi=0;
 
     }
-    public PlacaDTO(String tipoBD,String numeroPlaca,String issi)
+    public PlacaDTO(String tipoBD,String numeroPlaca,long issi)
     {
         this.tipo=tipoBD;
         this.placa=numeroPlaca;
@@ -39,9 +39,6 @@ public class PlacaDTO {
         return placa;
     }
 
-    public String getIssi() {
-        return issi;
-    }
 
     public String getTipo() {
         return tipo;
@@ -70,9 +67,6 @@ public class PlacaDTO {
         this.placa = placa;
     }
 
-    public void setIssi(String issi) {
-        this.issi = issi;
-    }
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
@@ -98,6 +92,13 @@ public class PlacaDTO {
         this.vin = vin;
     }
 
+    public long getIssi() {
+        return issi;
+    }
+
+    public void setIssi(long issi) {
+        this.issi = issi;
+    }
 
     @Override
     public String toString() {
