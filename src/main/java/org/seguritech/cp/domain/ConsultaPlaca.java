@@ -25,10 +25,6 @@ public class ConsultaPlaca implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "issi", nullable = false)
-    private String issi;
-
-    @NotNull
     @Column(name = "responsable", nullable = false)
     private String responsable;
 
@@ -67,19 +63,6 @@ public class ConsultaPlaca implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getIssi() {
-        return issi;
-    }
-
-    public ConsultaPlaca issi(String issi) {
-        this.issi = issi;
-        return this;
-    }
-
-    public void setIssi(String issi) {
-        this.issi = issi;
     }
 
     public String getResponsable() {
@@ -211,7 +194,6 @@ public class ConsultaPlaca implements Serializable {
     public String toString() {
         return "ConsultaPlaca{" +
             "id=" + getId() +
-            ", issi='" + getIssi() + "'" +
             ", responsable='" + getResponsable() + "'" +
             ", fecha='" + getFecha() + "'" +
             ", consulta='" + getConsulta() + "'" +

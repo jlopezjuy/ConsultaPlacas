@@ -3,7 +3,6 @@ import { BaseEntity } from './../../shared';
 export class ConsultaPlaca implements BaseEntity {
     constructor(
         public id?: number,
-        public issi?: string,
         public responsable?: string,
         public fecha?: any,
         public consulta?: string,

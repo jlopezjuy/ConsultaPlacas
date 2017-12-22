@@ -16,9 +16,6 @@ public class ConsultaPlacaDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String issi;
-
-    @NotNull
     private String responsable;
 
     @NotNull
@@ -39,9 +36,9 @@ public class ConsultaPlacaDTO implements Serializable {
     @NotNull
     private String coordenadas;
 
-    private Long radioId;
+    private Long radioIssi;
 
-    private String radioIssi;
+    private String radioDescripcion;
 
     public Long getId() {
         return id;
@@ -49,14 +46,6 @@ public class ConsultaPlacaDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getIssi() {
-        return issi;
-    }
-
-    public void setIssi(String issi) {
-        this.issi = issi;
     }
 
     public String getResponsable() {
@@ -119,20 +108,20 @@ public class ConsultaPlacaDTO implements Serializable {
         this.coordenadas = coordenadas;
     }
 
-    public Long getRadioId() {
-        return radioId;
-    }
-
-    public void setRadioId(Long radioId) {
-        this.radioId = radioId;
-    }
-
-    public String getRadioIssi() {
+    public Long getRadioIssi() {
         return radioIssi;
     }
 
-    public void setRadioIssi(String radioIssi) {
+    public void setRadioIssi(Long radioIssi) {
         this.radioIssi = radioIssi;
+    }
+
+    public String getRadioDescripcion() {
+        return radioDescripcion;
+    }
+
+    public void setRadioDescripcion(String radioDescripcion) {
+        this.radioDescripcion = radioDescripcion;
     }
 
     @Override
@@ -160,7 +149,6 @@ public class ConsultaPlacaDTO implements Serializable {
     public String toString() {
         return "ConsultaPlacaDTO{" +
             "id=" + getId() +
-            ", issi='" + getIssi() + "'" +
             ", responsable='" + getResponsable() + "'" +
             ", fecha='" + getFecha() + "'" +
             ", consulta='" + getConsulta() + "'" +

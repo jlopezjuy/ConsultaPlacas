@@ -13,13 +13,6 @@
     ],
     "fields": [
         {
-            "fieldName": "issi",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "responsable",
             "fieldType": "String",
             "fieldValidateRules": [

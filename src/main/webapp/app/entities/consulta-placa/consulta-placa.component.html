@@ -70,7 +70,6 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="issi"><span jhiTranslate="consultaPlacasApp.consultaPlaca.issi">Issi</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="responsable"><span jhiTranslate="consultaPlacasApp.consultaPlaca.responsable">Responsable</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="fecha"><span jhiTranslate="consultaPlacasApp.consultaPlaca.fecha">Fecha</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="consulta"><span jhiTranslate="consultaPlacasApp.consultaPlaca.consulta">Consulta</span> <span class="fa fa-sort"></span></th>
@@ -85,7 +84,6 @@
             <tbody>
             <tr *ngFor="let consultaPlaca of consultaPlacas ;trackBy: trackId">
                 <td><a [routerLink]="['../consulta-placa', consultaPlaca.id ]">{{consultaPlaca.id}}</a></td>
-                <td>{{consultaPlaca.issi}}</td>
                 <td>{{consultaPlaca.responsable}}</td>
                 <td>{{consultaPlaca.fecha | date:'mediumDate'}}</td>
                 <td>{{consultaPlaca.consulta}}</td>

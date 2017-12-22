@@ -13,17 +13,6 @@
                    [(ngModel)]="consultaPlaca.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.issi" for="field_issi">Issi</label>
-            <input type="text" class="form-control" name="issi" id="field_issi"
-                [(ngModel)]="consultaPlaca.issi" required/>
-            <div [hidden]="!(editForm.controls.issi?.dirty && editForm.controls.issi?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.issi?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.responsable" for="field_responsable">Responsable</label>
             <input type="text" class="form-control" name="responsable" id="field_responsable"
                 [(ngModel)]="consultaPlaca.responsable" required/>

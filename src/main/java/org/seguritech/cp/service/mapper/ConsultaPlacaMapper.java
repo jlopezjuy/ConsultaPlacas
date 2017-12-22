@@ -11,11 +11,11 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {RadioMapper.class})
 public interface ConsultaPlacaMapper extends EntityMapper<ConsultaPlacaDTO, ConsultaPlaca> {
 
-    @Mapping(source = "radio.id", target = "radioId")
     @Mapping(source = "radio.issi", target = "radioIssi")
-    ConsultaPlacaDTO toDto(ConsultaPlaca consultaPlaca); 
+    @Mapping(source = "radio.descripcion", target = "radioDescripcion")
+    ConsultaPlacaDTO toDto(ConsultaPlaca consultaPlaca);
 
-    @Mapping(source = "radioId", target = "radio")
+    @Mapping(source = "radioIssi", target = "radio")
     ConsultaPlaca toEntity(ConsultaPlacaDTO consultaPlacaDTO);
 
     default ConsultaPlaca fromId(Long id) {
