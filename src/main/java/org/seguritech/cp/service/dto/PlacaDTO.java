@@ -113,4 +113,10 @@ public class PlacaDTO {
             ", vin='" + vin + '\'' +
             '}';
     }
+    public String GetConsulta()
+    {
+        return "placa='" + placa + '\'' +
+            ", issi='" + issi + '\'' +
+            ", tipo='" + tipo ;
+    }
 }
