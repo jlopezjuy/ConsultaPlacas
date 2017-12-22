@@ -4,14 +4,6 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.issi">Issi</span></dt>
-        <dd>
-            <span>{{consultaPlaca.issi}}</span>
-        </dd>
-        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.responsable">Responsable</span></dt>
-        <dd>
-            <span>{{consultaPlaca.responsable}}</span>
-        </dd>
         <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.fecha">Fecha</span></dt>
         <dd>
             <span>{{consultaPlaca.fecha | date:'mediumDate'}}</span>
@@ -36,16 +28,10 @@
         <dd>
             <span>{{consultaPlaca.coordenadas}}</span>
         </dd>
-        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.municipio">Municipio</span></dt>
+        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.radio">Radio</span></dt>
         <dd>
-            <div *ngIf="consultaPlaca.municipioId">
-                <a [routerLink]="['/municipio', consultaPlaca.municipioId]">{{consultaPlaca.municipioDescripcion}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.corporacion">Corporacion</span></dt>
-        <dd>
-            <div *ngIf="consultaPlaca.corporacionId">
-                <a [routerLink]="['/corporacion', consultaPlaca.corporacionId]">{{consultaPlaca.corporacionDescripcion}}</a>
+            <div *ngIf="consultaPlaca.radioIssi">
+                <a [routerLink]="['/radio', consultaPlaca.radioIssi]">{{consultaPlaca.radioIssi}}</a>
             </div>
         </dd>
     </dl>

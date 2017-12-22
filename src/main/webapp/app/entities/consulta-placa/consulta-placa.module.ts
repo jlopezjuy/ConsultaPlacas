@@ -14,6 +14,10 @@ import {
     consultaPlacaRoute,
     consultaPlacaPopupRoute,
     ConsultaPlacaResolvePagingParams,
+    SearchfilterReportePipe,
+    SearchfilterReportePipeFechaInicial,
+    SearchfilterReportePipeFechaFinal,
+    SearchfilterReportePipeString,
 } from './';
 
 const ENTITY_STATES = [
@@ -33,6 +37,10 @@ const ENTITY_STATES = [
         ConsultaPlacaDeleteDialogComponent,
         ConsultaPlacaPopupComponent,
         ConsultaPlacaDeletePopupComponent,
+        SearchfilterReportePipe,
+        SearchfilterReportePipeFechaInicial,
+        SearchfilterReportePipeFechaFinal,
+        SearchfilterReportePipeString,
     ],
     entryComponents: [
         ConsultaPlacaComponent,

@@ -9,8 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { ConsultaPlaca } from './consulta-placa.model';
 import { ConsultaPlacaPopupService } from './consulta-placa-popup.service';
 import { ConsultaPlacaService } from './consulta-placa.service';
-import { Municipio, MunicipioService } from '../municipio';
-import { Corporacion, CorporacionService } from '../corporacion';
+import { Radio, RadioService } from '../radio';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -22,27 +21,22 @@ export class ConsultaPlacaDialogComponent implements OnInit {
     consultaPlaca: ConsultaPlaca;
     isSaving: boolean;
 
-    municipios: Municipio[];
-
-    corporacions: Corporacion[];
+    radios: Radio[];
     fechaDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private consultaPlacaService: ConsultaPlacaService,
-        private municipioService: MunicipioService,
-        private corporacionService: CorporacionService,
+        private radioService: RadioService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.municipioService.query()
-            .subscribe((res: ResponseWrapper) => { this.municipios = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.corporacionService.query()
-            .subscribe((res: ResponseWrapper) => { this.corporacions = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.radioService.query()
+            .subscribe((res: ResponseWrapper) => { this.radios = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -79,12 +73,8 @@ export class ConsultaPlacaDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackMunicipioById(index: number, item: Municipio) {
-        return item.id;
-    }
-
-    trackCorporacionById(index: number, item: Corporacion) {
-        return item.id;
+    trackRadioById(index: number, item: Radio) {
+        return item.issi;
     }
 }
 

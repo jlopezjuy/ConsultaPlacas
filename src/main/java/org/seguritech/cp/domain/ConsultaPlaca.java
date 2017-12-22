@@ -25,14 +25,6 @@ public class ConsultaPlaca implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "issi", nullable = false)
-    private String issi;
-
-    @NotNull
-    @Column(name = "responsable", nullable = false)
-    private String responsable;
-
-    @NotNull
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
@@ -58,11 +50,7 @@ public class ConsultaPlaca implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    private Municipio municipio;
-
-    @ManyToOne(optional = false)
-    @NotNull
-    private Corporacion corporacion;
+    private Radio radio;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -71,32 +59,6 @@ public class ConsultaPlaca implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getIssi() {
-        return issi;
-    }
-
-    public ConsultaPlaca issi(String issi) {
-        this.issi = issi;
-        return this;
-    }
-
-    public void setIssi(String issi) {
-        this.issi = issi;
-    }
-
-    public String getResponsable() {
-        return responsable;
-    }
-
-    public ConsultaPlaca responsable(String responsable) {
-        this.responsable = responsable;
-        return this;
-    }
-
-    public void setResponsable(String responsable) {
-        this.responsable = responsable;
     }
 
     public LocalDate getFecha() {
@@ -177,30 +139,17 @@ public class ConsultaPlaca implements Serializable {
         this.coordenadas = coordenadas;
     }
 
-    public Municipio getMunicipio() {
-        return municipio;
+    public Radio getRadio() {
+        return radio;
     }
 
-    public ConsultaPlaca municipio(Municipio municipio) {
-        this.municipio = municipio;
+    public ConsultaPlaca radio(Radio radio) {
+        this.radio = radio;
         return this;
     }
 
-    public void setMunicipio(Municipio municipio) {
-        this.municipio = municipio;
-    }
-
-    public Corporacion getCorporacion() {
-        return corporacion;
-    }
-
-    public ConsultaPlaca corporacion(Corporacion corporacion) {
-        this.corporacion = corporacion;
-        return this;
-    }
-
-    public void setCorporacion(Corporacion corporacion) {
-        this.corporacion = corporacion;
+    public void setRadio(Radio radio) {
+        this.radio = radio;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -228,8 +177,6 @@ public class ConsultaPlaca implements Serializable {
     public String toString() {
         return "ConsultaPlaca{" +
             "id=" + getId() +
-            ", issi='" + getIssi() + "'" +
-            ", responsable='" + getResponsable() + "'" +
             ", fecha='" + getFecha() + "'" +
             ", consulta='" + getConsulta() + "'" +
             ", metodo='" + getMetodo() + "'" +

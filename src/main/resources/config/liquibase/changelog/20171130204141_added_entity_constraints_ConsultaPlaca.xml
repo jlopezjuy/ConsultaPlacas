@@ -7,18 +7,12 @@
         Added the constraints for entity ConsultaPlaca.
     -->
     <changeSet id="20171130204141-2" author="jhipster">
-        
-        <addForeignKeyConstraint baseColumnNames="municipio_id"
-                                 baseTableName="consulta_placa"
-                                 constraintName="fk_consulta_placa_municipio_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="municipio"/>
 
-        <addForeignKeyConstraint baseColumnNames="corporacion_id"
+        <addForeignKeyConstraint baseColumnNames="radio_issi"
                                  baseTableName="consulta_placa"
-                                 constraintName="fk_consulta_placa_corporacion_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="corporacion"/>
+                                 constraintName="fk_consulta_placa_radio_issi"
+                                 referencedColumnNames="issi"
+                                 referencedTableName="radio"/>
 
     </changeSet>
 </databaseChangeLog>

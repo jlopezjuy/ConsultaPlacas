@@ -4,6 +4,8 @@ import org.seguritech.cp.service.dto.ConsultaPlacaDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * Service Interface for managing ConsultaPlaca.
  */
@@ -24,6 +26,13 @@ public interface ConsultaPlacaService {
      * @return the list of entities
      */
     Page<ConsultaPlacaDTO> findAll(Pageable pageable);
+
+    /**
+     * Get all the consultaPlacas.
+     *
+     * @return the list of entities
+     */
+    List<ConsultaPlacaDTO> findAll();
 
     /**
      * Get the "id" consultaPlaca.

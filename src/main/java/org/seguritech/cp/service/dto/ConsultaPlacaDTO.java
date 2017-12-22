@@ -16,12 +16,6 @@ public class ConsultaPlacaDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String issi;
-
-    @NotNull
-    private String responsable;
-
-    @NotNull
     private LocalDate fecha;
 
     @NotNull
@@ -39,13 +33,15 @@ public class ConsultaPlacaDTO implements Serializable {
     @NotNull
     private String coordenadas;
 
-    private Long municipioId;
+    private Long radioIssi;
 
-    private String municipioDescripcion;
+    private String radioDescripcion;
 
-    private Long corporacionId;
+    private String radioResponsable;
 
-    private String corporacionDescripcion;
+    private String radioMunicipio;
+
+    private String radioCorporacion;
 
     public Long getId() {
         return id;
@@ -53,22 +49,6 @@ public class ConsultaPlacaDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getIssi() {
-        return issi;
-    }
-
-    public void setIssi(String issi) {
-        this.issi = issi;
-    }
-
-    public String getResponsable() {
-        return responsable;
-    }
-
-    public void setResponsable(String responsable) {
-        this.responsable = responsable;
     }
 
     public LocalDate getFecha() {
@@ -99,6 +79,10 @@ public class ConsultaPlacaDTO implements Serializable {
         return estado;
     }
 
+    public Boolean getEstado(){
+        return estado;
+    }
+
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
@@ -119,36 +103,44 @@ public class ConsultaPlacaDTO implements Serializable {
         this.coordenadas = coordenadas;
     }
 
-    public Long getMunicipioId() {
-        return municipioId;
+    public Long getRadioIssi() {
+        return radioIssi;
     }
 
-    public void setMunicipioId(Long municipioId) {
-        this.municipioId = municipioId;
+    public void setRadioIssi(Long radioIssi) {
+        this.radioIssi = radioIssi;
     }
 
-    public String getMunicipioDescripcion() {
-        return municipioDescripcion;
+    public String getRadioDescripcion() {
+        return radioDescripcion;
     }
 
-    public void setMunicipioDescripcion(String municipioDescripcion) {
-        this.municipioDescripcion = municipioDescripcion;
+    public void setRadioDescripcion(String radioDescripcion) {
+        this.radioDescripcion = radioDescripcion;
     }
 
-    public Long getCorporacionId() {
-        return corporacionId;
+    public String getRadioResponsable() {
+        return radioResponsable;
     }
 
-    public void setCorporacionId(Long corporacionId) {
-        this.corporacionId = corporacionId;
+    public void setRadioResponsable(String radioResponsable) {
+        this.radioResponsable = radioResponsable;
     }
 
-    public String getCorporacionDescripcion() {
-        return corporacionDescripcion;
+    public String getRadioMunicipio() {
+        return radioMunicipio;
     }
 
-    public void setCorporacionDescripcion(String corporacionDescripcion) {
-        this.corporacionDescripcion = corporacionDescripcion;
+    public void setRadioMunicipio(String radioMunicipio) {
+        this.radioMunicipio = radioMunicipio;
+    }
+
+    public String getRadioCorporacion() {
+        return radioCorporacion;
+    }
+
+    public void setRadioCorporacion(String radioCorporacion) {
+        this.radioCorporacion = radioCorporacion;
     }
 
     @Override
@@ -176,14 +168,14 @@ public class ConsultaPlacaDTO implements Serializable {
     public String toString() {
         return "ConsultaPlacaDTO{" +
             "id=" + getId() +
-            ", issi='" + getIssi() + "'" +
-            ", responsable='" + getResponsable() + "'" +
             ", fecha='" + getFecha() + "'" +
             ", consulta='" + getConsulta() + "'" +
             ", metodo='" + getMetodo() + "'" +
             ", estado='" + isEstado() + "'" +
             ", resultado='" + getResultado() + "'" +
             ", coordenadas='" + getCoordenadas() + "'" +
+            ", radio='" + getRadioIssi() + "'" +
+            ", radio desc='" + getRadioDescripcion() + "'" +
             "}";
     }
 }
