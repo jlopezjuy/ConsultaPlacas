@@ -6,6 +6,7 @@ import org.seguritech.cp.domain.ConsultaPlaca;
 import org.seguritech.cp.domain.Radio;
 import org.seguritech.cp.repository.ConsultaPlacaRepository;
 import org.seguritech.cp.service.ConsultaPlacaService;
+import org.seguritech.cp.service.RadioService;
 import org.seguritech.cp.service.dto.ConsultaPlacaDTO;
 import org.seguritech.cp.service.mapper.ConsultaPlacaMapper;
 import org.seguritech.cp.web.rest.errors.ExceptionTranslator;
@@ -71,6 +72,10 @@ public class ConsultaPlacaResourceIntTest {
     @Autowired
     private ConsultaPlacaService consultaPlacaService;
 
+
+    @Autowired
+    private RadioService radioService;
+
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
@@ -90,7 +95,7 @@ public class ConsultaPlacaResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ConsultaPlacaResource consultaPlacaResource = new ConsultaPlacaResource(consultaPlacaService);
+        final ConsultaPlacaResource consultaPlacaResource = new ConsultaPlacaResource(consultaPlacaService, radioService);
         this.restConsultaPlacaMockMvc = MockMvcBuilders.standaloneSetup(consultaPlacaResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

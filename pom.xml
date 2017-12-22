@@ -319,6 +319,10 @@
             <artifactId>spring-security-data</artifactId>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-core</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -911,6 +915,12 @@
                             <verbose>true</verbose>
                             <scalaVersion>${scala.version}</scalaVersion>
                         </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.jvnet.jaxb2.maven2</groupId>
+                        <artifactId>maven-jaxb2-plugin</artifactId>
+                        <version>0.13.1</version>
+
                     </plugin>
                 </plugins>
             </build>
