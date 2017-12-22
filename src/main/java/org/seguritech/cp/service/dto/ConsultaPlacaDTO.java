@@ -1,9 +1,12 @@
 package org.seguritech.cp.service.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -46,6 +49,17 @@ public class ConsultaPlacaDTO implements Serializable {
     private Long corporacionId;
 
     private String corporacionDescripcion;
+
+    public Date getFechaAlter() {
+        return fechaAlter;
+    }
+
+    public void setFechaAlter(Date fechaAlter) {
+        this.fechaAlter = fechaAlter;
+    }
+
+    @JsonIgnore
+    private Date fechaAlter;
 
     public Long getId() {
         return id;
@@ -96,6 +110,10 @@ public class ConsultaPlacaDTO implements Serializable {
     }
 
     public Boolean isEstado() {
+        return estado;
+    }
+
+    public Boolean getEstado(){
         return estado;
     }
 
