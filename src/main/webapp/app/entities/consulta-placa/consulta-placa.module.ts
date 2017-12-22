@@ -18,6 +18,7 @@ import {
     SearchfilterReportePipe,
     SearchfilterReportePipeFechaInicial,
     SearchfilterReportePipeFechaFinal,
+    SearchfilterReportePipeString,
 } from './';
 
 const ENTITY_STATES = [
@@ -41,6 +42,7 @@ const ENTITY_STATES = [
         SearchfilterReportePipe,
         SearchfilterReportePipeFechaInicial,
         SearchfilterReportePipeFechaFinal,
+        SearchfilterReportePipeString,
     ],
     entryComponents: [
         ConsultaPlacaComponent,

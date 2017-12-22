@@ -14,6 +14,15 @@
     <br/>
     <div class="row">
         <div class="row col-md-12">
+            <div class="col-md-1">
+                <input type="text" class="form-control" placeholder="Issi" [(ngModel)]="busquedaIssi" />
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="Municipio" [(ngModel)]="busquedaMunicipio" />
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="Corporación" [(ngModel)]="busquedaCorporacion" />
+            </div>
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Estado: </label>
@@ -87,7 +96,7 @@
             </thead>
             <tbody>
                 <!-- <tr *ngFor="let consultaPlaca of consultaPlacas ;trackBy: trackId"> -->
-                <tr *ngFor="let consultaPlaca of consultaPlacas | searchfilterReporte: 'estado' : busquedaEstado | searchfilterReporteFechaInicial: 'fecha': busquedaFechaInicial | searchfilterReporteFechaFinal: 'fecha': busquedaFechaFinal | paginate: { itemsPerPage: 10, currentPage: p }">
+                <tr *ngFor="let consultaPlaca of consultaPlacas | searchfilterReporteString: 'municipioDescripcion': busquedaMunicipio | searchfilterReporteString: 'corporacionDescripcion': busquedaCorporacion | searchfilterReporteString: 'issi': busquedaIssi |searchfilterReporte: 'estado' : busquedaEstado | searchfilterReporteFechaInicial: 'fecha': busquedaFechaInicial | searchfilterReporteFechaFinal: 'fecha': busquedaFechaFinal | paginate: { itemsPerPage: 10, currentPage: p }">
                     <td>{{consultaPlaca.issi}}</td>
                     <td>{{consultaPlaca.responsable}}</td>
                     <td>{{consultaPlaca.municipioDescripcion}}</td>
@@ -96,7 +105,7 @@
                     <td>{{consultaPlaca.consulta}}</td>
                     <td>{{consultaPlaca.metodo}}</td>
                     <td *ngIf="consultaPlaca.estado">Positivo</td>
-                    <td *ngIf="!consultaPlaca.estado">Negativo</td>
+                    <td *ngIf="!consultaPlaca.estado">Negativor</td>
                     <td>{{consultaPlaca.resultado}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
