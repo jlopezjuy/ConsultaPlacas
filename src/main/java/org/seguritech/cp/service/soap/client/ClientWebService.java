@@ -34,8 +34,8 @@ public class ClientWebService extends WebServiceGatewaySupport {
 		ConsultaBDResponse response = (ConsultaBDResponse) getWebServiceTemplate()
 				//.marshalSendAndReceive("http://10.16.161.16/WebServiceCBD/ConsultaBDC5.asmx?WSDL",request,
 				//.marshalSendAndReceive(p.getProperty("endPoint"),request,
-				.marshalSendAndReceive("http://HYADOCANONB:8090/",request,
-				//.marshalSendAndReceive("http://HYADOCANONB:9100/",request,
+				//.marshalSendAndReceive("http://HYADOCANONB:8090/",request,
+				.marshalSendAndReceive("http://HYADOCANONB:9100/",request,
 				new SoapActionCallback("http://localhost/ConsultaBD"));
 				//.marshalSendAndReceive(p.getProperty("endPoint"),
 						//.marshalSendAndReceive("http://10.16.161.16/WebServiceCBD/ConsultaBDC5.asmx",
