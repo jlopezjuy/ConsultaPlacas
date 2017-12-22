@@ -14,6 +14,15 @@
     <br/>
     <div class="row">
         <div class="row col-md-12">
+            <div class="col-md-1">
+                <input type="text" class="form-control" placeholder="Issi" [(ngModel)]="busquedaIssi" />
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="Municipio" [(ngModel)]="busquedaMunicipio" />
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="Corporación" [(ngModel)]="busquedaCorporacion" />
+            </div>
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Estado: </label>
@@ -28,8 +37,7 @@
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Desde: </label>
-                    <input type="text" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker" [(ngModel)]="busquedaFechaInicial"
-                        disabled/>
+                    <input type="text" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker" [(ngModel)]="busquedaFechaInicial" disabled/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-secondary" (click)="fechaDpInicial.toggle()">
                             <i class="fa fa-calendar"></i>
