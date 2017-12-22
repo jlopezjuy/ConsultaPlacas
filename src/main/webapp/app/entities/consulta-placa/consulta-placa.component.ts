@@ -27,6 +27,12 @@ currentAccount: any;
     predicate: any;
     previousPage: any;
     reverse: any;
+    busquedaEstado: string;
+    busquedaFechaInicial: any;
+    busquedaFechaFinal: any;
+    p: number = 1;
+    fechaDpInicial: any;
+    fechaDpFinal: any;
 
     constructor(
         private consultaPlacaService: ConsultaPlacaService,
@@ -112,7 +118,7 @@ currentAccount: any;
         this.totalItems = headers.get('X-Total-Count');
         this.queryCount = this.totalItems;
         // this.page = pagingParams.page;
-        this.consultaPlacas = data;
+        this.consultaPlacas = data;        
     }
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
