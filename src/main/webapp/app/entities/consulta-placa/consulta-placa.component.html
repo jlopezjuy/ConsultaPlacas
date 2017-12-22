@@ -100,8 +100,8 @@
                 <td>{{consultaPlaca.resultado}}</td>
                 <td>{{consultaPlaca.coordenadas}}</td>
                 <td>
-                    <div *ngIf="consultaPlaca.radioId">
-                        <a [routerLink]="['../radio', consultaPlaca.radioId  ]" >{{consultaPlaca.radioIssi}}</a>
+                    <div *ngIf="consultaPlaca.radioIssi">
+                        <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]" >{{consultaPlaca.radioIssi}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -156,6 +156,8 @@ public class ConsultaPlacaDTO implements Serializable {
             ", estado='" + isEstado() + "'" +
             ", resultado='" + getResultado() + "'" +
             ", coordenadas='" + getCoordenadas() + "'" +
+            ", radio='" + getRadioIssi() + "'" +
+            ", radio desc='" + getRadioDescripcion() + "'" +
             "}";
     }
 }
