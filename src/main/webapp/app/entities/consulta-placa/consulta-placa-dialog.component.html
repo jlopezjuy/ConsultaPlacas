@@ -106,6 +106,19 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.consultaPlaca.radio" for="field_radio">Radio</label>
+            <select class="form-control" id="field_radio" name="radio" [(ngModel)]="consultaPlaca.radioId"  required>
+                <option *ngIf="!editForm.value.radio" [ngValue]="null" selected></option>
+                <option [ngValue]="radioOption.id" *ngFor="let radioOption of radios; trackBy: trackRadioById">{{radioOption.issi}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.radio?.dirty && editForm.controls.radio?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.radio?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

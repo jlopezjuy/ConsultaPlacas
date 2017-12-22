@@ -9,6 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { ConsultaPlaca } from './consulta-placa.model';
 import { ConsultaPlacaPopupService } from './consulta-placa-popup.service';
 import { ConsultaPlacaService } from './consulta-placa.service';
+import { Radio, RadioService } from '../radio';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-consulta-placa-dialog',
@@ -18,18 +20,23 @@ export class ConsultaPlacaDialogComponent implements OnInit {
 
     consultaPlaca: ConsultaPlaca;
     isSaving: boolean;
+
+    radios: Radio[];
     fechaDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private consultaPlacaService: ConsultaPlacaService,
+        private radioService: RadioService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.radioService.query()
+            .subscribe((res: ResponseWrapper) => { this.radios = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -64,6 +71,10 @@ export class ConsultaPlacaDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackRadioById(index: number, item: Radio) {
+        return item.issi;
     }
 }
 

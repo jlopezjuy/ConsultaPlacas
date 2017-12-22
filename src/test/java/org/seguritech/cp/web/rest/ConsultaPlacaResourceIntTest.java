@@ -3,6 +3,7 @@ package org.seguritech.cp.web.rest;
 import org.seguritech.cp.ConsultaPlacasApp;
 
 import org.seguritech.cp.domain.ConsultaPlaca;
+import org.seguritech.cp.domain.Radio;
 import org.seguritech.cp.repository.ConsultaPlacaRepository;
 import org.seguritech.cp.service.ConsultaPlacaService;
 import org.seguritech.cp.service.dto.ConsultaPlacaDTO;
@@ -119,6 +120,11 @@ public class ConsultaPlacaResourceIntTest {
             .estado(DEFAULT_ESTADO)
             .resultado(DEFAULT_RESULTADO)
             .coordenadas(DEFAULT_COORDENADAS);
+        // Add required entity
+        Radio radio = RadioResourceIntTest.createEntity(em);
+        em.persist(radio);
+        em.flush();
+        consultaPlaca.setRadio(radio);
         return consultaPlaca;
     }
 

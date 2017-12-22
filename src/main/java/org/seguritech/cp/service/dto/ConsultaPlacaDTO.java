@@ -4,6 +4,8 @@ package org.seguritech.cp.service.dto;
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -36,6 +38,10 @@ public class ConsultaPlacaDTO implements Serializable {
 
     @NotNull
     private String coordenadas;
+
+    private Long radioId;
+
+    private String radioIssi;
 
     public Long getId() {
         return id;
@@ -111,6 +117,22 @@ public class ConsultaPlacaDTO implements Serializable {
 
     public void setCoordenadas(String coordenadas) {
         this.coordenadas = coordenadas;
+    }
+
+    public Long getRadioId() {
+        return radioId;
+    }
+
+    public void setRadioId(Long radioId) {
+        this.radioId = radioId;
+    }
+
+    public String getRadioIssi() {
+        return radioIssi;
+    }
+
+    public void setRadioIssi(String radioIssi) {
+        this.radioIssi = radioIssi;
     }
 
     @Override

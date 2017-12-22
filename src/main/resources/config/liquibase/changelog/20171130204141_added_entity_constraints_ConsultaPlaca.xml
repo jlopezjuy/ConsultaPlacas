@@ -8,17 +8,11 @@
     -->
     <changeSet id="20171130204141-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="municipio_id"
+        <addForeignKeyConstraint baseColumnNames="radio_id"
                                  baseTableName="consulta_placa"
-                                 constraintName="fk_consulta_placa_municipio_id"
+                                 constraintName="fk_consulta_placa_radio_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="municipio"/>
-
-        <addForeignKeyConstraint baseColumnNames="corporacion_id"
-                                 baseTableName="consulta_placa"
-                                 constraintName="fk_consulta_placa_corporacion_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="corporacion"/>
+                                 referencedTableName="radio"/>
 
     </changeSet>
 </databaseChangeLog>

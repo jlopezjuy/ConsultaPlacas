@@ -61,6 +61,10 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService{
             .map(consultaPlacaMapper::toDto);
     }
 
+    /**
+     * Get all the consultaPlacas.
+     * @return the list of entities
+     */
     @Override
     public List<ConsultaPlacaDTO> findAll() {
         return consultaPlacaMapper.toDto(consultaPlacaRepository.findAll());

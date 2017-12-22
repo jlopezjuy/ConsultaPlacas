@@ -11,6 +11,7 @@ export class ConsultaPlaca implements BaseEntity {
         public estado?: boolean,
         public resultado?: string,
         public coordenadas?: string,
+        public radioId?: number,
     ) {
         this.estado = false;
     }

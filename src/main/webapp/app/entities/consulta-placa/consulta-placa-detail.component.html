@@ -36,6 +36,12 @@
         <dd>
             <span>{{consultaPlaca.coordenadas}}</span>
         </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.radio">Radio</span></dt>
+        <dd>
+            <div *ngIf="consultaPlaca.radioId">
+                <a [routerLink]="['/radio', consultaPlaca.radioId]">{{consultaPlaca.radioIssi}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

@@ -1,6 +1,16 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "radio",
+            "otherEntityName": "radio",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "issi"
+        }
+    ],
     "fields": [
         {
             "fieldName": "issi",

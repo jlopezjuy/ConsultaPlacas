@@ -56,6 +56,10 @@ public class ConsultaPlaca implements Serializable {
     @Column(name = "coordenadas", nullable = false)
     private String coordenadas;
 
+    @ManyToOne(optional = false)
+    @NotNull
+    private Radio radio;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -167,6 +171,19 @@ public class ConsultaPlaca implements Serializable {
 
     public void setCoordenadas(String coordenadas) {
         this.coordenadas = coordenadas;
+    }
+
+    public Radio getRadio() {
+        return radio;
+    }
+
+    public ConsultaPlaca radio(Radio radio) {
+        this.radio = radio;
+        return this;
+    }
+
+    public void setRadio(Radio radio) {
+        this.radio = radio;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
