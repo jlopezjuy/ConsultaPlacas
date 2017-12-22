@@ -9,9 +9,6 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { ConsultaPlaca } from './consulta-placa.model';
 import { ConsultaPlacaPopupService } from './consulta-placa-popup.service';
 import { ConsultaPlacaService } from './consulta-placa.service';
-import { Municipio, MunicipioService } from '../municipio';
-import { Corporacion, CorporacionService } from '../corporacion';
-import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-consulta-placa-dialog',
@@ -21,28 +18,18 @@ export class ConsultaPlacaDialogComponent implements OnInit {
 
     consultaPlaca: ConsultaPlaca;
     isSaving: boolean;
-
-    municipios: Municipio[];
-
-    corporacions: Corporacion[];
     fechaDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private consultaPlacaService: ConsultaPlacaService,
-        private municipioService: MunicipioService,
-        private corporacionService: CorporacionService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.municipioService.query()
-            .subscribe((res: ResponseWrapper) => { this.municipios = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.corporacionService.query()
-            .subscribe((res: ResponseWrapper) => { this.corporacions = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -77,14 +64,6 @@ export class ConsultaPlacaDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
-    }
-
-    trackMunicipioById(index: number, item: Municipio) {
-        return item.id;
-    }
-
-    trackCorporacionById(index: number, item: Corporacion) {
-        return item.id;
     }
 }
 

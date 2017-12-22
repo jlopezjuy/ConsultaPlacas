@@ -3,8 +3,6 @@ package org.seguritech.cp.web.rest;
 import org.seguritech.cp.ConsultaPlacasApp;
 
 import org.seguritech.cp.domain.ConsultaPlaca;
-import org.seguritech.cp.domain.Municipio;
-import org.seguritech.cp.domain.Corporacion;
 import org.seguritech.cp.repository.ConsultaPlacaRepository;
 import org.seguritech.cp.service.ConsultaPlacaService;
 import org.seguritech.cp.service.dto.ConsultaPlacaDTO;
@@ -121,16 +119,6 @@ public class ConsultaPlacaResourceIntTest {
             .estado(DEFAULT_ESTADO)
             .resultado(DEFAULT_RESULTADO)
             .coordenadas(DEFAULT_COORDENADAS);
-        // Add required entity
-        Municipio municipio = MunicipioResourceIntTest.createEntity(em);
-        em.persist(municipio);
-        em.flush();
-        consultaPlaca.setMunicipio(municipio);
-        // Add required entity
-        Corporacion corporacion = CorporacionResourceIntTest.createEntity(em);
-        em.persist(corporacion);
-        em.flush();
-        consultaPlaca.setCorporacion(corporacion);
         return consultaPlaca;
     }
 

@@ -56,14 +56,6 @@ public class ConsultaPlaca implements Serializable {
     @Column(name = "coordenadas", nullable = false)
     private String coordenadas;
 
-    @ManyToOne(optional = false)
-    @NotNull
-    private Municipio municipio;
-
-    @ManyToOne(optional = false)
-    @NotNull
-    private Corporacion corporacion;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -175,32 +167,6 @@ public class ConsultaPlaca implements Serializable {
 
     public void setCoordenadas(String coordenadas) {
         this.coordenadas = coordenadas;
-    }
-
-    public Municipio getMunicipio() {
-        return municipio;
-    }
-
-    public ConsultaPlaca municipio(Municipio municipio) {
-        this.municipio = municipio;
-        return this;
-    }
-
-    public void setMunicipio(Municipio municipio) {
-        this.municipio = municipio;
-    }
-
-    public Corporacion getCorporacion() {
-        return corporacion;
-    }
-
-    public ConsultaPlaca corporacion(Corporacion corporacion) {
-        this.corporacion = corporacion;
-        return this;
-    }
-
-    public void setCorporacion(Corporacion corporacion) {
-        this.corporacion = corporacion;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -1,6 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 import { ConsultaPlacasSharedModule } from '../../shared';
 import {
@@ -15,9 +14,6 @@ import {
     consultaPlacaRoute,
     consultaPlacaPopupRoute,
     ConsultaPlacaResolvePagingParams,
-    SearchfilterReportePipe,
-    SearchfilterReportePipeFechaInicial,
-    SearchfilterReportePipeFechaFinal,
 } from './';
 
 const ENTITY_STATES = [
@@ -28,8 +24,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         ConsultaPlacasSharedModule,
-        RouterModule.forChild(ENTITY_STATES),
-        NgxPaginationModule
+        RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
         ConsultaPlacaComponent,
@@ -38,9 +33,6 @@ const ENTITY_STATES = [
         ConsultaPlacaDeleteDialogComponent,
         ConsultaPlacaPopupComponent,
         ConsultaPlacaDeletePopupComponent,
-        SearchfilterReportePipe,
-        SearchfilterReportePipeFechaInicial,
-        SearchfilterReportePipeFechaFinal,
     ],
     entryComponents: [
         ConsultaPlacaComponent,

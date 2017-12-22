@@ -1,14 +1,9 @@
 package org.seguritech.cp.service.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -41,25 +36,6 @@ public class ConsultaPlacaDTO implements Serializable {
 
     @NotNull
     private String coordenadas;
-
-    private Long municipioId;
-
-    private String municipioDescripcion;
-
-    private Long corporacionId;
-
-    private String corporacionDescripcion;
-
-    public Date getFechaAlter() {
-        return fechaAlter;
-    }
-
-    public void setFechaAlter(Date fechaAlter) {
-        this.fechaAlter = fechaAlter;
-    }
-
-    @JsonIgnore
-    private Date fechaAlter;
 
     public Long getId() {
         return id;
@@ -135,38 +111,6 @@ public class ConsultaPlacaDTO implements Serializable {
 
     public void setCoordenadas(String coordenadas) {
         this.coordenadas = coordenadas;
-    }
-
-    public Long getMunicipioId() {
-        return municipioId;
-    }
-
-    public void setMunicipioId(Long municipioId) {
-        this.municipioId = municipioId;
-    }
-
-    public String getMunicipioDescripcion() {
-        return municipioDescripcion;
-    }
-
-    public void setMunicipioDescripcion(String municipioDescripcion) {
-        this.municipioDescripcion = municipioDescripcion;
-    }
-
-    public Long getCorporacionId() {
-        return corporacionId;
-    }
-
-    public void setCorporacionId(Long corporacionId) {
-        this.corporacionId = corporacionId;
-    }
-
-    public String getCorporacionDescripcion() {
-        return corporacionDescripcion;
-    }
-
-    public void setCorporacionDescripcion(String corporacionDescripcion) {
-        this.corporacionDescripcion = corporacionDescripcion;
     }
 
     @Override

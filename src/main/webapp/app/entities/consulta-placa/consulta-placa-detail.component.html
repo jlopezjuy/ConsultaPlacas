@@ -36,18 +36,6 @@
         <dd>
             <span>{{consultaPlaca.coordenadas}}</span>
         </dd>
-        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.municipio">Municipio</span></dt>
-        <dd>
-            <div *ngIf="consultaPlaca.municipioId">
-                <a [routerLink]="['/municipio', consultaPlaca.municipioId]">{{consultaPlaca.municipioDescripcion}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.corporacion">Corporacion</span></dt>
-        <dd>
-            <div *ngIf="consultaPlaca.corporacionId">
-                <a [routerLink]="['/corporacion', consultaPlaca.corporacionId]">{{consultaPlaca.corporacionDescripcion}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

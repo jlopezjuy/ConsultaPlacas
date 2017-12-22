@@ -118,9 +118,14 @@ currentAccount: any;
         this.totalItems = headers.get('X-Total-Count');
         this.queryCount = this.totalItems;
         // this.page = pagingParams.page;
-        this.consultaPlacas = data;        
+        this.consultaPlacas = data;
     }
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    printReport(){
+        console.log('Entro a imprimir el reporte');
+        this.consultaPlacaService.generateReport();
     }
 }

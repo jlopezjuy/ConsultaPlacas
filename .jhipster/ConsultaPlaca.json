@@ -1,25 +1,6 @@
 {
     "fluentMethods": true,
-    "relationships": [
-        {
-            "relationshipName": "municipio",
-            "otherEntityName": "municipio",
-            "relationshipType": "many-to-one",
-            "relationshipValidateRules": [
-                "required"
-            ],
-            "otherEntityField": "descripcion"
-        },
-        {
-            "relationshipName": "corporacion",
-            "otherEntityName": "corporacion",
-            "relationshipType": "many-to-one",
-            "relationshipValidateRules": [
-                "required"
-            ],
-            "otherEntityField": "descripcion"
-        }
-    ],
+    "relationships": [],
     "fields": [
         {
             "fieldName": "issi",
