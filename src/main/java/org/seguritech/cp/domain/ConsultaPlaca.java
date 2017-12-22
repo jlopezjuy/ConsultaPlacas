@@ -25,10 +25,6 @@ public class ConsultaPlaca implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "responsable", nullable = false)
-    private String responsable;
-
-    @NotNull
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
@@ -63,19 +59,6 @@ public class ConsultaPlaca implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getResponsable() {
-        return responsable;
-    }
-
-    public ConsultaPlaca responsable(String responsable) {
-        this.responsable = responsable;
-        return this;
-    }
-
-    public void setResponsable(String responsable) {
-        this.responsable = responsable;
     }
 
     public LocalDate getFecha() {
@@ -194,7 +177,6 @@ public class ConsultaPlaca implements Serializable {
     public String toString() {
         return "ConsultaPlaca{" +
             "id=" + getId() +
-            ", responsable='" + getResponsable() + "'" +
             ", fecha='" + getFecha() + "'" +
             ", consulta='" + getConsulta() + "'" +
             ", metodo='" + getMetodo() + "'" +

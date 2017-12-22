@@ -13,13 +13,6 @@
     ],
     "fields": [
         {
-            "fieldName": "responsable",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "fecha",
             "fieldType": "LocalDate",
             "fieldValidateRules": [

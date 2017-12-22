@@ -16,9 +16,6 @@ public class ConsultaPlacaDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String responsable;
-
-    @NotNull
     private LocalDate fecha;
 
     @NotNull
@@ -46,14 +43,6 @@ public class ConsultaPlacaDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getResponsable() {
-        return responsable;
-    }
-
-    public void setResponsable(String responsable) {
-        this.responsable = responsable;
     }
 
     public LocalDate getFecha() {
@@ -149,7 +138,6 @@ public class ConsultaPlacaDTO implements Serializable {
     public String toString() {
         return "ConsultaPlacaDTO{" +
             "id=" + getId() +
-            ", responsable='" + getResponsable() + "'" +
             ", fecha='" + getFecha() + "'" +
             ", consulta='" + getConsulta() + "'" +
             ", metodo='" + getMetodo() + "'" +

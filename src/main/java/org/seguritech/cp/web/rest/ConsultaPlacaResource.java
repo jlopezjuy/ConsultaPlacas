@@ -93,7 +93,6 @@ public class ConsultaPlacaResource {
     public ResponseEntity<List<ConsultaPlacaDTO>> getAllConsultaPlacas(Pageable pageable) {
         log.debug("REST request to get a page of ConsultaPlacas");
         Page<ConsultaPlacaDTO> page = consultaPlacaService.findAll(pageable);
-        page.forEach(consultaPlacaDTO -> log.info(consultaPlacaDTO.toString()));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/consulta-placas");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

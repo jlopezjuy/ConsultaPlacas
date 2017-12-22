@@ -44,9 +44,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = ConsultaPlacasApp.class)
 public class ConsultaPlacaResourceIntTest {
 
-    private static final String DEFAULT_RESPONSABLE = "AAAAAAAAAA";
-    private static final String UPDATED_RESPONSABLE = "BBBBBBBBBB";
-
     private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());
 
@@ -109,7 +106,6 @@ public class ConsultaPlacaResourceIntTest {
      */
     public static ConsultaPlaca createEntity(EntityManager em) {
         ConsultaPlaca consultaPlaca = new ConsultaPlaca()
-            .responsable(DEFAULT_RESPONSABLE)
             .fecha(DEFAULT_FECHA)
             .consulta(DEFAULT_CONSULTA)
             .metodo(DEFAULT_METODO)
@@ -145,7 +141,6 @@ public class ConsultaPlacaResourceIntTest {
         List<ConsultaPlaca> consultaPlacaList = consultaPlacaRepository.findAll();
         assertThat(consultaPlacaList).hasSize(databaseSizeBeforeCreate + 1);
         ConsultaPlaca testConsultaPlaca = consultaPlacaList.get(consultaPlacaList.size() - 1);
-        assertThat(testConsultaPlaca.getResponsable()).isEqualTo(DEFAULT_RESPONSABLE);
         assertThat(testConsultaPlaca.getFecha()).isEqualTo(DEFAULT_FECHA);
         assertThat(testConsultaPlaca.getConsulta()).isEqualTo(DEFAULT_CONSULTA);
         assertThat(testConsultaPlaca.getMetodo()).isEqualTo(DEFAULT_METODO);
@@ -172,25 +167,6 @@ public class ConsultaPlacaResourceIntTest {
         // Validate the ConsultaPlaca in the database
         List<ConsultaPlaca> consultaPlacaList = consultaPlacaRepository.findAll();
         assertThat(consultaPlacaList).hasSize(databaseSizeBeforeCreate);
-    }
-
-    @Test
-    @Transactional
-    public void checkResponsableIsRequired() throws Exception {
-        int databaseSizeBeforeTest = consultaPlacaRepository.findAll().size();
-        // set the field null
-        consultaPlaca.setResponsable(null);
-
-        // Create the ConsultaPlaca, which fails.
-        ConsultaPlacaDTO consultaPlacaDTO = consultaPlacaMapper.toDto(consultaPlaca);
-
-        restConsultaPlacaMockMvc.perform(post("/api/consulta-placas")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(consultaPlacaDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<ConsultaPlaca> consultaPlacaList = consultaPlacaRepository.findAll();
-        assertThat(consultaPlacaList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -318,7 +294,6 @@ public class ConsultaPlacaResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(consultaPlaca.getId().intValue())))
-            .andExpect(jsonPath("$.[*].responsable").value(hasItem(DEFAULT_RESPONSABLE.toString())))
             .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())))
             .andExpect(jsonPath("$.[*].consulta").value(hasItem(DEFAULT_CONSULTA.toString())))
             .andExpect(jsonPath("$.[*].metodo").value(hasItem(DEFAULT_METODO.toString())))
@@ -338,7 +313,6 @@ public class ConsultaPlacaResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(consultaPlaca.getId().intValue()))
-            .andExpect(jsonPath("$.responsable").value(DEFAULT_RESPONSABLE.toString()))
             .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA.toString()))
             .andExpect(jsonPath("$.consulta").value(DEFAULT_CONSULTA.toString()))
             .andExpect(jsonPath("$.metodo").value(DEFAULT_METODO.toString()))
@@ -367,7 +341,6 @@ public class ConsultaPlacaResourceIntTest {
         // Disconnect from session so that the updates on updatedConsultaPlaca are not directly saved in db
         em.detach(updatedConsultaPlaca);
         updatedConsultaPlaca
-            .responsable(UPDATED_RESPONSABLE)
             .fecha(UPDATED_FECHA)
             .consulta(UPDATED_CONSULTA)
             .metodo(UPDATED_METODO)
@@ -385,7 +358,6 @@ public class ConsultaPlacaResourceIntTest {
         List<ConsultaPlaca> consultaPlacaList = consultaPlacaRepository.findAll();
         assertThat(consultaPlacaList).hasSize(databaseSizeBeforeUpdate);
         ConsultaPlaca testConsultaPlaca = consultaPlacaList.get(consultaPlacaList.size() - 1);
-        assertThat(testConsultaPlaca.getResponsable()).isEqualTo(UPDATED_RESPONSABLE);
         assertThat(testConsultaPlaca.getFecha()).isEqualTo(UPDATED_FECHA);
         assertThat(testConsultaPlaca.getConsulta()).isEqualTo(UPDATED_CONSULTA);
         assertThat(testConsultaPlaca.getMetodo()).isEqualTo(UPDATED_METODO);
