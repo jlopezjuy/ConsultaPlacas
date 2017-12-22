@@ -78,6 +78,7 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="radioIssi"><span jhiTranslate="consultaPlacasApp.consultaPlaca.radio">Radio</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="responsable"><span jhiTranslate="consultaPlacasApp.consultaPlaca.responsable">Responsable</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="fecha"><span jhiTranslate="consultaPlacasApp.consultaPlaca.fecha">Fecha</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="consulta"><span jhiTranslate="consultaPlacasApp.consultaPlaca.consulta">Consulta</span> <span class="fa fa-sort"></span></th>
@@ -85,13 +86,18 @@
             <th jhiSortBy="estado"><span jhiTranslate="consultaPlacasApp.consultaPlaca.estado">Estado</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="resultado"><span jhiTranslate="consultaPlacasApp.consultaPlaca.resultado">Resultado</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="coordenadas"><span jhiTranslate="consultaPlacasApp.consultaPlaca.coordenadas">Coordenadas</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="radioIssi"><span jhiTranslate="consultaPlacasApp.consultaPlaca.radio">Radio</span> <span class="fa fa-sort"></span></th>
+
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let consultaPlaca of consultaPlacas ;trackBy: trackId">
                 <td><a [routerLink]="['../consulta-placa', consultaPlaca.id ]">{{consultaPlaca.id}}</a></td>
+                <td>
+                    <div *ngIf="consultaPlaca.radioIssi">
+                        <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]" >{{consultaPlaca.radioIssi}}</a>
+                    </div>
+                </td>
                 <td>{{consultaPlaca.responsable}}</td>
                 <td>{{consultaPlaca.fecha | date:'mediumDate'}}</td>
                 <td>{{consultaPlaca.consulta}}</td>
@@ -99,11 +105,7 @@
                 <td>{{consultaPlaca.estado}}</td>
                 <td>{{consultaPlaca.resultado}}</td>
                 <td>{{consultaPlaca.coordenadas}}</td>
-                <td>
-                    <div *ngIf="consultaPlaca.radioIssi">
-                        <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]" >{{consultaPlaca.radioIssi}}</a>
-                    </div>
-                </td>
+
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
