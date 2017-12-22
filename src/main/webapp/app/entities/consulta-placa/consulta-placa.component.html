@@ -37,8 +37,7 @@
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Desde: </label>
-                    <input type="text" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker" [(ngModel)]="busquedaFechaInicial"
-                        disabled/>
+                    <input type="text" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker" [(ngModel)]="busquedaFechaInicial" disabled/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-secondary" (click)="fechaDpInicial.toggle()">
                             <i class="fa fa-calendar"></i>
@@ -105,7 +104,7 @@
                     <td>{{consultaPlaca.consulta}}</td>
                     <td>{{consultaPlaca.metodo}}</td>
                     <td *ngIf="consultaPlaca.estado">Positivo</td>
-                    <td *ngIf="!consultaPlaca.estado">Negativor</td>
+                    <td *ngIf="!consultaPlaca.estado">Negativo</td>
                     <td>{{consultaPlaca.resultado}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
