@@ -6,6 +6,7 @@ import org.seguritech.cp.service.ConsultaPlacaService;
 import org.seguritech.cp.service.RadioService;
 import org.seguritech.cp.service.dto.*;
 import org.seguritech.cp.web.rest.errors.BadRequestAlertException;
+import org.seguritech.cp.web.rest.util.DateUtil;
 import org.seguritech.cp.web.rest.util.HeaderUtil;
 import org.seguritech.cp.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -148,6 +149,7 @@ public class ConsultaPlacaResource {
     }
 
     @GetMapping(value = "/search",produces = "text/html")
+    @Timed
     public String placa(@RequestParam("query") String placa) {
 
         System.out.println("Got " + placa);
@@ -159,7 +161,11 @@ public class ConsultaPlacaResource {
             System.err.println("No pudo mapear la placa");
         }
         RadioDTO resultRadioDto=radioService.findOne((long) placaObject.getIssi());
-
+        if(resultRadioDto==null)
+        {
+            guardarConsultaPlacas(placaObject,"La radio con nro de issi: "+placaObject.getIssi()+" no existe en la base de datos de radios",false);
+            return "La radio con nro de issi "+placaObject.getIssi()+" no existe en la base de datos de radios";
+        }
         ConsultaBDResponse response = this.clientService.getConsultaDBResponse("WasConBD",placaObject.getPlaca(),placaObject.getTipo());
 
         System.out.println(response.getConsultaBDResult());
@@ -167,10 +173,11 @@ public class ConsultaPlacaResource {
         String respuestaAR=response.getConsultaBDResult();
         if(placaObject.getTipo().trim().equals("Padron"))
         {	//System.out.println(respuestaPadron);
-            if(resultRadioDto.getPermiso().compareTo(Permiso.PADRON_VEHICULAR)==0)
+            if(resultRadioDto.getPermiso().compareTo(Permiso.PADRON_VEHICULAR)==0 || resultRadioDto.getPermiso().compareTo(Permiso.AMBOS)==0)
             {
 
-                if (!respuestaPadron.equals("[]")) {
+                if (!respuestaPadron.equals("[]"))
+                {
                     respuestaPadron = respuestaPadron.replace("]", "");
                     respuestaPadron = respuestaPadron.replace("[", "");
 
@@ -184,13 +191,27 @@ public class ConsultaPlacaResource {
                     respuestaPadron = respuestaPadron.replace("}", "");
                     respuestaPadron = respuestaPadron.replaceAll("\"", " ");
                     if (placaObjectResponse.getPlaca().toUpperCase().trim().equals(placaObject.getPlaca().toUpperCase().trim()))
+                    {
+                        guardarConsultaPlacas(placaObject,respuestaPadron,true);
                         return respuestaPadron;
-                } else
+                    }
+                    else//nunca entra aca solo con mock es necesario.pero si padron cambia y devuelve resultado por patron similar
+                    // y no exacto,entonces esta parte si sirve en ese caso hacer lo mismo que con AR EN EL CODIGO DE ABAJO
+                    {
+                        guardarConsultaPlacas(placaObject,placaObject.getPlaca() + " sin reporte",false);
+                        return placaObject.getPlaca() + " sin reporte";
+                    }
+                }
+                else
+                {
+                    guardarConsultaPlacas(placaObject,placaObject.getPlaca() + " sin reporte",false);
                     return placaObject.getPlaca() + " sin reporte";
+                }
+
             }
             else
-            {
-                return "La radio "+resultRadioDto.getIssi() + " no cuenta con permiso de consulta a la base de datos de padron vehicular";
+            {   guardarConsultaPlacas(placaObject, "La radio "+resultRadioDto.getIssi() + " no cuenta con permiso de consulta a la base de datos de padron vehicular",false);
+                return "La radio con nro de issi "+resultRadioDto.getIssi() + " no cuenta con permiso de consulta a la base de datos de padron vehicular";
 
             }
 
@@ -198,7 +219,7 @@ public class ConsultaPlacaResource {
 
         if(placaObject.getTipo().trim().equals("AR"))
         {
-            if(resultRadioDto.getPermiso().compareTo(Permiso.AUTOS_ROBADOS)==0)
+            if(resultRadioDto.getPermiso().compareTo(Permiso.AUTOS_ROBADOS)==0 || resultRadioDto.getPermiso().compareTo(Permiso.AMBOS)==0)
             {
                 if (!respuestaAR.equals("[]")) {
                     ArrayList<PlacaResponseArDTO> placasAR = null;
@@ -219,30 +240,68 @@ public class ConsultaPlacaResource {
                         }
 
                     }
-                    if (placasAR.size() > 0) {
+                    if (placasAR.size() > 0)
+                    {
                         String placasArFinal = placasAR.toString();
                         placasArFinal = placasArFinal.replace("[", "");
                         placasArFinal = placasArFinal.replace("]", "");
                         placasArFinal = placasArFinal.replace("=", ":");
                         placasArFinal = placasArFinal.replace("PlacaResponseAR", "");
+                        guardarConsultaPlacas(placaObject,placasArFinal,true);
                         return placasArFinal;
-                    } else
+                    }
+                    else
+                    {   guardarConsultaPlacas(placaObject,placaObject.getPlaca() + " sin reportes",false);
                         return placaObject.getPlaca() + " sin reportes";
+                    }
 
-                } else {
+                }
+                else
+                {
+                    guardarConsultaPlacas(placaObject,placaObject.getPlaca() + " sin reportes",false);
                     return placaObject.getPlaca() + " sin reportes";
                 }
             }
             else
             {
-                return "La radio "+resultRadioDto.getIssi() + " no cuenta con permiso de consulta a la base de datos de Autos robados";
+                guardarConsultaPlacas(placaObject,"La radio "+resultRadioDto.getIssi() + " no cuenta con permiso de consulta a la base de datos de Autos robados",false);
+                return "La radio con nro de issi "+resultRadioDto.getIssi() + " no cuenta con permiso de consulta a la base de datos de Autos robados";
             }
         }
 
 
-
         return "";
     }
+
+
+    public void guardarConsultaPlacas(PlacaDTO placaObject,String restResponse,boolean estado)
+    {
+        ConsultaPlacaDTO consultaPlacaDTO=new ConsultaPlacaDTO();
+        consultaPlacaDTO.setConsulta(placaObject.GetConsulta());
+        consultaPlacaDTO.setIssi(String.valueOf(placaObject.getIssi()));
+        consultaPlacaDTO.setEstado(estado);
+        consultaPlacaDTO.setFecha(DateUtil.getActualDate());
+        consultaPlacaDTO.setMetodo(placaObject.getTipo());
+        consultaPlacaDTO.setResultado(restResponse);
+        //despues borrar estos
+        consultaPlacaDTO.setCorporacionId((long)1);
+        consultaPlacaDTO.setMunicipioId((long)1);
+        consultaPlacaDTO.setCoordenadas("10000 20000");
+        consultaPlacaDTO.setResponsable("juan perez");
+        ConsultaPlacaDTO result = consultaPlacaService.save(consultaPlacaDTO);
+        if(result.getId()!=null)
+        {
+           log.info("Pudo guardarse la consulta de placa con id: "+result.getId());
+
+        }
+        else
+        {
+            log.error("No Pudo guardarse la consulta de placas ");
+        }
+    }
+
+
+
     @Bean
     CommandLineRunner lookup(ClientWebService serviceClient) {
         return args -> {
