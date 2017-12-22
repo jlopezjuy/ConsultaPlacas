@@ -16,10 +16,10 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="issi"><span>ISSI</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="idRadio"><span jhiTranslate="consultaPlacasApp.radio.idRadio">Id Radio</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="descripcion"><span jhiTranslate="consultaPlacasApp.radio.descripcion">Descripcion</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="permiso"><span jhiTranslate="consultaPlacasApp.radio.permiso">Permiso</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="responsable"><span jhiTranslate="consultaPlacasApp.radio.responsable">Responsable</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="marcaDescripcion"><span jhiTranslate="consultaPlacasApp.radio.marca">Marca</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="municipioDescripcion"><span jhiTranslate="consultaPlacasApp.radio.municipio">Municipio</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="corporacionDescripcion"><span jhiTranslate="consultaPlacasApp.radio.corporacion">Corporacion</span> <span class="fa fa-sort"></span></th>
@@ -29,10 +29,10 @@
             </thead>
             <tbody>
             <tr *ngFor="let radio of radios ;trackBy: trackId">
-                <td><a [routerLink]="['../radio', radio.issi ]">{{radio.issi}}</a></td>
-                <td>{{radio.idRadio}}</td>
+                <td><a [routerLink]="['../radio', radio.id ]">{{radio.id}}</a></td>
                 <td>{{radio.descripcion}}</td>
                 <td jhiTranslate="{{'consultaPlacasApp.Permiso.' + radio.permiso}}">{{radio.permiso}}</td>
+                <td>{{radio.responsable}}</td>
                 <td>
                     <div *ngIf="radio.marcaId">
                         <a [routerLink]="['../marca', radio.marcaId  ]" >{{radio.marcaDescripcion}}</a>
@@ -56,20 +56,20 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../radio', radio.issi ]"
+                                [routerLink]="['../radio', radio.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'radio/'+ radio.issi + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'radio/'+ radio.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'radio/'+ radio.issi + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'radio/'+ radio.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>

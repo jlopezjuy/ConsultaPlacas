@@ -27,6 +27,15 @@ currentAccount: any;
     predicate: any;
     previousPage: any;
     reverse: any;
+    busquedaEstado: string;
+    busquedaFechaInicial: any;
+    busquedaFechaFinal: any;
+    busquedaIssi: any;
+    busquedaMunicipio: any;
+    busquedaCorporacion: any;
+    p: number = 1;
+    fechaDpInicial: any;
+    fechaDpFinal: any;
 
     constructor(
         private consultaPlacaService: ConsultaPlacaService,
@@ -116,5 +125,10 @@ currentAccount: any;
     }
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    printReport(){
+        console.log('Entro a imprimir el reporte');
+        this.consultaPlacaService.generateReport();
     }
 }

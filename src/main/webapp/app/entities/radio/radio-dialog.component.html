@@ -31,6 +31,17 @@
                 <option value="AMBOS">{{'consultaPlacasApp.Permiso.AMBOS' | translate}}</option>
             </select>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="consultaPlacasApp.radio.responsable" for="field_responsable">Responsable</label>
+            <input type="text" class="form-control" name="responsable" id="field_responsable"
+                [(ngModel)]="radio.responsable" required/>
+            <div [hidden]="!(editForm.controls.responsable?.dirty && editForm.controls.responsable?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.responsable?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="consultaPlacasApp.radio.marca" for="field_marca">Marca</label>

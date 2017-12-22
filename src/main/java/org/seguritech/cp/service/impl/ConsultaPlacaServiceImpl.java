@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * Service Implementation for managing ConsultaPlaca.
@@ -57,6 +59,15 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService{
         log.debug("Request to get all ConsultaPlacas");
         return consultaPlacaRepository.findAll(pageable)
             .map(consultaPlacaMapper::toDto);
+    }
+
+    /**
+     * Get all the consultaPlacas.
+     * @return the list of entities
+     */
+    @Override
+    public List<ConsultaPlacaDTO> findAll() {
+        return consultaPlacaMapper.toDto(consultaPlacaRepository.findAll());
     }
 
     /**

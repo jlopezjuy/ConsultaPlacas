@@ -20,6 +20,9 @@ public class RadioDTO implements Serializable {
 
     private Permiso permiso;
 
+    @NotNull
+    private String responsable;
+
     private Long marcaId;
 
     private String marcaDescripcion;
@@ -58,6 +61,14 @@ public class RadioDTO implements Serializable {
 
     public void setPermiso(Permiso permiso) {
         this.permiso = permiso;
+    }
+
+    public String getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(String responsable) {
+        this.responsable = responsable;
     }
 
     public Long getMarcaId() {
@@ -151,6 +162,7 @@ public class RadioDTO implements Serializable {
             "id=" + getIssi() +
             ", descripcion='" + getDescripcion() + "'" +
             ", permiso='" + getPermiso() + "'" +
+            ", responsable='" + getResponsable() + "'" +
             "}";
     }
 }

@@ -15,16 +15,16 @@
             "detail": {
                 "title": "Consulta de Placa"
             },
-            "issi": "Issi",
-            "responsable": "Responsable",
             "fecha": "Fecha",
             "consulta": "Consulta",
             "metodo": "Metodo",
             "estado": "Estado",
             "resultado": "Resultado",
             "coordenadas": "Coordenadas",
+            "responsable": "Responsable",
             "municipio": "Municipio",
-            "corporacion": "Corporación"
+            "corporacion": "Corporación",
+            "radio": "Radio"
         }
     }
 }

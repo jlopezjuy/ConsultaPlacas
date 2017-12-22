@@ -48,6 +48,23 @@ export class ConsultaPlacaService {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
 
+    generateReport(){
+
+        this.http.get(this.resourceUrl+'/reporte').subscribe(
+            (response) => {
+                console.dir(response);
+                console.log(response);
+                var contentType = 'application/pdf';
+                var blob = new Blob([(<any>response)._body], { type: contentType });
+                var filename = 'test.pdf';
+                console.log(blob);
+                console.log(filename);
+                var url = window.URL.createObjectURL(blob);
+                window.open(url);
+            });
+    }
+
+
     private convertResponse(res: Response): ResponseWrapper {
         const jsonResponse = res.json();
         const result = [];

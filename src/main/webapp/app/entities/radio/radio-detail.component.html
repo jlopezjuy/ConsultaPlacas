@@ -1,6 +1,6 @@
 
 <div *ngIf="radio">
-    <h2><span jhiTranslate="consultaPlacasApp.radio.detail.title">Radio</span></h2>
+    <h2><span jhiTranslate="consultaPlacasApp.radio.detail.title">Radio</span> {{radio.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
@@ -15,6 +15,10 @@
         <dt><span jhiTranslate="consultaPlacasApp.radio.permiso">Permiso</span></dt>
         <dd>
             <span jhiTranslate="{{'consultaPlacasApp.Permiso.' + radio.permiso}}">{{radio.permiso}}</span>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.radio.responsable">Responsable</span></dt>
+        <dd>
+            <span>{{radio.responsable}}</span>
         </dd>
         <dt><span jhiTranslate="consultaPlacasApp.radio.marca">Marca</span></dt>
         <dd>

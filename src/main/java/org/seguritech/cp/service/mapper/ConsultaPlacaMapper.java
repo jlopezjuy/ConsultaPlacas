@@ -8,17 +8,17 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity ConsultaPlaca and its DTO ConsultaPlacaDTO.
  */
-@Mapper(componentModel = "spring", uses = {MunicipioMapper.class, CorporacionMapper.class})
+@Mapper(componentModel = "spring", uses = {RadioMapper.class})
 public interface ConsultaPlacaMapper extends EntityMapper<ConsultaPlacaDTO, ConsultaPlaca> {
 
-    @Mapping(source = "municipio.id", target = "municipioId")
-    @Mapping(source = "municipio.descripcion", target = "municipioDescripcion")
-    @Mapping(source = "corporacion.id", target = "corporacionId")
-    @Mapping(source = "corporacion.descripcion", target = "corporacionDescripcion")
-    ConsultaPlacaDTO toDto(ConsultaPlaca consultaPlaca); 
+    @Mapping(source = "radio.issi", target = "radioIssi")
+    @Mapping(source = "radio.descripcion", target = "radioDescripcion")
+    @Mapping(source = "radio.responsable", target = "radioResponsable")
+    @Mapping(source = "radio.municipio.descripcion", target = "radioMunicipio")
+    @Mapping(source = "radio.corporacion.descripcion", target = "radioCorporacion")
+    ConsultaPlacaDTO toDto(ConsultaPlaca consultaPlaca);
 
-    @Mapping(source = "municipioId", target = "municipio")
-    @Mapping(source = "corporacionId", target = "corporacion")
+    @Mapping(source = "radioIssi", target = "radio")
     ConsultaPlaca toEntity(ConsultaPlacaDTO consultaPlacaDTO);
 
     default ConsultaPlaca fromId(Long id) {
