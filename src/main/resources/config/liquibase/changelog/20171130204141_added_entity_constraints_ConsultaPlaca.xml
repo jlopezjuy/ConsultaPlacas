@@ -7,11 +7,11 @@
         Added the constraints for entity ConsultaPlaca.
     -->
     <changeSet id="20171130204141-2" author="jhipster">
-        
-        <addForeignKeyConstraint baseColumnNames="radio_id"
+
+        <addForeignKeyConstraint baseColumnNames="radio_issi"
                                  baseTableName="consulta_placa"
-                                 constraintName="fk_consulta_placa_radio_id"
-                                 referencedColumnNames="id"
+                                 constraintName="fk_consulta_placa_radio_issi"
+                                 referencedColumnNames="issi"
                                  referencedTableName="radio"/>
 
     </changeSet>
