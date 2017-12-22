@@ -16,7 +16,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="id"><span>ISSI</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="descripcion"><span jhiTranslate="consultaPlacasApp.radio.descripcion">Descripcion</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="permiso"><span jhiTranslate="consultaPlacasApp.radio.permiso">Permiso</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="responsable"><span jhiTranslate="consultaPlacasApp.radio.responsable">Responsable</span> <span class="fa fa-sort"></span></th>
@@ -29,7 +29,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let radio of radios ;trackBy: trackId">
-                <td><a [routerLink]="['../radio', radio.id ]">{{radio.id}}</a></td>
+                <td><a [routerLink]="['../radio', radio.issi ]">{{radio.issi}}</a></td>
                 <td>{{radio.descripcion}}</td>
                 <td jhiTranslate="{{'consultaPlacasApp.Permiso.' + radio.permiso}}">{{radio.permiso}}</td>
                 <td>{{radio.responsable}}</td>
