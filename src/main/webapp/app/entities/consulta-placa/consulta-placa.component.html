@@ -95,7 +95,8 @@
                     <td>{{consultaPlaca.fecha | date: 'dd/MM/yyyy'}}</td>
                     <td>{{consultaPlaca.consulta}}</td>
                     <td>{{consultaPlaca.metodo}}</td>
-                    <td>{{consultaPlaca.estado}}</td>
+                    <td *ngIf="consultaPlaca.estado">Positivo</td>
+                    <td *ngIf="!consultaPlaca.estado">Negativo</td>
                     <td>{{consultaPlaca.resultado}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
