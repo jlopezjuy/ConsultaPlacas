@@ -21,6 +21,7 @@
             "estado": "Estado",
             "resultado": "Resultado",
             "coordenadas": "Coordenadas",
+            "responsable": "Responsable",
             "municipio": "Municipio",
             "corporacion": "Corporación",
             "radio": "Radio"

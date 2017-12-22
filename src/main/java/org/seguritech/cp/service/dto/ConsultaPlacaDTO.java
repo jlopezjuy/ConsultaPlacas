@@ -37,6 +37,12 @@ public class ConsultaPlacaDTO implements Serializable {
 
     private String radioDescripcion;
 
+    private String radioResponsable;
+
+    private String radioMunicipio;
+
+    private String radioCorporacion;
+
     public Long getId() {
         return id;
     }
@@ -111,6 +117,30 @@ public class ConsultaPlacaDTO implements Serializable {
 
     public void setRadioDescripcion(String radioDescripcion) {
         this.radioDescripcion = radioDescripcion;
+    }
+
+    public String getRadioResponsable() {
+        return radioResponsable;
+    }
+
+    public void setRadioResponsable(String radioResponsable) {
+        this.radioResponsable = radioResponsable;
+    }
+
+    public String getRadioMunicipio() {
+        return radioMunicipio;
+    }
+
+    public void setRadioMunicipio(String radioMunicipio) {
+        this.radioMunicipio = radioMunicipio;
+    }
+
+    public String getRadioCorporacion() {
+        return radioCorporacion;
+    }
+
+    public void setRadioCorporacion(String radioCorporacion) {
+        this.radioCorporacion = radioCorporacion;
     }
 
     @Override

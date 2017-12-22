@@ -10,6 +10,9 @@ export class ConsultaPlaca implements BaseEntity {
         public resultado?: string,
         public coordenadas?: string,
         public radioIssi?: number,
+        public radioResponsable?: string,
+        public radioMmunicipio?: string,
+        public radioCorporacion?: string
     ) {
         this.estado = false;
     }

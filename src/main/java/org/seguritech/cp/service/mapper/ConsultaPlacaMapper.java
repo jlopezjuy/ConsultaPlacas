@@ -13,6 +13,9 @@ public interface ConsultaPlacaMapper extends EntityMapper<ConsultaPlacaDTO, Cons
 
     @Mapping(source = "radio.issi", target = "radioIssi")
     @Mapping(source = "radio.descripcion", target = "radioDescripcion")
+    @Mapping(source = "radio.responsable", target = "radioResponsable")
+    @Mapping(source = "radio.municipio.descripcion", target = "radioMunicipio")
+    @Mapping(source = "radio.corporacion.descripcion", target = "radioCorporacion")
     ConsultaPlacaDTO toDto(ConsultaPlaca consultaPlaca);
 
     @Mapping(source = "radioIssi", target = "radio")
