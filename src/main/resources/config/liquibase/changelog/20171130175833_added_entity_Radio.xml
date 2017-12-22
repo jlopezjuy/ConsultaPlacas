@@ -19,7 +19,7 @@
     -->
     <changeSet id="20171130175833-1" author="jhipster">
         <createTable tableName="radio">
-            <column name="issi" type="bigint" autoIncrement="${autoIncrement}">
+            <column name="issi" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="descripcion" type="varchar(255)">

@@ -22,7 +22,8 @@ public class Radio implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
+    @Column(name = "issi", nullable = false)
     private Long issi;
 
     @NotNull

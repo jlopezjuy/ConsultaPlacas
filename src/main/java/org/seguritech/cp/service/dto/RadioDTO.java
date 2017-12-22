@@ -13,6 +13,7 @@ import org.seguritech.cp.domain.enumeration.Permiso;
  */
 public class RadioDTO implements Serializable {
 
+    @NotNull
     private Long issi;
 
     @NotNull
