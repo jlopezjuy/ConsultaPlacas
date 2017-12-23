@@ -1,4 +1,4 @@
-import {BaseEntityRadio} from "../../shared/model/base-entity-radio";
+import { BaseEntityRadio } from '../../shared/model/base-entity-radio';
 
 export const enum Permiso {
     'AUTOS_ROBADOS',

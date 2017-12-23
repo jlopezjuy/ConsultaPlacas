@@ -33,7 +33,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
     busquedaIssi: any;
     busquedaMunicipio: any;
     busquedaCorporacion: any;
-    p: number = 1;
+    p = 1;
     fechaDpInicial: any;
     fechaDpFinal: any;
 
