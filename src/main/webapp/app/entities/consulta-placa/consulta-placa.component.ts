@@ -6,6 +6,7 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { ConsultaPlaca } from './consulta-placa.model';
 import { ConsultaPlacaService } from './consulta-placa.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
+import * as FileSaver from "file-saver";
 
 @Component({
     selector: 'jhi-consulta-placa',
@@ -131,6 +132,10 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     printReport() {
         console.log('Entro a imprimir el reporte');
-        this.consultaPlacaService.generateReport();
+        this.consultaPlacaService.generateReport().subscribe(
+            (res) => {
+                FileSaver.saveAs(res, "reporte.pdf");
+            }
+        );
     }
 }

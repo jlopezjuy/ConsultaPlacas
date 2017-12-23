@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import {Http, RequestOptions, Response, ResponseContentType, Headers} from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { SERVER_API_URL } from '../../app.constants';
 
@@ -7,6 +7,7 @@ import { JhiDateUtils } from 'ng-jhipster';
 
 import { ConsultaPlaca } from './consulta-placa.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
+import * as FileSaver from "file-saver";
 
 @Injectable()
 export class ConsultaPlacaService {
@@ -48,19 +49,12 @@ export class ConsultaPlacaService {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
 
-    generateReport() {
-        this.http.get(this.resourceUrl + '/reporte').subscribe(
-            (response) => {
-                console.dir(response);
-                console.log(response);
-                const contentType = 'application/pdf';
-                const blob = new Blob([(<any>response)._body], { type: contentType });
-                const filename = 'test.pdf';
-                console.log(blob);
-                console.log(filename);
-                const url = window.URL.createObjectURL(blob);
-                window.open(url);
-            });
+    generateReport(): any {
+        return this.http.get(this.resourceUrl + '/reporte', { responseType: ResponseContentType.Blob }).map(
+            (res) => {
+                return new Blob([res.blob()], { type: 'application/pdf' })
+            }
+        );
     }
 
     private convertResponse(res: Response): ResponseWrapper {
