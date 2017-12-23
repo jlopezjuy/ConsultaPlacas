@@ -13,7 +13,7 @@ import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 })
 export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
-currentAccount: any;
+    currentAccount: any;
     consultaPlacas: ConsultaPlaca[];
     error: any;
     success: any;
@@ -59,10 +59,11 @@ currentAccount: any;
         this.consultaPlacaService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
-            sort: this.sort()}).subscribe(
+            sort: this.sort()
+        }).subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
             (res: ResponseWrapper) => this.onError(res.json)
-        );
+            );
     }
     loadPage(page: number) {
         if (page !== this.previousPage) {
@@ -71,12 +72,13 @@ currentAccount: any;
         }
     }
     transition() {
-        this.router.navigate(['/consulta-placa'], {queryParams:
-            {
-                page: this.page,
-                size: this.itemsPerPage,
-                sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-            }
+        this.router.navigate(['/consulta-placa'], {
+            queryParams:
+                {
+                    page: this.page,
+                    size: this.itemsPerPage,
+                    sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+                }
         });
         this.loadAll();
     }
@@ -127,7 +129,7 @@ currentAccount: any;
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    printReport(){
+    printReport() {
         console.log('Entro a imprimir el reporte');
         this.consultaPlacaService.generateReport();
     }
