@@ -56,10 +56,33 @@
                     </span>
                 </div>
             </div>
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-8">
+
+            </div>
             <div class="col-md-1">
-                <button (click)="printReport()" class="btn btn-success float-right">
+                <button (click)="printReportPdf()" class="btn btn-success float-right">
                     <span class="fa fa-file-pdf-o"></span>
-                    <span>Reporte</span>
+                    <span>PDF</span>
+                </button>
+            </div>
+            <div class="col-md-1">
+                <button (click)="printReportXls()" class="btn btn-success float-right">
+                    <span class="fa fa-file-excel-o"></span>
+                    <span>XLS</span>
+                </button>
+            </div>
+            <div class="col-md-1">
+                <button (click)="printReportXlsx()" class="btn btn-success float-right">
+                    <span class="fa fa-file-excel-o"></span>
+                    <span>XLSX</span>
+                </button>
+            </div>
+            <div class="col-md-1">
+                <button (click)="printReportCsv()" class="btn btn-success float-right">
+                    <span class="fa fa-file-text"></span>
+                    <span>CSV</span>
                 </button>
             </div>
         </div>

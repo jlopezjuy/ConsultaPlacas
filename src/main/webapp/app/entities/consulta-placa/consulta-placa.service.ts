@@ -57,6 +57,38 @@ export class ConsultaPlacaService {
         );
     }
 
+    generateReportPdf() {
+        return this.http.get(this.resourceUrl + '/reporte/PDF', { responseType: ResponseContentType.Blob }).map(
+            (res) => {
+                return new Blob([res.blob()], { type: 'application/pdf' })
+            }
+        );
+    }
+
+    generateReportXls() {
+        return this.http.get(this.resourceUrl + '/reporte/XLS', { responseType: ResponseContentType.Blob }).map(
+            (res) => {
+                return new Blob([res.blob()], { type: 'application/vnd.ms-excel' })
+            }
+        );
+    }
+
+    generateReportXlsx() {
+        return this.http.get(this.resourceUrl + '/reporte/XLSX', { responseType: ResponseContentType.Blob }).map(
+            (res) => {
+                return new Blob([res.blob()], { type: 'application/vnd.ms-excel' })
+            }
+        );
+    }
+
+    generateReportCsv() {
+        return this.http.get(this.resourceUrl + '/reporte/CSV', { responseType: ResponseContentType.Blob }).map(
+            (res) => {
+                return new Blob([res.blob()], { type: 'text/csv' })
+            }
+        );
+    }
+
     private convertResponse(res: Response): ResponseWrapper {
         const jsonResponse = res.json();
         const result = [];

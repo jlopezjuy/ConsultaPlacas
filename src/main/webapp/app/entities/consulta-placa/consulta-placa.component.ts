@@ -138,4 +138,40 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
             }
         );
     }
+
+    printReportPdf() {
+        console.log('Entro a imprimir el reporte');
+        this.consultaPlacaService.generateReportPdf().subscribe(
+            (res) => {
+                FileSaver.saveAs(res, "reporte.pdf");
+            }
+        );
+    }
+
+    printReportXls() {
+        console.log('Entro a imprimir el reporte');
+        this.consultaPlacaService.generateReportXls().subscribe(
+            (res) => {
+                FileSaver.saveAs(res, "reporte.xls");
+            }
+        );
+    }
+
+    printReportXlsx() {
+        console.log('Entro a imprimir el reporte');
+        this.consultaPlacaService.generateReportXlsx().subscribe(
+            (res) => {
+                FileSaver.saveAs(res, "reporte.xlsx");
+            }
+        );
+    }
+
+    printReportCsv() {
+        console.log('Entro a imprimir el reporte');
+        this.consultaPlacaService.generateReportCsv().subscribe(
+            (res) => {
+                FileSaver.saveAs(res, "reporte.csv");
+            }
+        );
+    }
 }
