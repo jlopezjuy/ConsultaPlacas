@@ -161,7 +161,8 @@
                     <td>{{consultaPlaca.fecha | date:'mediumDate'}}</td>
                     <td>{{consultaPlaca.consulta}}</td>
                     <td>{{consultaPlaca.metodo}}</td>
-                    <td>{{consultaPlaca.estado}}</td>
+                    <td *ngIf="consultaPlaca.estado">Positivo</td>
+                    <td *ngIf="!consultaPlaca.estado">Negativo</td>
                     <td>{{consultaPlaca.resultado}}</td>
                     <td>{{consultaPlaca.coordenadas}}</td>
 
