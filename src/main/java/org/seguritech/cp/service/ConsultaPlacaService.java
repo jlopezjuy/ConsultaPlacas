@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -50,5 +51,11 @@ public interface ConsultaPlacaService {
      */
     void delete(Long id);
 
-    ModelAndView getReportByType(String type);
+    ModelAndView getReportByType(String type,
+                                 Long issi,
+                                 String municipio,
+                                 String corporacion,
+                                 Boolean estado,
+                                 LocalDate desde,
+                                 LocalDate hasta);
 }

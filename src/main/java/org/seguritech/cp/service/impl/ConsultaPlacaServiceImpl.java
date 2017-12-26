@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.*;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ import java.util.Map;
  */
 @Service
 @Transactional
-public class ConsultaPlacaServiceImpl implements ConsultaPlacaService{
+public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
 
     private final Logger log = LoggerFactory.getLogger(ConsultaPlacaServiceImpl.class);
 
@@ -77,6 +78,7 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService{
 
     /**
      * Get all the consultaPlacas.
+     *
      * @return the list of entities
      */
     @Override
@@ -110,115 +112,96 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService{
     }
 
     /**
-     *
      * @param type
-     * @author jlopez
      * @return the report
+     * @author jlopez
      */
     @Override
-    public ModelAndView getReportByType(String type) {
+    public ModelAndView getReportByType(String type,
+                                        Long issi,
+                                        String municipio,
+                                        String corporacion,
+                                        Boolean estado,
+                                        LocalDate desde,
+                                        LocalDate hasta) {
         ModelAndView model = null;
 
+        Map<String, Object> params = new HashMap<>();
+        params.put("datasource", consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, desde, hasta)));
+
         switch (type) {
-            case REPORTE_PDF:  model = getPdf();
+            case REPORTE_PDF:
+                model = getPdf(params);
                 break;
-            case REPORTE_XLS:  model = getXls();
+            case REPORTE_XLS:
+                model = getXls(params);
                 break;
-            case REPORTE_XLSX:  model = getXlsx();
+            case REPORTE_XLSX:
+                model = getXlsx(params);
                 break;
-            case REPORTE_CSV:  model = getCsv();
+            case REPORTE_CSV:
+                model = getCsv(params);
                 break;
 
-            default: model = getPdf();
+            default:
+                model = getPdf(params);
                 break;
         }
         return model;
     }
 
     /**
-     *
      * @return
      * @author jlopez
      */
-    private ModelAndView getPdf(){
-
+    private ModelAndView getPdf(Map<String, Object> params) {
         JasperReportsPdfView view = new JasperReportsPdfView();
         view.setUrl("classpath:reporte_cp.jrxml");
         view.setApplicationContext(context);
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("datasource", this.findAll());
         return new ModelAndView(view, params);
-
     }
 
     /**
-     *
      * @return
      * @author jlopez
      */
-    private ModelAndView getXls(){
-
+    private ModelAndView getXls(Map<String, Object> params) {
         JasperReportsXlsView view = new JasperReportsXlsView();
         view.setUrl("classpath:reporte_cp.jrxml");
         view.setApplicationContext(context);
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("datasource", this.findAll());
         return new ModelAndView(view, params);
-
     }
 
     /**
-     *
      * @return
      * @author jlopez
      */
-    private ModelAndView getXlsx(){
-
+    private ModelAndView getXlsx(Map<String, Object> params) {
         JasperReportsXlsxView view = new JasperReportsXlsxView();
         view.setUrl("classpath:reporte_cp.jrxml");
         view.setApplicationContext(context);
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("datasource", this.findAll());
-
         return new ModelAndView(view, params);
-
     }
 
     /**
-     *
      * @return
      * @author jlopez
      */
-    private ModelAndView getCsv(){
-
+    private ModelAndView getCsv(Map<String, Object> params) {
         JasperReportsCsvView view = new JasperReportsCsvView();
-
         view.setUrl("classpath:reporte_cp.jrxml");
         view.setApplicationContext(context);
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("datasource", this.findAll());
         return new ModelAndView(view, params);
-
     }
 
     /**
-     *
      * @return
      * @author jlopez
      */
-    private ModelAndView getRtf(){
-
+    private ModelAndView getRtf(Map<String, Object> params) {
         JasperReportsMultiFormatView view = new JasperReportsMultiFormatView();
-
         view.setUrl("classpath:reporte_cp.jrxml");
         view.setApplicationContext(context);
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("datasource", this.findAll());
         return new ModelAndView(view, params);
 
     }

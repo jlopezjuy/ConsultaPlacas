@@ -12,6 +12,7 @@ import org.springframework.web.servlet.view.jasperreports.JasperReportsMultiForm
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,10 +43,16 @@ public class ReportController {
         return new ModelAndView(view, params);
     }
 
-    @GetMapping("/consulta-placas/reporte/{tipo}")
+    @GetMapping("/consulta-placas/reporte/{tipo}/{issi}/{municipio}/{corporacion}/{estado}/{desde}/{hasta}")
     @Timed
-    public ModelAndView dinamycReport(@PathVariable String tipo) {
+    public ModelAndView dinamycReport(@PathVariable String tipo,
+                                      @PathVariable Long issi,
+                                      @PathVariable String municipio,
+                                      @PathVariable String corporacion,
+                                      @PathVariable Boolean estado,
+                                      @PathVariable LocalDate desde,
+                                      @PathVariable LocalDate hasta) {
 
-        return consultaPlacaService.getReportByType(tipo);
+        return consultaPlacaService.getReportByType(tipo, issi, municipio, corporacion, estado, desde, hasta);
     }
 }
