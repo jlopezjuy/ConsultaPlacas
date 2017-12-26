@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import {Http, RequestOptions, Response, ResponseContentType, Headers} from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { SERVER_API_URL } from '../../app.constants';
 
@@ -7,6 +7,7 @@ import { JhiDateUtils } from 'ng-jhipster';
 
 import { ConsultaPlaca } from './consulta-placa.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
+import * as FileSaver from "file-saver";
 
 @Injectable()
 export class ConsultaPlacaService {
@@ -48,22 +49,45 @@ export class ConsultaPlacaService {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
 
-    generateReport(){
-
-        this.http.get(this.resourceUrl+'/reporte').subscribe(
-            (response) => {
-                console.dir(response);
-                console.log(response);
-                var contentType = 'application/pdf';
-                var blob = new Blob([(<any>response)._body], { type: contentType });
-                var filename = 'test.pdf';
-                console.log(blob);
-                console.log(filename);
-                var url = window.URL.createObjectURL(blob);
-                window.open(url);
-            });
+    generateReport(): any {
+        return this.http.get(this.resourceUrl + '/reporte', { responseType: ResponseContentType.Blob }).map(
+            (res) => {
+                return new Blob([res.blob()], { type: 'application/pdf' })
+            }
+        );
     }
 
+    generateReportPdf() {
+        return this.http.get(this.resourceUrl + '/reporte/PDF', { responseType: ResponseContentType.Blob }).map(
+            (res) => {
+                return new Blob([res.blob()], { type: 'application/pdf' })
+            }
+        );
+    }
+
+    generateReportXls() {
+        return this.http.get(this.resourceUrl + '/reporte/XLS', { responseType: ResponseContentType.Blob }).map(
+            (res) => {
+                return new Blob([res.blob()], { type: 'application/vnd.ms-excel' })
+            }
+        );
+    }
+
+    generateReportXlsx() {
+        return this.http.get(this.resourceUrl + '/reporte/XLSX', { responseType: ResponseContentType.Blob }).map(
+            (res) => {
+                return new Blob([res.blob()], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.‌​sheet' })
+            }
+        );
+    }
+
+    generateReportCsv() {
+        return this.http.get(this.resourceUrl + '/reporte/CSV', { responseType: ResponseContentType.Blob }).map(
+            (res) => {
+                return new Blob([res.blob()], { type: 'text/csv' })
+            }
+        );
+    }
 
     private convertResponse(res: Response): ResponseWrapper {
         const jsonResponse = res.json();

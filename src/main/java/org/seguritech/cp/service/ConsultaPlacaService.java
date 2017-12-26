@@ -3,6 +3,7 @@ package org.seguritech.cp.service;
 import org.seguritech.cp.service.dto.ConsultaPlacaDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -48,4 +49,6 @@ public interface ConsultaPlacaService {
      * @param id the id of the entity
      */
     void delete(Long id);
+
+    ModelAndView getReportByType(String type);
 }

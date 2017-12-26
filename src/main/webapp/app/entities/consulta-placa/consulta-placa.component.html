@@ -3,8 +3,8 @@
         <span jhiTranslate="consultaPlacasApp.consultaPlaca.home.title">Consulta Placas</span>
         <button class="btn btn-primary float-right jh-create-entity create-consulta-placa" [routerLink]="['/', { outlets: { popup: ['consulta-placa-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span  jhiTranslate="consultaPlacasApp.consultaPlaca.home.createLabel">
-            Create new Consulta Placa
+            <span jhiTranslate="consultaPlacasApp.consultaPlaca.home.createLabel">
+                Create new Consulta Placa
             </span>
         </button>
     </h2>
@@ -27,7 +27,6 @@
                 <div class="input-group">
                     <label class="form-control-label">Estado: </label>
                     <select class="form-control" [(ngModel)]="busquedaEstado">
-                        <option [ngValue]="null"></option>
                         <option value="Positivo">Positivo</option>
                         <option value="Negativo">Negativo</option>
                         <option value="Ambos">Ambos</option>
@@ -37,7 +36,8 @@
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Desde: </label>
-                    <input type="text" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker" [(ngModel)]="busquedaFechaInicial" disabled/>
+                    <input type="text" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker" [(ngModel)]="busquedaFechaInicial"
+                        disabled/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-secondary" (click)="fechaDpInicial.toggle()">
                             <i class="fa fa-calendar"></i>
@@ -57,93 +57,141 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="row col-md-10">
-
+        <div class="row col-md-12">
+            <div class="col-md-12">
+                <hr>
+            </div>
         </div>
+        <div class="row col-md-12">
+            <div class="col-md-8">
 
-        <div class="row col-md-2">
-            <button>
-                <span class="fa fa-file-pdf-o"></span>
-                <span>
-                Reporte
-            </span>
-            </button>
+            </div>
+            <div class="col-md-1">
+                <button (click)="printReportPdf()" class="btn btn-success float-right">
+                    <span class="fa fa-file-pdf-o"></span>
+                    <span>PDF</span>
+                </button>
+            </div>
+            <div class="col-md-1">
+                <button (click)="printReportXls()" class="btn btn-success float-right">
+                    <span class="fa fa-file-excel-o"></span>
+                    <span>XLS</span>
+                </button>
+            </div>
+            <div class="col-md-1">
+                <button (click)="printReportXlsx()" class="btn btn-success float-right">
+                    <span class="fa fa-file-excel-o"></span>
+                    <span>XLSX</span>
+                </button>
+            </div>
+            <div class="col-md-1">
+                <button (click)="printReportCsv()" class="btn btn-success float-right">
+                    <span class="fa fa-file-text"></span>
+                    <span>CSV</span>
+                </button>
+            </div>
         </div>
     </div>
     <div class="table-responsive" *ngIf="consultaPlacas">
         <p></p>
         <table class="table table-striped">
             <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="radioIssi"><span jhiTranslate="consultaPlacasApp.consultaPlaca.radio">Radio</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="responsable"><span jhiTranslate="consultaPlacasApp.consultaPlaca.responsable">Responsable</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="municipio"><span jhiTranslate="consultaPlacasApp.consultaPlaca.municipio">Municipio</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="corporacion"><span jhiTranslate="consultaPlacasApp.consultaPlaca.corporacion">Corporacion</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="fecha"><span jhiTranslate="consultaPlacasApp.consultaPlaca.fecha">Fecha</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="consulta"><span jhiTranslate="consultaPlacasApp.consultaPlaca.consulta">Consulta</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="metodo"><span jhiTranslate="consultaPlacasApp.consultaPlaca.metodo">Metodo</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="estado"><span jhiTranslate="consultaPlacasApp.consultaPlaca.estado">Estado</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="resultado"><span jhiTranslate="consultaPlacasApp.consultaPlaca.resultado">Resultado</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="coordenadas"><span jhiTranslate="consultaPlacasApp.consultaPlaca.coordenadas">Coordenadas</span> <span class="fa fa-sort"></span></th>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                    <th jhiSortBy="id">
+                        <span jhiTranslate="global.field.id">ID</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="radioIssi">
+                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.radio">Issi</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="responsable">
+                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.responsable">Responsable</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="municipio">
+                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.municipio">Municipio</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="corporacion">
+                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.corporacion">Corporacion</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="fecha">
+                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.fecha">Fecha</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="consulta">
+                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.consulta">Consulta</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="metodo">
+                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.metodo">Metodo</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="estado">
+                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.estado">Estado</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="resultado">
+                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.resultado">Resultado</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th jhiSortBy="coordenadas">
+                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.coordenadas">Coordenadas</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
 
-            <th></th>
-            </tr>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let consultaPlaca of consultaPlacas ;trackBy: trackId">
-                <td><a [routerLink]="['../consulta-placa', consultaPlaca.id ]">{{consultaPlaca.id}}</a></td>
-                <td>
-                    <div *ngIf="consultaPlaca.radioId">
-                        <a [routerLink]="['../radio', consultaPlaca.radioId  ]" >{{consultaPlaca.radioIssi}}</a>
-                    </div>
-                </td>
-                <td>{{consultaPlaca.radioResponsable }}</td>
-                <td>{{consultaPlaca.radioMunicipio }}</td>
-                <td>{{consultaPlaca.radioCorporacion }}</td>
-                <td>{{consultaPlaca.fecha | date:'mediumDate'}}</td>
-                <td>{{consultaPlaca.consulta}}</td>
-                <td>{{consultaPlaca.metodo}}</td>
-                <td>{{consultaPlaca.estado}}</td>
-                <td>{{consultaPlaca.resultado}}</td>
-                <td>{{consultaPlaca.coordenadas}}</td>
+                <tr *ngFor="let consultaPlaca of consultaPlacas | searchfilterReporteString: 'radioMunicipio': busquedaMunicipio | searchfilterReporteString: 'radioCorporacion': busquedaCorporacion | searchfilterReporteNumber: 'radioIssi': busquedaIssi |searchfilterReporteBoolean: 'estado' : busquedaEstado | searchfilterReporteFechaInicial: 'fecha': busquedaFechaInicial | searchfilterReporteFechaFinal: 'fecha': busquedaFechaFinal | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <td>
+                        <a [routerLink]="['../consulta-placa', consultaPlaca.id ]">{{consultaPlaca.id}}</a>
+                    </td>
+                    <td>
+                        <div *ngIf="consultaPlaca.radioIssi">
+                            <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]">{{consultaPlaca.radioIssi}}</a>
+                        </div>
+                    </td>
+                    <td>{{consultaPlaca.radioResponsable }}</td>
+                    <td>{{consultaPlaca.radioMunicipio }}</td>
+                    <td>{{consultaPlaca.radioCorporacion }}</td>
+                    <td>{{consultaPlaca.fecha | date:'mediumDate'}}</td>
+                    <td>{{consultaPlaca.consulta}}</td>
+                    <td>{{consultaPlaca.metodo}}</td>
+                    <td>{{consultaPlaca.estado}}</td>
+                    <td>{{consultaPlaca.resultado}}</td>
+                    <td>{{consultaPlaca.coordenadas}}</td>
 
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['../consulta-placa', consultaPlaca.id ]"
-                                class="btn btn-info btn-sm">
-                            <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <!--<button type="submit"-->
-                                <!--[routerLink]="['/', { outlets: { popup: 'consulta-placa/'+ consultaPlaca.id + '/edit'} }]"-->
-                                <!--replaceUrl="true"-->
-                                <!--class="btn btn-primary btn-sm">-->
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit" [routerLink]="['../consulta-placa', consultaPlaca.id ]" class="btn btn-info btn-sm">
+                                <span class="fa fa-eye"></span>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+                            <!--<button type="submit"-->
+                            <!--[routerLink]="['/', { outlets: { popup: 'consulta-placa/'+ consultaPlaca.id + '/edit'} }]"-->
+                            <!--replaceUrl="true"-->
+                            <!--class="btn btn-primary btn-sm">-->
                             <!--<span class="fa fa-pencil"></span>-->
                             <!--<span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>-->
-                        <!--</button>-->
-                        <!--<button type="submit"-->
-                                <!--[routerLink]="['/', { outlets: { popup: 'consulta-placa/'+ consultaPlaca.id + '/delete'} }]"-->
-                                <!--replaceUrl="true"-->
-                                <!--class="btn btn-danger btn-sm">-->
+                            <!--</button>-->
+                            <!--<button type="submit"-->
+                            <!--[routerLink]="['/', { outlets: { popup: 'consulta-placa/'+ consultaPlaca.id + '/delete'} }]"-->
+                            <!--replaceUrl="true"-->
+                            <!--class="btn btn-danger btn-sm">-->
                             <!--<span class="fa fa-remove"></span>-->
                             <!--<span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>-->
-                        <!--</button>-->
-                    </div>
-                </td>
-            </tr>
+                            <!--</button>-->
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
-        <div *ngIf="consultaPlacas && consultaPlacas.length">
-            <div class="row justify-content-center">
-                <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-            </div>
-            <div class="row justify-content-center">
-                <ngb-pagination [collectionSize]="totalItems" [maxSize]="5" [pageSize]="itemsPerPage" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
-            </div>
-        </div>
+    <div class="row justify-content-center">
+        <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+    </div>
 </div>
