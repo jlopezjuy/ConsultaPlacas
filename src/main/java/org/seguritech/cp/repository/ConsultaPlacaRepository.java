@@ -17,8 +17,19 @@ import java.util.List;
 @Repository
 public interface ConsultaPlacaRepository extends JpaRepository<ConsultaPlaca, Long> {
 
-    @Query(value = "select * from ConsultaPlaca cp inner join cp.radio radio inner join radio.municipio mun inner join radio.corporacion corp where radio.issi = :issi" +
-        "and mun.descripcion = :municipio and corp.descripcion =:corporacion")
+    @Query(value = "SELECT cp " +
+        "FROM ConsultaPlaca cp " +
+        "INNER JOIN Radio ON " +
+        " cp.radio_issi = Radio.issi " +
+        "INNER JOIN Municipio ON " +
+        " Radio.municipio_id = Municipio.id " +
+        "INNER JOIN Corporacion ON " +
+        " Radio.corporacion_id = Corporacion.id " +
+        "where cp.radio.issi = :issi " +
+        "and cp.estado = :estado " +
+        "and cp.radio.municipio.descripcion = :municipio " +
+        "and cp.radio.corporacion.descripcion =:corporacion " +
+        "and cp.fecha between :desde and :hasta")
     List<ConsultaPlaca> findAllByRadio(@Param("issi") Long issi,
                                        @Param("municipio") String municipio,
                                        @Param("corporacion") String corporacion,
