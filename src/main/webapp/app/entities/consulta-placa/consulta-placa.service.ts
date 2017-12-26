@@ -76,7 +76,7 @@ export class ConsultaPlacaService {
     generateReportXlsx() {
         return this.http.get(this.resourceUrl + '/reporte/XLSX', { responseType: ResponseContentType.Blob }).map(
             (res) => {
-                return new Blob([res.blob()], { type: 'application/vnd.ms-excel' })
+                return new Blob([res.blob()], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.‌​sheet' })
             }
         );
     }

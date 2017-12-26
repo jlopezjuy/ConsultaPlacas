@@ -132,7 +132,6 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService{
             default: model = getPdf();
                 break;
         }
-
         return model;
     }
 
@@ -183,6 +182,7 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService{
 
         Map<String, Object> params = new HashMap<>();
         params.put("datasource", this.findAll());
+
         return new ModelAndView(view, params);
 
     }
@@ -222,8 +222,5 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService{
         return new ModelAndView(view, params);
 
     }
-
-
-
 
 }
