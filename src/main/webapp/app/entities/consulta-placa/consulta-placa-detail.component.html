@@ -1,34 +1,49 @@
-
 <div *ngIf="consultaPlaca">
-    <h2><span jhiTranslate="consultaPlacasApp.consultaPlaca.detail.title">Consulta Placa</span> {{consultaPlaca.id}}</h2>
+    <h2>
+        <span jhiTranslate="consultaPlacasApp.consultaPlaca.detail.title">Consulta Placa</span> {{consultaPlaca.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.fecha">Fecha</span></dt>
+        <dt>
+            <span jhiTranslate="consultaPlacasApp.consultaPlaca.fecha">Fecha</span>
+        </dt>
         <dd>
             <span>{{consultaPlaca.fecha | date:'mediumDate'}}</span>
         </dd>
-        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.consulta">Consulta</span></dt>
+        <dt>
+            <span jhiTranslate="consultaPlacasApp.consultaPlaca.consulta">Consulta</span>
+        </dt>
         <dd>
             <span>{{consultaPlaca.consulta}}</span>
         </dd>
-        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.metodo">Metodo</span></dt>
+        <dt>
+            <span jhiTranslate="consultaPlacasApp.consultaPlaca.metodo">Metodo</span>
+        </dt>
         <dd>
             <span>{{consultaPlaca.metodo}}</span>
         </dd>
-        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.estado">Estado</span></dt>
+        <dt>
+            <span jhiTranslate="consultaPlacasApp.consultaPlaca.estado">Estado</span>
+        </dt>
         <dd>
-            <span>{{consultaPlaca.estado}}</span>
+            <span *ngIf="consultaPlaca.estado">Positivo</span>
+            <span *ngIf="!consultaPlaca.estado">Negativo</span>
         </dd>
-        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.resultado">Resultado</span></dt>
+        <dt>
+            <span jhiTranslate="consultaPlacasApp.consultaPlaca.resultado">Resultado</span>
+        </dt>
         <dd>
             <span>{{consultaPlaca.resultado}}</span>
         </dd>
-        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.coordenadas">Coordenadas</span></dt>
+        <dt>
+            <span jhiTranslate="consultaPlacasApp.consultaPlaca.coordenadas">Coordenadas</span>
+        </dt>
         <dd>
             <span>{{consultaPlaca.coordenadas}}</span>
         </dd>
-        <dt><span jhiTranslate="consultaPlacasApp.consultaPlaca.radio">Radio</span></dt>
+        <dt>
+            <span jhiTranslate="consultaPlacasApp.consultaPlaca.radio">Radio</span>
+        </dt>
         <dd>
             <div *ngIf="consultaPlaca.radioIssi">
                 <a [routerLink]="['/radio', consultaPlaca.radioIssi]">{{consultaPlaca.radioIssi}}</a>
@@ -36,16 +51,14 @@
         </dd>
     </dl>
 
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    <button type="submit" (click)="previousState()" class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;
+        <span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'consulta-placa/'+ consultaPlaca.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    <button type="button" [routerLink]="['/', { outlets: { popup: 'consulta-placa/'+ consultaPlaca.id + '/edit'} }]" replaceUrl="true"
+        class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;
+        <span jhiTranslate="entity.action.edit"> Edit</span>
     </button>
 </div>
