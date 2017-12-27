@@ -72,10 +72,10 @@ export class ConsultaPlacaService {
         }
         return this.http.get(this.resourceUrl + '/reporte/PDF', {responseType: ResponseContentType.Blob,
             params: {
-                issi: issi,
-                municipio: municipio,
-                corporacion: corporacion,
-                estado: estado,
+                issi: issi === '' ? undefined : issi,
+                municipio: municipio === '' ? undefined : municipio,
+                corporacion: corporacion === '' ? undefined : corporacion,
+                estado: estado === '' ? undefined : estado,
                 desde: desde_var,
                 hasta: hasta_var
             }

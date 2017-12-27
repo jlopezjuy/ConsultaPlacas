@@ -129,7 +129,7 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
                                         LocalDate hasta_p) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        Long issi = null == issi_p ? null : issi_p.equals("") ? null : Long.valueOf(issi_p);
+        Long issi = null == issi_p ? null : Long.valueOf(issi_p);
         String municipio = null == municipio_p ? null : municipio_p;
         String corporacion = null == corporacion_p ? null : corporacion_p;
         Boolean estado;
