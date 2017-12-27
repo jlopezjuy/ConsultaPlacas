@@ -28,7 +28,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
-    busquedaEstado: string;
+    busquedaEstado: any;
     busquedaFechaInicial: any;
     busquedaFechaFinal: any;
     busquedaIssi: any;
@@ -141,6 +141,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     printReportPdf() {
         console.log('Entro a imprimir el reporte');
+        console.log(this.busquedaEstado);
         this.consultaPlacaService.generateReportPdf(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial, this.busquedaFechaFinal).subscribe(
             (res) => {
                 FileSaver.saveAs(res, "reporte.pdf");

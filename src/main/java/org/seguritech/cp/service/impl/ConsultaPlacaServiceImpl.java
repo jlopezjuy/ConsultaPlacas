@@ -1,5 +1,6 @@
 package org.seguritech.cp.service.impl;
 
+import org.seguritech.cp.domain.predicate.ConsultaPlacaPredicates;
 import org.seguritech.cp.service.ConsultaPlacaService;
 import org.seguritech.cp.domain.ConsultaPlaca;
 import org.seguritech.cp.repository.ConsultaPlacaRepository;
@@ -17,9 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.seguritech.cp.domain.predicate.ConsultaPlacaPredicates.*;
 
 
 /**
@@ -118,16 +123,39 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
      */
     @Override
     public ModelAndView getReportByType(String type,
-                                        Long issi,
-                                        String municipio,
-                                        String corporacion,
-                                        Boolean estado,
-                                        LocalDate desde,
-                                        LocalDate hasta) {
+                                        String issi_p,
+                                        String municipio_p,
+                                        String corporacion_p,
+                                        String estado_p,
+                                        String desde_p,
+                                        String hasta_p) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        Long issi = issi_p.equals("undefined") ? null : Long.valueOf(issi_p);
+        String municipio = municipio_p.equals("undefined") ? null : municipio_p;
+        String corporacion = corporacion_p.equals("undefined") ? null : corporacion_p;
+        Boolean estado;
+        if(estado_p.equals("undefined")){
+            estado = null;
+        }else{
+            if(estado_p.equals("Ambos")){
+                estado = null;
+            }else{
+                if(estado_p.equals("Positivo")){
+                    estado = true;
+                }else{
+                    estado = false;
+                }
+            }
+        }
+        LocalDate desde = desde_p.equals("undefined") ? null : LocalDate.parse(desde_p, formatter);
+        LocalDate hasta = hasta_p.equals("undefined") ? null : LocalDate.parse(hasta_p, formatter);
         ModelAndView model = null;
 
         Map<String, Object> params = new HashMap<>();
-        params.put("datasource", consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, desde, hasta)));
+        List<ConsultaPlacaDTO> listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi,municipio, corporacion, estado, desde, hasta));//filterQuery(list, issi, municipio, corporacion, estado, desde, hasta);
+
+        params.put("datasource", listOut);
 
         switch (type) {
             case REPORTE_PDF:
@@ -142,7 +170,6 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
             case REPORTE_CSV:
                 model = getCsv(params);
                 break;
-
             default:
                 model = getPdf(params);
                 break;

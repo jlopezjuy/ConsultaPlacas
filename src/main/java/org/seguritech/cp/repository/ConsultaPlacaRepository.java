@@ -22,11 +22,11 @@ public interface ConsultaPlacaRepository extends JpaRepository<ConsultaPlaca, Lo
         "INNER JOIN Radio radio ON cp.radio.issi = radio.issi " +
         "INNER JOIN Municipio mun ON radio.municipio.id = mun.id " +
         "INNER JOIN Corporacion corp ON radio.corporacion.id = corp.id " +
-        "WHERE cp.radio.issi = :issi " +
-        "AND cp.estado = :estado " +
-        "AND cp.radio.municipio.descripcion = :municipio " +
-        "AND cp.radio.corporacion.descripcion =:corporacion " +
-        "AND cp.fecha between :desde and :hasta")
+        "WHERE (:issi is null OR cp.radio.issi = :issi) " +
+        "AND (:estado is null OR cp.estado = :estado) " +
+        "AND (:municipio is null OR cp.radio.municipio.descripcion = :municipio )" +
+        "AND (:corporacion is null OR cp.radio.corporacion.descripcion =:corporacion )" +
+        "AND ((:desde is null and :hasta is null) OR cp.fecha between :desde and :hasta)")
     List<ConsultaPlaca> findAllByRadio(@Param("issi") Long issi,
                                        @Param("municipio") String municipio,
                                        @Param("corporacion") String corporacion,

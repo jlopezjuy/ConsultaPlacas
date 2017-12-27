@@ -52,10 +52,10 @@ public interface ConsultaPlacaService {
     void delete(Long id);
 
     ModelAndView getReportByType(String type,
-                                 Long issi,
+                                 String issi,
                                  String municipio,
                                  String corporacion,
-                                 Boolean estado,
-                                 LocalDate desde,
-                                 LocalDate hasta);
+                                 String estado,
+                                 String desde,
+                                 String hasta);
 }
