@@ -28,7 +28,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
-    busquedaEstado: string;
+    busquedaEstado: any;
     busquedaFechaInicial: any;
     busquedaFechaFinal: any;
     busquedaIssi: any;
@@ -141,7 +141,8 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     printReportPdf() {
         console.log('Entro a imprimir el reporte');
-        this.consultaPlacaService.generateReportPdf().subscribe(
+        console.log(this.busquedaEstado);
+        this.consultaPlacaService.generateReportPdf(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial=== 'undefined' ? null : this.busquedaFechaInicial, this.busquedaFechaFinal === 'undefined' ? null : this.busquedaFechaFinal).subscribe(
             (res) => {
                 FileSaver.saveAs(res, "reporte.pdf");
             }
@@ -150,7 +151,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     printReportXls() {
         console.log('Entro a imprimir el reporte');
-        this.consultaPlacaService.generateReportXls().subscribe(
+        this.consultaPlacaService.generateReportXls(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial=== 'undefined' ? null : this.busquedaFechaInicial, this.busquedaFechaFinal === 'undefined' ? null : this.busquedaFechaFinal).subscribe(
             (res) => {
                 FileSaver.saveAs(res, "reporte.xls");
             }
@@ -159,7 +160,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     printReportXlsx() {
         console.log('Entro a imprimir el reporte');
-        this.consultaPlacaService.generateReportXlsx().subscribe(
+        this.consultaPlacaService.generateReportXlsx(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial=== 'undefined' ? null : this.busquedaFechaInicial, this.busquedaFechaFinal === 'undefined' ? null : this.busquedaFechaFinal).subscribe(
             (res) => {
                 FileSaver.saveAs(res, "reporte.xlsx");
             }
@@ -168,7 +169,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     printReportCsv() {
         console.log('Entro a imprimir el reporte');
-        this.consultaPlacaService.generateReportCsv().subscribe(
+        this.consultaPlacaService.generateReportCsv(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial=== 'undefined' ? null : this.busquedaFechaInicial, this.busquedaFechaFinal === 'undefined' ? null : this.busquedaFechaFinal).subscribe(
             (res) => {
                 FileSaver.saveAs(res, "reporte.csv");
             }

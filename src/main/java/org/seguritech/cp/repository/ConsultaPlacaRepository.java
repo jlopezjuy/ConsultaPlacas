@@ -1,9 +1,13 @@
 package org.seguritech.cp.repository;
 
 import org.seguritech.cp.domain.ConsultaPlaca;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
+
+import java.time.LocalDate;
+import java.util.List;
 
 
 /**
@@ -13,4 +17,20 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface ConsultaPlacaRepository extends JpaRepository<ConsultaPlaca, Long> {
 
+    @Query("SELECT cp " +
+        "FROM ConsultaPlaca cp " +
+        "INNER JOIN Radio radio ON cp.radio.issi = radio.issi " +
+        "INNER JOIN Municipio mun ON radio.municipio.id = mun.id " +
+        "INNER JOIN Corporacion corp ON radio.corporacion.id = corp.id " +
+        "WHERE (:issi is null OR cp.radio.issi = :issi) " +
+        "AND (:estado is null OR cp.estado = :estado) " +
+        "AND (:municipio is null OR cp.radio.municipio.descripcion = :municipio )" +
+        "AND (:corporacion is null OR cp.radio.corporacion.descripcion =:corporacion )" +
+        "AND ((:desde is null and :hasta is null) OR cp.fecha between :desde and :hasta)")
+    List<ConsultaPlaca> findAllByRadio(@Param("issi") Long issi,
+                                       @Param("municipio") String municipio,
+                                       @Param("corporacion") String corporacion,
+                                       @Param("estado") Boolean estado,
+                                       @Param("desde") LocalDate desde,
+                                       @Param("hasta")LocalDate hasta);
 }

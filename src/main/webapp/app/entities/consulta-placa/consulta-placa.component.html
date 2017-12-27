@@ -27,6 +27,7 @@
                 <div class="input-group">
                     <label class="form-control-label">Estado: </label>
                     <select class="form-control" [(ngModel)]="busquedaEstado">
+                        <option value=""></option>
                         <option value="Positivo">Positivo</option>
                         <option value="Negativo">Negativo</option>
                         <option value="Ambos">Ambos</option>
@@ -36,7 +37,7 @@
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Desde: </label>
-                    <input type="text" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker" [(ngModel)]="busquedaFechaInicial"
+                    <input type="date" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker" [(ngModel)]="busquedaFechaInicial"
                         disabled/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-secondary" (click)="fechaDpInicial.toggle()">
@@ -48,7 +49,7 @@
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Hasta: </label>
-                    <input type="text" class="form-control" ngbDatepicker #fechaDpFinal="ngbDatepicker" [(ngModel)]="busquedaFechaFinal" disabled/>
+                    <input type="date" class="form-control" ngbDatepicker #fechaDpFinal="ngbDatepicker" [(ngModel)]="busquedaFechaFinal" disabled/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-secondary" (click)="fechaDpFinal.toggle()">
                             <i class="fa fa-calendar"></i>
@@ -67,7 +68,7 @@
 
             </div>
             <div class="col-md-1">
-                <button (click)="printReportPdf()" class="btn btn-success float-right">
+                <button (click)="printReportPdf()" class="btn btn-danger float-right">
                     <span class="fa fa-file-pdf-o"></span>
                     <span>PDF</span>
                 </button>
@@ -79,13 +80,13 @@
                 </button>
             </div>
             <div class="col-md-1">
-                <button (click)="printReportXlsx()" class="btn btn-success float-right">
+                <button (click)="printReportXlsx()" class="btn btn-success float-right" disabled>
                     <span class="fa fa-file-excel-o"></span>
                     <span>XLSX</span>
                 </button>
             </div>
             <div class="col-md-1">
-                <button (click)="printReportCsv()" class="btn btn-success float-right">
+                <button (click)="printReportCsv()" class="btn btn-dark float-right">
                     <span class="fa fa-file-text"></span>
                     <span>CSV</span>
                 </button>
@@ -161,7 +162,8 @@
                     <td>{{consultaPlaca.fecha | date:'mediumDate'}}</td>
                     <td>{{consultaPlaca.consulta}}</td>
                     <td>{{consultaPlaca.metodo}}</td>
-                    <td>{{consultaPlaca.estado}}</td>
+                    <td *ngIf="consultaPlaca.estado">Positivo</td>
+                    <td *ngIf="!consultaPlaca.estado">Negativo</td>
                     <td>{{consultaPlaca.resultado}}</td>
                     <td>{{consultaPlaca.coordenadas}}</td>
 

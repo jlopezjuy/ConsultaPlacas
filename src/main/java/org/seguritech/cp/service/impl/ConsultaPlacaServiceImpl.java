@@ -1,5 +1,6 @@
 package org.seguritech.cp.service.impl;
 
+import org.seguritech.cp.domain.predicate.ConsultaPlacaPredicates;
 import org.seguritech.cp.service.ConsultaPlacaService;
 import org.seguritech.cp.domain.ConsultaPlaca;
 import org.seguritech.cp.repository.ConsultaPlacaRepository;
@@ -16,9 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.seguritech.cp.domain.predicate.ConsultaPlacaPredicates.*;
 
 
 /**
@@ -26,7 +32,7 @@ import java.util.Map;
  */
 @Service
 @Transactional
-public class ConsultaPlacaServiceImpl implements ConsultaPlacaService{
+public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
 
     private final Logger log = LoggerFactory.getLogger(ConsultaPlacaServiceImpl.class);
 
@@ -77,6 +83,7 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService{
 
     /**
      * Get all the consultaPlacas.
+     *
      * @return the list of entities
      */
     @Override
@@ -110,115 +117,118 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService{
     }
 
     /**
-     *
      * @param type
-     * @author jlopez
      * @return the report
+     * @author jlopez
      */
     @Override
-    public ModelAndView getReportByType(String type) {
+    public ModelAndView getReportByType(String type,
+                                        String issi_p,
+                                        String municipio_p,
+                                        String corporacion_p,
+                                        String estado_p,
+                                        LocalDate desde_p,
+                                        LocalDate hasta_p) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        Long issi = issi_p.equals("undefined") ? null : Long.valueOf(issi_p);
+        String municipio = municipio_p.equals("undefined") ? null : municipio_p;
+        String corporacion = corporacion_p.equals("undefined") ? null : corporacion_p;
+        Boolean estado;
+        if(estado_p.equals("undefined")){
+            estado = null;
+        }else{
+            if(estado_p.equals("Ambos")){
+                estado = null;
+            }else{
+                if(estado_p.equals("Positivo")){
+                    estado = true;
+                }else{
+                    estado = false;
+                }
+            }
+        }
+        LocalDate desde = desde_p;//desde_p.equals("undefined") ? null : LocalDate.parse(desde_p, formatter);
+        LocalDate hasta = hasta_p;//hasta_p.equals("undefined") ? null : LocalDate.parse(hasta_p, formatter);
         ModelAndView model = null;
 
-        switch (type) {
-            case REPORTE_PDF:  model = getPdf();
-                break;
-            case REPORTE_XLS:  model = getXls();
-                break;
-            case REPORTE_XLSX:  model = getXlsx();
-                break;
-            case REPORTE_CSV:  model = getCsv();
-                break;
+        Map<String, Object> params = new HashMap<>();
+        List<ConsultaPlacaDTO> listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi,municipio, corporacion, estado, desde, hasta));//filterQuery(list, issi, municipio, corporacion, estado, desde, hasta);
 
-            default: model = getPdf();
+        params.put("datasource", listOut);
+
+        switch (type) {
+            case REPORTE_PDF:
+                model = getPdf(params);
+                break;
+            case REPORTE_XLS:
+                model = getXls(params);
+                break;
+            case REPORTE_XLSX:
+                model = getXlsx(params);
+                break;
+            case REPORTE_CSV:
+                model = getCsv(params);
+                break;
+            default:
+                model = getPdf(params);
                 break;
         }
         return model;
     }
 
     /**
-     *
      * @return
      * @author jlopez
      */
-    private ModelAndView getPdf(){
-
+    private ModelAndView getPdf(Map<String, Object> params) {
         JasperReportsPdfView view = new JasperReportsPdfView();
         view.setUrl("classpath:reporte_cp.jrxml");
         view.setApplicationContext(context);
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("datasource", this.findAll());
         return new ModelAndView(view, params);
-
     }
 
     /**
-     *
      * @return
      * @author jlopez
      */
-    private ModelAndView getXls(){
-
+    private ModelAndView getXls(Map<String, Object> params) {
         JasperReportsXlsView view = new JasperReportsXlsView();
         view.setUrl("classpath:reporte_cp.jrxml");
         view.setApplicationContext(context);
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("datasource", this.findAll());
         return new ModelAndView(view, params);
-
     }
 
     /**
-     *
      * @return
      * @author jlopez
      */
-    private ModelAndView getXlsx(){
-
+    private ModelAndView getXlsx(Map<String, Object> params) {
         JasperReportsXlsxView view = new JasperReportsXlsxView();
         view.setUrl("classpath:reporte_cp.jrxml");
         view.setApplicationContext(context);
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("datasource", this.findAll());
-
         return new ModelAndView(view, params);
-
     }
 
     /**
-     *
      * @return
      * @author jlopez
      */
-    private ModelAndView getCsv(){
-
+    private ModelAndView getCsv(Map<String, Object> params) {
         JasperReportsCsvView view = new JasperReportsCsvView();
-
         view.setUrl("classpath:reporte_cp.jrxml");
         view.setApplicationContext(context);
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("datasource", this.findAll());
         return new ModelAndView(view, params);
-
     }
 
     /**
-     *
      * @return
      * @author jlopez
      */
-    private ModelAndView getRtf(){
-
+    private ModelAndView getRtf(Map<String, Object> params) {
         JasperReportsMultiFormatView view = new JasperReportsMultiFormatView();
-
         view.setUrl("classpath:reporte_cp.jrxml");
         view.setApplicationContext(context);
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("datasource", this.findAll());
         return new ModelAndView(view, params);
 
     }
