@@ -18,11 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.*;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.seguritech.cp.domain.predicate.ConsultaPlacaPredicates.*;
 
@@ -131,19 +129,19 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
                                         LocalDate hasta_p) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        Long issi = null == issi_p ? null : Long.valueOf(issi_p);
+        Long issi = null == issi_p ? null : issi_p.equals("") ? null : Long.valueOf(issi_p);
         String municipio = null == municipio_p ? null : municipio_p;
         String corporacion = null == corporacion_p ? null : corporacion_p;
         Boolean estado;
-        if(null == estado_p){
+        if (null == estado_p) {
             estado = null;
-        }else{
-            if(estado_p.equals("Ambos")){
+        } else {
+            if (estado_p.equals("Ambos")) {
                 estado = null;
-            }else{
-                if(estado_p.equals("Positivo")){
+            } else {
+                if (estado_p.equals("Positivo")) {
                     estado = true;
-                }else{
+                } else {
                     estado = false;
                 }
             }
@@ -153,7 +151,23 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
         ModelAndView model = null;
 
         Map<String, Object> params = new HashMap<>();
-        List<ConsultaPlacaDTO> listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi,municipio, corporacion, estado, desde, hasta));//filterQuery(list, issi, municipio, corporacion, estado, desde, hasta);
+        List<ConsultaPlacaDTO> listOut = new ArrayList<>();
+        if (null == desde && null != hasta) {
+            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadioHasta(issi, municipio, corporacion, estado, hasta));
+        }
+
+        if (null != desde && null == hasta) {
+            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadioDesde(issi, municipio, corporacion, estado, desde));
+        }
+
+        if (null == desde && null == hasta) {
+            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadioSinFecha(issi, municipio, corporacion, estado));
+        }
+
+        if (null != desde && null != hasta) {
+            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, Date.from(desde.atStartOfDay(ZoneId.systemDefault()).toInstant()), Date.from(hasta.atStartOfDay(ZoneId.systemDefault()).toInstant())));
+        }
+
 
         params.put("datasource", listOut);
 
