@@ -49,7 +49,6 @@ public class ConsultaPlaca implements Serializable {
     private String coordenadas;
 
     @ManyToOne(optional = false)
-    @NotNull
     private Radio radio;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

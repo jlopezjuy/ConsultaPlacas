@@ -51,8 +51,8 @@ public class ReportController {
                                       @PathVariable String municipio,
                                       @PathVariable String corporacion,
                                       @PathVariable String estado,
-                                      @PathVariable String desde,
-                                      @PathVariable String hasta) {
+                                      @PathVariable LocalDate desde,
+                                      @PathVariable LocalDate hasta) {
         return consultaPlacaService.getReportByType(tipo, issi , municipio, corporacion, estado, desde, hasta);
     }
 }

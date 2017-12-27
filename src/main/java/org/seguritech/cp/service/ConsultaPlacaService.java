@@ -56,6 +56,6 @@ public interface ConsultaPlacaService {
                                  String municipio,
                                  String corporacion,
                                  String estado,
-                                 String desde,
-                                 String hasta);
+                                 LocalDate desde,
+                                 LocalDate hasta);
 }
