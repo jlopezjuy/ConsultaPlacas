@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import {JhiEventManager, JhiParseLinks, JhiAlertService, JhiDateUtils} from 'ng-jhipster';
 
 import { ConsultaPlaca } from './consulta-placa.model';
 import { ConsultaPlacaService } from './consulta-placa.service';
@@ -45,7 +45,8 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
         private principal: Principal,
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private dateUtils: JhiDateUtils
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
@@ -141,8 +142,10 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     printReportPdf() {
         console.log('Entro a imprimir el reporte');
-        console.log(this.busquedaEstado);
-        this.consultaPlacaService.generateReportPdf(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial=== 'undefined' ? null : this.busquedaFechaInicial, this.busquedaFechaFinal === 'undefined' ? null : this.busquedaFechaFinal).subscribe(
+        console.log(this.busquedaFechaInicial);
+        console.log(this.busquedaFechaFinal);
+
+        this.consultaPlacaService.generateReportPdf(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.dateUtils.convertLocalDateToServer(this.busquedaFechaInicial), this.dateUtils.convertLocalDateToServer(this.busquedaFechaFinal)).subscribe(
             (res) => {
                 FileSaver.saveAs(res, "reporte.pdf");
             }
@@ -151,7 +154,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     printReportXls() {
         console.log('Entro a imprimir el reporte');
-        this.consultaPlacaService.generateReportXls(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial=== 'undefined' ? null : this.busquedaFechaInicial, this.busquedaFechaFinal === 'undefined' ? null : this.busquedaFechaFinal).subscribe(
+        this.consultaPlacaService.generateReportXls(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial === undefined ? '' : this.busquedaFechaInicial, this.busquedaFechaFinal === undefined ? '' : this.busquedaFechaFinal).subscribe(
             (res) => {
                 FileSaver.saveAs(res, "reporte.xls");
             }

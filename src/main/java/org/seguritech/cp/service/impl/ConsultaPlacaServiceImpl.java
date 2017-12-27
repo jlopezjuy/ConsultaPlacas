@@ -131,11 +131,11 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
                                         LocalDate hasta_p) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        Long issi = issi_p.equals("undefined") ? null : Long.valueOf(issi_p);
-        String municipio = municipio_p.equals("undefined") ? null : municipio_p;
-        String corporacion = corporacion_p.equals("undefined") ? null : corporacion_p;
+        Long issi = null == issi_p ? null : Long.valueOf(issi_p);
+        String municipio = null == municipio_p ? null : municipio_p;
+        String corporacion = null == corporacion_p ? null : corporacion_p;
         Boolean estado;
-        if(estado_p.equals("undefined")){
+        if(null == estado_p){
             estado = null;
         }else{
             if(estado_p.equals("Ambos")){
@@ -148,8 +148,8 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
                 }
             }
         }
-        LocalDate desde = desde_p;//desde_p.equals("undefined") ? null : LocalDate.parse(desde_p, formatter);
-        LocalDate hasta = hasta_p;//hasta_p.equals("undefined") ? null : LocalDate.parse(hasta_p, formatter);
+        LocalDate desde = null == desde_p ? null : desde_p;//desde_p.equals("undefined") ? null : LocalDate.parse(desde_p, formatter);
+        LocalDate hasta = null == hasta_p ? null : hasta_p;//hasta_p.equals("undefined") ? null : LocalDate.parse(hasta_p, formatter);
         ModelAndView model = null;
 
         Map<String, Object> params = new HashMap<>();
