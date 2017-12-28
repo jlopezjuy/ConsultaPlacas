@@ -109,7 +109,7 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
         }
 
         if (null != desde && null == hasta) {
-            listOut = consultaPlacaRepository.findAllByRadioDesde(issi, municipio, corporacion, estado, desde, pageable).map(consultaPlacaMapper::toDto);;
+            listOut = consultaPlacaRepository.findAllByRadioDesde(issi, municipio, corporacion, estado, desde, pageable).map(consultaPlacaMapper::toDto);
         }
 
         if (null == desde && null == hasta) {

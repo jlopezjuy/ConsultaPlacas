@@ -1,7 +1,8 @@
 <div>
     <h2>
         <span jhiTranslate="consultaPlacasApp.consultaPlaca.home.title">Consulta Placas</span>
-        <button class="btn btn-primary float-right jh-create-entity create-consulta-placa" [routerLink]="['/', { outlets: { popup: ['consulta-placa-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-consulta-placa"
+                [routerLink]="['/', { outlets: { popup: ['consulta-placa-new'] } }]">
             <span class="fa fa-plus"></span>
             <span jhiTranslate="consultaPlacasApp.consultaPlaca.home.createLabel">
                 Create new Consulta Placa
@@ -15,13 +16,13 @@
     <div class="row">
         <div class="row col-md-12">
             <div class="col-md-1">
-                <input type="text" class="form-control" placeholder="Issi" [(ngModel)]="busquedaIssi" />
+                <input type="text" class="form-control" placeholder="Issi" [(ngModel)]="busquedaIssi"/>
             </div>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="Municipio" [(ngModel)]="busquedaMunicipio" />
+                <input type="text" class="form-control" placeholder="Municipio" [(ngModel)]="busquedaMunicipio"/>
             </div>
             <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="Corporación" [(ngModel)]="busquedaCorporacion" />
+                <input type="text" class="form-control" placeholder="Corporación" [(ngModel)]="busquedaCorporacion"/>
             </div>
             <div class="col-md-2">
                 <div class="input-group">
@@ -37,8 +38,9 @@
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Desde: </label>
-                    <input type="text" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker" [(ngModel)]="busquedaFechaInicial"
-                        disabled/>
+                    <input type="text" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker"
+                           [(ngModel)]="busquedaFechaInicial"
+                           disabled/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-secondary" (click)="fechaDpInicial.toggle()">
                             <i class="fa fa-calendar"></i>
@@ -49,7 +51,8 @@
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Hasta: </label>
-                    <input type="text" class="form-control" ngbDatepicker #fechaDpFinal="ngbDatepicker" [(ngModel)]="busquedaFechaFinal" disabled/>
+                    <input type="text" class="form-control" ngbDatepicker #fechaDpFinal="ngbDatepicker"
+                           [(ngModel)]="busquedaFechaFinal" disabled/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-secondary" (click)="fechaDpFinal.toggle()">
                             <i class="fa fa-calendar"></i>
@@ -103,94 +106,104 @@
         <p></p>
         <table class="table table-striped">
             <thead>
-                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                    <th jhiSortBy="id">
-                        <span jhiTranslate="global.field.id">ID</span>
-                        <span class="fa fa-sort"></span>
-                    </th>
-                    <th jhiSortBy="radioIssi">
-                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.radio">Issi</span>
-                        <span class="fa fa-sort"></span>
-                    </th>
-                    <th jhiSortBy="responsable">
-                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.responsable">Responsable</span>
-                        <span class="fa fa-sort"></span>
-                    </th>
-                    <th jhiSortBy="municipio">
-                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.municipio">Municipio</span>
-                        <span class="fa fa-sort"></span>
-                    </th>
-                    <th jhiSortBy="corporacion">
-                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.corporacion">Corporacion</span>
-                        <span class="fa fa-sort"></span>
-                    </th>
-                    <th jhiSortBy="fecha">
-                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.fecha">Fecha</span>
-                        <span class="fa fa-sort"></span>
-                    </th>
-                    <th jhiSortBy="consulta">
-                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.consulta">Consulta</span>
-                        <span class="fa fa-sort"></span>
-                    </th>
-                    <th jhiSortBy="metodo">
-                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.metodo">Metodo</span>
-                        <span class="fa fa-sort"></span>
-                    </th>
-                    <th jhiSortBy="estado">
-                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.estado">Estado</span>
-                        <span class="fa fa-sort"></span>
-                    </th>
-                    <th jhiSortBy="resultado">
-                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.resultado">Resultado</span>
-                        <span class="fa fa-sort"></span>
-                    </th>
-                    <th jhiSortBy="coordenadas">
-                        <span jhiTranslate="consultaPlacasApp.consultaPlaca.coordenadas">Coordenadas</span>
-                        <span class="fa fa-sort"></span>
-                    </th>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                <th jhiSortBy="id">
+                    <span jhiTranslate="global.field.id">ID</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="radioIssi">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.radio">Issi</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="responsable">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.responsable">Responsable</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="municipio">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.municipio">Municipio</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="corporacion">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.corporacion">Corporacion</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="fecha">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.fecha">Fecha</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="consulta">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.consulta">Consulta</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="metodo">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.metodo">Metodo</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="estado">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.estado">Estado</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="resultado">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.resultado">Resultado</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="coordenadas">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.coordenadas">Coordenadas</span>
+                    <span class="fa fa-sort"></span>
+                </th>
 
-                    <th></th>
-                </tr>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let consultaPlaca of consultaPlacas; trackBy: trackId">
-                    <td>
-                        <a [routerLink]="['../consulta-placa', consultaPlaca.id ]">{{consultaPlaca.id}}</a>
-                    </td>
-                    <td>
-                        <div *ngIf="consultaPlaca.radioIssi">
-                            <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]">{{consultaPlaca.radioIssi}}</a>
-                        </div>
-                    </td>
-                    <td>{{consultaPlaca.radioResponsable }}</td>
-                    <td>{{consultaPlaca.radioMunicipio }}</td>
-                    <td>{{consultaPlaca.radioCorporacion }}</td>
-                    <td>{{consultaPlaca.fecha | date:'mediumDate'}}</td>
-                    <td>{{consultaPlaca.consulta}}</td>
-                    <td>{{consultaPlaca.metodo}}</td>
-                    <td *ngIf="consultaPlaca.estado">Positivo</td>
-                    <td *ngIf="!consultaPlaca.estado">Negativo</td>
-                    <td>{{consultaPlaca.resultado}}</td>
-                    <td>{{consultaPlaca.coordenadas}}</td>
+            <tr *ngFor="let consultaPlaca of consultaPlacas; trackBy: trackId">
+                <td>
+                    <a [routerLink]="['../consulta-placa', consultaPlaca.id ]">{{consultaPlaca.id}}</a>
+                </td>
+                <td>
+                    <div *ngIf="consultaPlaca.radioIssi">
+                        <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]">{{consultaPlaca.radioIssi}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="consultaPlaca.radioResponsable">
+                        <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]">{{consultaPlaca.radioResponsable}}</a>
+                    </div>
+                <td>
+                    <div *ngIf="consultaPlaca.radioMunicipio">
+                        <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]">{{consultaPlaca.radioMunicipio}}</a>
+                    </div>
+                </td>
+                <td>{{consultaPlaca.radioCorporacion }}</td>
+                <td>{{consultaPlaca.fecha | date:'mediumDate'}}</td>
+                <td>{{consultaPlaca.consulta}}</td>
+                <td>{{consultaPlaca.metodo}}</td>
+                <td *ngIf="consultaPlaca.estado">Positivo</td>
+                <td *ngIf="!consultaPlaca.estado">Negativo</td>
+                <td>{{consultaPlaca.resultado}}</td>
+                <td>{{consultaPlaca.coordenadas}}</td>
 
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit" [routerLink]="['../consulta-placa', consultaPlaca.id ]" class="btn btn-info btn-sm">
-                                <span class="fa fa-eye"></span>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit" [routerLink]="['../consulta-placa', consultaPlaca.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
-        <div *ngIf="consultaPlacas && consultaPlacas.length">
-            <div class="row justify-content-center">
-                <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-            </div>
-            <div class="row justify-content-center">
-                <ngb-pagination [collectionSize]="totalItems" [maxSize]="5" [pageSize]="itemsPerPage" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
-            </div>
+    <div *ngIf="consultaPlacas && consultaPlacas.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5"
+                            [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [maxSize]="5" [pageSize]="itemsPerPage" [(page)]="page"
+                            (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
 </div>
