@@ -37,7 +37,7 @@
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Desde: </label>
-                    <input type="date" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker" [(ngModel)]="busquedaFechaInicial"
+                    <input type="text" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker" [(ngModel)]="busquedaFechaInicial"
                         disabled/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-secondary" (click)="fechaDpInicial.toggle()">
@@ -49,7 +49,7 @@
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Hasta: </label>
-                    <input type="date" class="form-control" ngbDatepicker #fechaDpFinal="ngbDatepicker" [(ngModel)]="busquedaFechaFinal" disabled/>
+                    <input type="text" class="form-control" ngbDatepicker #fechaDpFinal="ngbDatepicker" [(ngModel)]="busquedaFechaFinal" disabled/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-secondary" (click)="fechaDpFinal.toggle()">
                             <i class="fa fa-calendar"></i>

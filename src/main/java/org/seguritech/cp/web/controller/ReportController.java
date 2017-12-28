@@ -44,15 +44,15 @@ public class ReportController {
         return new ModelAndView(view, params);
     }
 
-    @GetMapping("/consulta-placas/reporte/{tipo}/{issi}/{municipio}/{corporacion}/{estado}/{desde}/{hasta}")
+    @GetMapping("/consulta-placas/reporte/{tipo}")
     @Timed
     public ModelAndView dinamycReport(@PathVariable String tipo,
-                                      @PathVariable String issi,
-                                      @PathVariable String municipio,
-                                      @PathVariable String corporacion,
-                                      @PathVariable String estado,
-                                      @PathVariable LocalDate desde,
-                                      @PathVariable LocalDate hasta) {
+                                      @RequestParam(required=false) String issi,
+                                      @RequestParam(required=false) String municipio,
+                                      @RequestParam(required=false) String corporacion,
+                                      @RequestParam(required=false) String estado,
+                                      @RequestParam(required=false) String desde,
+                                      @RequestParam(required=false) String hasta) {
         return consultaPlacaService.getReportByType(tipo, issi , municipio, corporacion, estado, desde, hasta);
     }
 }
