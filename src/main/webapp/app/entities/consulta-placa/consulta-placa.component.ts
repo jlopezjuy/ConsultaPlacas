@@ -157,6 +157,8 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
         this.queryCount = this.totalItems;
+        console.log(this.queryCount);
+        console.log(this.consultaPlacas);
         // this.page = pagingParams.page;
         this.consultaPlacas = data;
     }
