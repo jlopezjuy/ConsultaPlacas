@@ -15,11 +15,11 @@ import {
     consultaPlacaRoute,
     consultaPlacaPopupRoute,
     ConsultaPlacaResolvePagingParams,
-    SearchfilterReportePipeBoolean,
-    SearchfilterReportePipeFechaInicial,
-    SearchfilterReportePipeFechaFinal,
-    SearchfilterReportePipeString,
-    SearchfilterReportePipeNumber,
+    // SearchfilterReportePipeBoolean,
+    // SearchfilterReportePipeFechaInicial,
+    // SearchfilterReportePipeFechaFinal,
+    // SearchfilterReportePipeString,
+    // SearchfilterReportePipeNumber,
 } from './';
 
 const ENTITY_STATES = [
@@ -40,11 +40,11 @@ const ENTITY_STATES = [
         ConsultaPlacaDeleteDialogComponent,
         ConsultaPlacaPopupComponent,
         ConsultaPlacaDeletePopupComponent,
-        SearchfilterReportePipeBoolean,
-        SearchfilterReportePipeFechaInicial,
-        SearchfilterReportePipeFechaFinal,
-        SearchfilterReportePipeString,
-        SearchfilterReportePipeNumber,
+        // SearchfilterReportePipeBoolean,
+        // SearchfilterReportePipeFechaInicial,
+        // SearchfilterReportePipeFechaFinal,
+        // SearchfilterReportePipeString,
+        // SearchfilterReportePipeNumber,
     ],
     entryComponents: [
         ConsultaPlacaComponent,
