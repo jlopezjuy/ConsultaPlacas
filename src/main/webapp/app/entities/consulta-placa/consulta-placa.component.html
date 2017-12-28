@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="col-md-1">
-                <button (click)="loadAll()" class="btn btn-success float-right">
+                <button (click)="findConsultas()" class="btn btn-success float-right">
                     <span class="fa fa-search"></span>
                     <span>Buscar</span>
                 </button>
@@ -153,7 +153,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let consultaPlaca of consultaPlacas | paginate: { itemsPerPage: 10, currentPage: p }">
+                <tr *ngFor="let consultaPlaca of consultaPlacas; trackBy: trackId">
                     <td>
                         <a [routerLink]="['../consulta-placa', consultaPlaca.id ]">{{consultaPlaca.id}}</a>
                     </td>
@@ -179,27 +179,18 @@
                                 <span class="fa fa-eye"></span>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                             </button>
-                            <!--<button type="submit"-->
-                            <!--[routerLink]="['/', { outlets: { popup: 'consulta-placa/'+ consultaPlaca.id + '/edit'} }]"-->
-                            <!--replaceUrl="true"-->
-                            <!--class="btn btn-primary btn-sm">-->
-                            <!--<span class="fa fa-pencil"></span>-->
-                            <!--<span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>-->
-                            <!--</button>-->
-                            <!--<button type="submit"-->
-                            <!--[routerLink]="['/', { outlets: { popup: 'consulta-placa/'+ consultaPlaca.id + '/delete'} }]"-->
-                            <!--replaceUrl="true"-->
-                            <!--class="btn btn-danger btn-sm">-->
-                            <!--<span class="fa fa-remove"></span>-->
-                            <!--<span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>-->
-                            <!--</button>-->
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div class="row justify-content-center">
-        <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
-    </div>
+        <div *ngIf="consultaPlacas && consultaPlacas.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [maxSize]="5" [pageSize]="itemsPerPage" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
 </div>
