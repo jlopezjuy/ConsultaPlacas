@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Rx';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs/Rx';
 import {JhiEventManager, JhiParseLinks, JhiAlertService, JhiDateUtils} from 'ng-jhipster';
 
-import { ConsultaPlaca } from './consulta-placa.model';
-import { ConsultaPlacaService } from './consulta-placa.service';
-import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
+import {ConsultaPlaca} from './consulta-placa.model';
+import {ConsultaPlacaService} from './consulta-placa.service';
+import {ITEMS_PER_PAGE, Principal, ResponseWrapper} from '../../shared';
 import * as FileSaver from "file-saver";
 
 @Component({
@@ -38,16 +38,14 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
     fechaDpInicial: any;
     fechaDpFinal: any;
 
-    constructor(
-        private consultaPlacaService: ConsultaPlacaService,
-        private parseLinks: JhiParseLinks,
-        private jhiAlertService: JhiAlertService,
-        private principal: Principal,
-        private activatedRoute: ActivatedRoute,
-        private router: Router,
-        private eventManager: JhiEventManager,
-        private dateUtils: JhiDateUtils
-    ) {
+    constructor(private consultaPlacaService: ConsultaPlacaService,
+                private parseLinks: JhiParseLinks,
+                private jhiAlertService: JhiAlertService,
+                private principal: Principal,
+                private activatedRoute: ActivatedRoute,
+                private router: Router,
+                private eventManager: JhiEventManager,
+                private dateUtils: JhiDateUtils) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
             this.page = data['pagingParams'].page;
@@ -58,21 +56,30 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
-        this.consultaPlacaService.query({
+        this.consultaPlacaService.queryFilter({
             page: this.page - 1,
             size: this.itemsPerPage,
-            sort: this.sort()
+            sort: this.sort(),
+            issi: this.busquedaIssi === '' ? undefined : this.busquedaIssi,
+            municipio: this.busquedaMunicipio === '' ? undefined : this.busquedaMunicipio,
+            corporacion: this.busquedaCorporacion === '' ? undefined : this.busquedaCorporacion,
+            estado: this.busquedaEstado === '' ? undefined : this.busquedaEstado,
+            desde: this.dateUtils.convertLocalDateToServer(this.busquedaFechaInicial),
+            hasta: this.dateUtils.convertLocalDateToServer(this.busquedaFechaFinal)
+
         }).subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
             (res: ResponseWrapper) => this.onError(res.json)
-            );
+        );
     }
+
     loadPage(page: number) {
         if (page !== this.previousPage) {
             this.previousPage = page;
             this.transition();
         }
     }
+
     transition() {
         this.router.navigate(['/consulta-placa'], {
             queryParams:
@@ -93,8 +100,9 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
         }]);
         this.loadAll();
     }
+
     ngOnInit() {
-        this.loadAll();
+        //this.loadAll();
         this.principal.identity().then((account) => {
             this.currentAccount = account;
         });
@@ -108,6 +116,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
     trackId(index: number, item: ConsultaPlaca) {
         return item.id;
     }
+
     registerChangeInConsultaPlacas() {
         this.eventSubscriber = this.eventManager.subscribe('consultaPlacaListModification', (response) => this.loadAll());
     }
@@ -127,17 +136,9 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
         // this.page = pagingParams.page;
         this.consultaPlacas = data;
     }
+
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
-    }
-
-    printReport() {
-        console.log('Entro a imprimir el reporte');
-        this.consultaPlacaService.generateReport().subscribe(
-            (res) => {
-                FileSaver.saveAs(res, "reporte.pdf");
-            }
-        );
     }
 
     printReportPdf() {
@@ -163,7 +164,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     printReportXlsx() {
         console.log('Entro a imprimir el reporte');
-        this.consultaPlacaService.generateReportXlsx(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial=== 'undefined' ? null : this.busquedaFechaInicial, this.busquedaFechaFinal === 'undefined' ? null : this.busquedaFechaFinal).subscribe(
+        this.consultaPlacaService.generateReportXlsx(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial === 'undefined' ? null : this.busquedaFechaInicial, this.busquedaFechaFinal === 'undefined' ? null : this.busquedaFechaFinal).subscribe(
             (res) => {
                 FileSaver.saveAs(res, "reporte.xlsx");
             }
@@ -172,7 +173,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     printReportCsv() {
         console.log('Entro a imprimir el reporte');
-        this.consultaPlacaService.generateReportCsv(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial=== 'undefined' ? null : this.busquedaFechaInicial, this.busquedaFechaFinal === 'undefined' ? null : this.busquedaFechaFinal).subscribe(
+        this.consultaPlacaService.generateReportCsv(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial === 'undefined' ? null : this.busquedaFechaInicial, this.busquedaFechaFinal === 'undefined' ? null : this.busquedaFechaFinal).subscribe(
             (res) => {
                 FileSaver.saveAs(res, "reporte.csv");
             }

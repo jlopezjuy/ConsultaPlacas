@@ -30,6 +30,24 @@ public interface ConsultaPlacaService {
     Page<ConsultaPlacaDTO> findAll(Pageable pageable);
 
     /**
+     * Get all the consultaPlacas using filter.
+     * @param pageable pageable the pagination information
+     * @param issi
+     * @param municipio
+     * @param corporacion
+     * @param estado
+     * @param desde
+     * @param hasta
+     * @return the list of entities
+     */
+    Page<ConsultaPlacaDTO> findAllFilter(Pageable pageable, String issi,
+                                         String municipio,
+                                         String corporacion,
+                                         String estado,
+                                         String desde,
+                                         String hasta);
+
+    /**
      * Get all the consultaPlacas.
      *
      * @return the list of entities
