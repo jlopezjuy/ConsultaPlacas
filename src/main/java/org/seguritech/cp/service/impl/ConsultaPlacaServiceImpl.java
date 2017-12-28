@@ -6,6 +6,7 @@ import org.seguritech.cp.domain.ConsultaPlaca;
 import org.seguritech.cp.repository.ConsultaPlacaRepository;
 import org.seguritech.cp.service.dto.ConsultaPlacaDTO;
 import org.seguritech.cp.service.mapper.ConsultaPlacaMapper;
+import org.seguritech.cp.service.util.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,8 +126,8 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
                                         String municipio_p,
                                         String corporacion_p,
                                         String estado_p,
-                                        LocalDate desde_p,
-                                        LocalDate hasta_p) {
+                                        String desde_p,
+                                        String hasta_p) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         Long issi = null == issi_p ? null : Long.valueOf(issi_p);
@@ -146,8 +147,8 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
                 }
             }
         }
-        LocalDate desde = null == desde_p ? null : desde_p;//desde_p.equals("undefined") ? null : LocalDate.parse(desde_p, formatter);
-        LocalDate hasta = null == hasta_p ? null : hasta_p;//hasta_p.equals("undefined") ? null : LocalDate.parse(hasta_p, formatter);
+        LocalDate desde = desde_p.equals("null") ? null : LocalDate.parse(desde_p);//desde_p.equals("undefined") ? null : LocalDate.parse(desde_p, formatter);
+        LocalDate hasta = hasta_p.equals("null") ? null : LocalDate.parse(hasta_p);//hasta_p.equals("undefined") ? null : LocalDate.parse(hasta_p, formatter);
         ModelAndView model = null;
 
         Map<String, Object> params = new HashMap<>();
@@ -165,7 +166,7 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
         }
 
         if (null != desde && null != hasta) {
-            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, Date.from(desde.atStartOfDay(ZoneId.systemDefault()).toInstant()), Date.from(hasta.atStartOfDay(ZoneId.systemDefault()).toInstant())));
+            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, desde, hasta));
         }
 
 

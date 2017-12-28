@@ -51,8 +51,8 @@ public class ReportController {
                                       @RequestParam(required=false) String municipio,
                                       @RequestParam(required=false) String corporacion,
                                       @RequestParam(required=false) String estado,
-                                      @RequestParam(required=false) LocalDate desde,
-                                      @RequestParam(required=false) LocalDate hasta) {
+                                      @RequestParam(required=false) String desde,
+                                      @RequestParam(required=false) String hasta) {
         return consultaPlacaService.getReportByType(tipo, issi , municipio, corporacion, estado, desde, hasta);
     }
 }

@@ -76,8 +76,8 @@ export class ConsultaPlacaService {
                 municipio: municipio === '' ? undefined : municipio,
                 corporacion: corporacion === '' ? undefined : corporacion,
                 estado: estado === '' ? undefined : estado,
-                desde: desde_var,
-                hasta: hasta_var
+                desde: desde,
+                hasta: hasta
             }
         }).map(
             (res) => {
