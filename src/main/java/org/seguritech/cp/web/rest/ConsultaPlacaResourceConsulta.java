@@ -42,7 +42,7 @@ public class ConsultaPlacaResourceConsulta {
 
     private final Logger log = LoggerFactory.getLogger(ConsultaPlacaResourceConsulta.class);
 
-    private static final String ENTITY_NAME = "consultaPlaca";
+    private static final String ENTITY_NAME = "consultaPlaca2";
 
     private final ConsultaPlacaService consultaPlacaService;
 
