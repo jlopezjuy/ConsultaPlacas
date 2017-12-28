@@ -154,6 +154,7 @@ public class ConsultaPlacaResource {
     }
 
 
+<<<<<<< HEAD
   /*  @GetMapping(value = "/search",produces = "text/html")
     @Timed
     public String placa(@RequestParam("query") String placa) {
@@ -324,4 +325,25 @@ public class ConsultaPlacaResource {
         };
 
     }*/
+=======
+    /**
+     * GET  /consulta-placas : get all the consultaPlacas.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of consultaPlacas in body
+     */
+    @GetMapping("/consulta-placas/filter")
+    @Timed
+    public ResponseEntity<List<ConsultaPlacaDTO>> getAllConsultaPlacasFilter(Pageable pageable, @RequestParam(required=false) String issi,
+                                                                             @RequestParam(required=false) String municipio,
+                                                                             @RequestParam(required=false) String corporacion,
+                                                                             @RequestParam(required=false) String estado,
+                                                                             @RequestParam(required=false) String desde,
+                                                                             @RequestParam(required=false) String hasta) {
+        log.debug("REST request to get a page of ConsultaPlacas");
+        Page<ConsultaPlacaDTO> page = consultaPlacaService.findAllFilter(pageable, issi, municipio, corporacion, estado, desde, hasta);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/consulta-placas");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+>>>>>>> DesarrolloJuan
 }

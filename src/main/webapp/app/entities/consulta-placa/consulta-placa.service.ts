@@ -8,6 +8,7 @@ import {JhiDateUtils} from 'ng-jhipster';
 import {ConsultaPlaca} from './consulta-placa.model';
 import {ResponseWrapper, createRequestOption} from '../../shared';
 import * as FileSaver from "file-saver";
+import {createRequestFilterOption} from "../../shared/model/request-filter-util";
 
 @Injectable()
 export class ConsultaPlacaService {
@@ -46,6 +47,12 @@ export class ConsultaPlacaService {
             .map((res: Response) => this.convertResponse(res));
     }
 
+    queryFilter(req?: any): Observable<ResponseWrapper> {
+        const options = createRequestFilterOption(req);
+        return this.http.get(this.resourceUrl+'/filter', options)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
@@ -59,17 +66,10 @@ export class ConsultaPlacaService {
     }
 
     generateReportPdf(issi?: any, municipio?: string, corporacion?: any, estado?: any, desde?: any, hasta?: any) {
-        var desde_var;
-        var hasta_var;
+
         console.log(desde);
         console.log(hasta);
-        if(desde === 'null'){
-            desde_var = undefined;
-        }
 
-        if(hasta === 'null'){
-            hasta_var = undefined;
-        }
         return this.http.get(this.resourceUrl + '/reporte/PDF', {responseType: ResponseContentType.Blob,
             params: {
                 issi: issi === '' ? undefined : issi,
