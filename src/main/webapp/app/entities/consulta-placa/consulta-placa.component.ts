@@ -46,7 +46,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
                 private router: Router,
                 private eventManager: JhiEventManager,
                 private dateUtils: JhiDateUtils) {
-        this.itemsPerPage = ITEMS_PER_PAGE;
+        this.itemsPerPage = 10;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
             this.page = data['pagingParams'].page;
             this.previousPage = data['pagingParams'].page;
@@ -56,6 +56,30 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
+        this.consultaPlacaService.queryFilter({
+            page: this.page - 1,
+            size: this.itemsPerPage,
+            sort: this.sort(),
+            issi: this.busquedaIssi === '' ? undefined : this.busquedaIssi,
+            municipio: this.busquedaMunicipio === '' ? undefined : this.busquedaMunicipio,
+            corporacion: this.busquedaCorporacion === '' ? undefined : this.busquedaCorporacion,
+            estado: this.busquedaEstado === '' ? undefined : this.busquedaEstado,
+            desde: this.dateUtils.convertLocalDateToServer(this.busquedaFechaInicial),
+            hasta: this.dateUtils.convertLocalDateToServer(this.busquedaFechaFinal)
+
+        }).subscribe(
+            (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+    }
+
+    findConsultas() {
+        this.page = 0;
+        this.router.navigate(['/consulta-placa', {
+            page: this.page,
+            sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+        }]);
+
         this.consultaPlacaService.queryFilter({
             page: this.page - 1,
             size: this.itemsPerPage,
