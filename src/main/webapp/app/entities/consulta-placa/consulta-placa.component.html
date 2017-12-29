@@ -106,10 +106,10 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                <th jhiSortBy="id">
-                    <span jhiTranslate="global.field.id">ID</span>
-                    <span class="fa fa-sort"></span>
-                </th>
+                <!--<th jhiSortBy="id">-->
+                    <!--<span jhiTranslate="global.field.id">ID</span>-->
+                    <!--<span class="fa fa-sort"></span>-->
+                <!--</th>-->
                 <th jhiSortBy="radioIssi">
                     <span jhiTranslate="consultaPlacasApp.consultaPlaca.radio">Issi</span>
                     <span class="fa fa-sort"></span>
@@ -156,9 +156,9 @@
             </thead>
             <tbody>
             <tr *ngFor="let consultaPlaca of consultaPlacas; trackBy: trackId">
-                <td>
-                    <a [routerLink]="['../consulta-placa', consultaPlaca.id ]">{{consultaPlaca.id}}</a>
-                </td>
+                <!--<td>-->
+                    <!--<a [routerLink]="['../consulta-placa', consultaPlaca.id ]">{{consultaPlaca.id}}</a>-->
+                <!--</td>-->
                 <td>
                     <div *ngIf="consultaPlaca.radioIssi">
                         <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]">{{consultaPlaca.radioIssi}}</a>
