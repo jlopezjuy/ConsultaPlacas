@@ -28,7 +28,6 @@
                 <div class="input-group">
                     <label class="form-control-label">Estado: </label>
                     <select class="form-control" [(ngModel)]="busquedaEstado">
-                        <option value=""></option>
                         <option value="Positivo">Positivo</option>
                         <option value="Negativo">Negativo</option>
                         <option value="Ambos">Ambos</option>
@@ -38,8 +37,8 @@
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Desde: </label>
-                    <input type="text" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker"
-                           [(ngModel)]="busquedaFechaInicial"
+                    <input type="text" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #fechaDpInicial="ngbDatepicker"
+                           [(ngModel)] ="busquedaFechaInicial" (ngModelChange)="busquedaFechaInicial = $event"
                            disabled/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-secondary" (click)="fechaDpInicial.toggle()">
@@ -51,8 +50,8 @@
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Hasta: </label>
-                    <input type="text" class="form-control" ngbDatepicker #fechaDpFinal="ngbDatepicker"
-                           [(ngModel)]="busquedaFechaFinal" disabled/>
+                    <input type="text" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #fechaDpFinal="ngbDatepicker"
+                           [(ngModel)]="busquedaFechaFinal" (ngModelChange)="busquedaFechaFinal = $event" disabled/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-secondary" (click)="fechaDpFinal.toggle()">
                             <i class="fa fa-calendar"></i>

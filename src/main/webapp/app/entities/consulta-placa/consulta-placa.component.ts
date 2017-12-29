@@ -127,6 +127,11 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         //this.loadAll();
+        var now = new Date();
+        console.log(now);
+        this.busquedaFechaFinal = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
+        this.busquedaFechaInicial = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()- 7};
+        console.log(this.busquedaFechaFinal);
         this.principal.identity().then((account) => {
             this.currentAccount = account;
         });
