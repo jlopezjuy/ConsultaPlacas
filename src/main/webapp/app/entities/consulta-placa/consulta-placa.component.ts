@@ -181,7 +181,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     printReportXls() {
         console.log('Entro a imprimir el reporte');
-        this.consultaPlacaService.generateReportXls(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial === undefined ? '' : this.busquedaFechaInicial, this.busquedaFechaFinal === undefined ? '' : this.busquedaFechaFinal).subscribe(
+        this.consultaPlacaService.generateReportXls(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.dateUtils.convertLocalDateToServer(this.busquedaFechaInicial), this.dateUtils.convertLocalDateToServer(this.busquedaFechaFinal)).subscribe(
             (res) => {
                 FileSaver.saveAs(res, "reporte.xls");
             }
@@ -190,7 +190,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     printReportXlsx() {
         console.log('Entro a imprimir el reporte');
-        this.consultaPlacaService.generateReportXlsx(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial === 'undefined' ? null : this.busquedaFechaInicial, this.busquedaFechaFinal === 'undefined' ? null : this.busquedaFechaFinal).subscribe(
+        this.consultaPlacaService.generateReportXlsx(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.dateUtils.convertLocalDateToServer(this.busquedaFechaInicial), this.dateUtils.convertLocalDateToServer(this.busquedaFechaFinal)).subscribe(
             (res) => {
                 FileSaver.saveAs(res, "reporte.xlsx");
             }
@@ -199,7 +199,7 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
 
     printReportCsv() {
         console.log('Entro a imprimir el reporte');
-        this.consultaPlacaService.generateReportCsv(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.busquedaFechaInicial === 'undefined' ? null : this.busquedaFechaInicial, this.busquedaFechaFinal === 'undefined' ? null : this.busquedaFechaFinal).subscribe(
+        this.consultaPlacaService.generateReportCsv(this.busquedaIssi, this.busquedaMunicipio, this.busquedaCorporacion, this.busquedaEstado, this.dateUtils.convertLocalDateToServer(this.busquedaFechaInicial), this.dateUtils.convertLocalDateToServer(this.busquedaFechaFinal)).subscribe(
             (res) => {
                 FileSaver.saveAs(res, "reporte.csv");
             }
