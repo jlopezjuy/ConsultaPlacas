@@ -1,13 +1,13 @@
 <div>
     <h2>
         <span jhiTranslate="consultaPlacasApp.consultaPlaca.home.title">Consulta Placas</span>
-        <button class="btn btn-primary float-right jh-create-entity create-consulta-placa"
-                [routerLink]="['/', { outlets: { popup: ['consulta-placa-new'] } }]">
-            <span class="fa fa-plus"></span>
-            <span jhiTranslate="consultaPlacasApp.consultaPlaca.home.createLabel">
-                Create new Consulta Placa
-            </span>
-        </button>
+        <!--<button class="btn btn-primary float-right jh-create-entity create-consulta-placa"-->
+                <!--[routerLink]="['/', { outlets: { popup: ['consulta-placa-new'] } }]">-->
+            <!--<span class="fa fa-plus"></span>-->
+            <!--<span jhiTranslate="consultaPlacasApp.consultaPlaca.home.createLabel">-->
+                <!--Create new Consulta Placa-->
+            <!--</span>-->
+        <!--</button>-->
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
@@ -28,7 +28,6 @@
                 <div class="input-group">
                     <label class="form-control-label">Estado: </label>
                     <select class="form-control" [(ngModel)]="busquedaEstado">
-                        <option value=""></option>
                         <option value="Positivo">Positivo</option>
                         <option value="Negativo">Negativo</option>
                         <option value="Ambos">Ambos</option>
@@ -38,8 +37,8 @@
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Desde: </label>
-                    <input type="text" class="form-control" ngbDatepicker #fechaDpInicial="ngbDatepicker"
-                           [(ngModel)]="busquedaFechaInicial"
+                    <input type="text" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #fechaDpInicial="ngbDatepicker"
+                           [(ngModel)] ="busquedaFechaInicial" (ngModelChange)="busquedaFechaInicial = $event"
                            disabled/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-secondary" (click)="fechaDpInicial.toggle()">
@@ -51,8 +50,8 @@
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Hasta: </label>
-                    <input type="text" class="form-control" ngbDatepicker #fechaDpFinal="ngbDatepicker"
-                           [(ngModel)]="busquedaFechaFinal" disabled/>
+                    <input type="text" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #fechaDpFinal="ngbDatepicker"
+                           [(ngModel)]="busquedaFechaFinal" (ngModelChange)="busquedaFechaFinal = $event" disabled/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-secondary" (click)="fechaDpFinal.toggle()">
                             <i class="fa fa-calendar"></i>
@@ -107,23 +106,23 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                <th jhiSortBy="id">
-                    <span jhiTranslate="global.field.id">ID</span>
-                    <span class="fa fa-sort"></span>
-                </th>
-                <th jhiSortBy="radioIssi">
+                <!--<th jhiSortBy="id">-->
+                    <!--<span jhiTranslate="global.field.id">ID</span>-->
+                    <!--<span class="fa fa-sort"></span>-->
+                <!--</th>-->
+                <th jhiSortBy="radio">
                     <span jhiTranslate="consultaPlacasApp.consultaPlaca.radio">Issi</span>
                     <span class="fa fa-sort"></span>
                 </th>
-                <th jhiSortBy="responsable">
+                <th jhiSortBy="radio.responsable">
                     <span jhiTranslate="consultaPlacasApp.consultaPlaca.responsable">Responsable</span>
                     <span class="fa fa-sort"></span>
                 </th>
-                <th jhiSortBy="municipio">
+                <th jhiSortBy="radio.municipio">
                     <span jhiTranslate="consultaPlacasApp.consultaPlaca.municipio">Municipio</span>
                     <span class="fa fa-sort"></span>
                 </th>
-                <th jhiSortBy="corporacion">
+                <th jhiSortBy="radio.corporacion">
                     <span jhiTranslate="consultaPlacasApp.consultaPlaca.corporacion">Corporacion</span>
                     <span class="fa fa-sort"></span>
                 </th>
@@ -157,25 +156,29 @@
             </thead>
             <tbody>
             <tr *ngFor="let consultaPlaca of consultaPlacas; trackBy: trackId">
-                <td>
-                    <a [routerLink]="['../consulta-placa', consultaPlaca.id ]">{{consultaPlaca.id}}</a>
-                </td>
+                <!--<td>-->
+                    <!--<a [routerLink]="['../consulta-placa', consultaPlaca.id ]">{{consultaPlaca.id}}</a>-->
+                <!--</td>-->
                 <td>
                     <div *ngIf="consultaPlaca.radioIssi">
-                        <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]">{{consultaPlaca.radioIssi}}</a>
+                        {{consultaPlaca.radioIssi}}
                     </div>
                 </td>
                 <td>
                     <div *ngIf="consultaPlaca.radioResponsable">
-                        <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]">{{consultaPlaca.radioResponsable}}</a>
+                        {{consultaPlaca.radioResponsable}}
                     </div>
                 <td>
                     <div *ngIf="consultaPlaca.radioMunicipio">
-                        <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]">{{consultaPlaca.radioMunicipio}}</a>
+                        {{consultaPlaca.radioMunicipio}}
                     </div>
                 </td>
-                <td>{{consultaPlaca.radioCorporacion }}</td>
-                <td>{{consultaPlaca.fecha | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="consultaPlaca.radioCorporacion">
+                        {{consultaPlaca.radioCorporacion}}
+                    </div>
+                </td>
+                <td>{{consultaPlaca.fecha | date:'yyyy-mm-dd HH:mm:ss'}}</td>
                 <td>{{consultaPlaca.consulta}}</td>
                 <td>{{consultaPlaca.metodo}}</td>
                 <td *ngIf="consultaPlaca.estado">Positivo</td>
