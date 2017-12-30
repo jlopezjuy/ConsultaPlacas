@@ -224,14 +224,14 @@ OTgzY2Y7]]>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{radioCorporacion}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true">
+				<textField isStretchWithOverflow="true" pattern="yyyy-mm-dd HH:mm:ss">
 					<reportElement style="Detail" x="314" y="0" width="72" height="15" uuid="b5b887d1-bae9-4a8a-8ab9-e5430a2f6116">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ecd371a3-c2fe-45aa-9a58-f6af7c492f19"/>
 					</reportElement>
 					<textElement>
 						<font fontName="Arial"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[java.util.Date.from($F{fecha}.atStartOfDay(java.time.ZoneId.systemDefault()).toInstant())]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="386" y="0" width="68" height="15" uuid="aaac8934-e4ea-4744-b0d2-d60592735bc4">

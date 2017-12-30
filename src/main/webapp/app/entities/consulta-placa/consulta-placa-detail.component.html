@@ -8,7 +8,7 @@
             <span jhiTranslate="consultaPlacasApp.consultaPlaca.fecha">Fecha</span>
         </dt>
         <dd>
-            <span>{{consultaPlaca.fecha | date:'mediumDate'}}</span>
+            <span>{{consultaPlaca.fecha | date:'yyyy-mm-dd HH:mm:ss'}}</span>
         </dd>
         <dt>
             <span jhiTranslate="consultaPlacasApp.consultaPlaca.consulta">Consulta</span>
@@ -56,9 +56,9 @@
         <span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
-    <button type="button" [routerLink]="['/', { outlets: { popup: 'consulta-placa/'+ consultaPlaca.id + '/edit'} }]" replaceUrl="true"
-        class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;
-        <span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
+    <!--<button type="button" [routerLink]="['/', { outlets: { popup: 'consulta-placa/'+ consultaPlaca.id + '/edit'} }]" replaceUrl="true"-->
+        <!--class="btn btn-primary">-->
+        <!--<span class="fa fa-pencil"></span>&nbsp;-->
+        <!--<span jhiTranslate="entity.action.edit"> Edit</span>-->
+    <!--</button>-->
 </div>
