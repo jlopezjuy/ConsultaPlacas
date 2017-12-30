@@ -161,16 +161,16 @@
                 <!--</td>-->
                 <td>
                     <div *ngIf="consultaPlaca.radioIssi">
-                        <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]">{{consultaPlaca.radioIssi}}</a>
+                        {{consultaPlaca.radioIssi}}
                     </div>
                 </td>
                 <td>
                     <div *ngIf="consultaPlaca.radioResponsable">
-                        <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]">{{consultaPlaca.radioResponsable}}</a>
+                        {{consultaPlaca.radioResponsable}}
                     </div>
                 <td>
                     <div *ngIf="consultaPlaca.radioMunicipio">
-                        <a [routerLink]="['../radio', consultaPlaca.radioIssi  ]">{{consultaPlaca.radioMunicipio}}</a>
+                        {{consultaPlaca.radioMunicipio}}
                     </div>
                 </td>
                 <td>{{consultaPlaca.radioCorporacion }}</td>
