@@ -49,6 +49,35 @@
                 {{consultaPlaca.radioIssi}}
             </div>
         </dd>
+
+
+        <dt>
+            <span jhiTranslate="consultaPlacasApp.consultaPlaca.responsable">Responsable</span>
+        </dt>
+        <dd>
+            <div *ngIf="consultaPlaca.radioResponsable">
+                {{consultaPlaca.radioResponsable}}
+            </div>
+        </dd>
+
+        <dt>
+            <span jhiTranslate="consultaPlacasApp.consultaPlaca.municipio">Municipio</span>
+        </dt>
+        <dd>
+            <div *ngIf="consultaPlaca.radioMunicipio">
+                {{consultaPlaca.radioMunicipio}}
+            </div>
+        </dd>
+
+        <dt>
+            <span jhiTranslate="consultaPlacasApp.consultaPlaca.corporacion">Corporación</span>
+        </dt>
+        <dd>
+            <div *ngIf="consultaPlaca.radioCorporacion">
+                {{consultaPlaca.radioCorporacion}}
+            </div>
+        </dd>
+
     </dl>
 
     <button type="submit" (click)="previousState()" class="btn btn-info">

@@ -173,7 +173,11 @@
                         {{consultaPlaca.radioMunicipio}}
                     </div>
                 </td>
-                <td>{{consultaPlaca.radioCorporacion }}</td>
+                <td>
+                    <div *ngIf="consultaPlaca.radioCorporacion">
+                        {{consultaPlaca.radioCorporacion}}
+                    </div>
+                </td>
                 <td>{{consultaPlaca.fecha | date:'yyyy-mm-dd HH:mm:ss'}}</td>
                 <td>{{consultaPlaca.consulta}}</td>
                 <td>{{consultaPlaca.metodo}}</td>
