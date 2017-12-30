@@ -87,7 +87,15 @@ export class ConsultaPlacaService {
     }
 
     generateReportXls(issi?: any, municipio?: string, corporacion?: any, estado?: any, desde?: any, hasta?: any) {
-        return this.http.get(this.resourceUrl + '/reporte/XLS' + "/" + issi + "/" + municipio + "/" + corporacion + "/" + estado + "/" + desde + "/" + hasta, {responseType: ResponseContentType.Blob}).map(
+        return this.http.get(this.resourceUrl + '/reporte/XLS', {responseType: ResponseContentType.Blob,
+            params: {
+                issi: issi === '' ? undefined : issi,
+                municipio: municipio === '' ? undefined : municipio,
+                corporacion: corporacion === '' ? undefined : corporacion,
+                estado: estado === '' ? undefined : estado,
+                desde: desde,
+                hasta: hasta
+            }}).map(
             (res) => {
                 return new Blob([res.blob()], {type: 'application/vnd.ms-excel'})
             }
@@ -95,15 +103,31 @@ export class ConsultaPlacaService {
     }
 
     generateReportXlsx(issi?: any, municipio?: string, corporacion?: any, estado?: any, desde?: any, hasta?: any) {
-        return this.http.get(this.resourceUrl + '/reporte/XLSX' + "/" + issi + "/" + municipio + "/" + corporacion + "/" + estado + "/" + desde + "/" + hasta, {responseType: ResponseContentType.Blob}).map(
+        return this.http.get(this.resourceUrl + '/reporte/XLSX', {responseType: ResponseContentType.Blob,
+            params: {
+                issi: issi === '' ? undefined : issi,
+                municipio: municipio === '' ? undefined : municipio,
+                corporacion: corporacion === '' ? undefined : corporacion,
+                estado: estado === '' ? undefined : estado,
+                desde: desde,
+                hasta: hasta
+            }}).map(
             (res) => {
                 return new Blob([res.blob()], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.‌​sheet'})
             }
         );
     }
 
-    generateReportCsv(issi?: any, municipio?: string, corporacion?: string, estado?: boolean, desde?: any, hasta?: any) {
-        return this.http.get(this.resourceUrl + '/reporte/CSV' + "/" + issi + "/" + municipio + "/" + corporacion + "/" + estado + "/" + desde + "/" + hasta, {responseType: ResponseContentType.Blob}).map(
+    generateReportCsv(issi?: any, municipio?: string, corporacion?: string, estado?: any, desde?: any, hasta?: any) {
+        return this.http.get(this.resourceUrl + '/reporte/CSV', {responseType: ResponseContentType.Blob,
+            params: {
+                issi: issi === '' ? undefined : issi,
+                municipio: municipio === '' ? undefined : municipio,
+                corporacion: corporacion === '' ? undefined : corporacion,
+                estado: estado === '' ? undefined : estado,
+                desde: desde,
+                hasta: hasta
+            }}).map(
             (res) => {
                 return new Blob([res.blob()], {type: 'text/csv'})
             }
