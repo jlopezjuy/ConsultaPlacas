@@ -10,6 +10,9 @@ dWx0YVBsYWNhc2AucmFkaW8gLDE2MiwxNSw0MGNjODM0My1mNjE1LTQzZjQtODA2MS1hM2RkYmVi
 OTgzY2Y7]]>
 	</property>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <property name="net.sf.jasperreports.export.xlsx.exclude.origin.group.3" value="Group2"/>
+    <property name="net.sf.jasperreports.export.xlsx.exclude.origin.band.3" value="groupHeader"/>
+    <property name="net.sf.jasperreports.export.xlsx.exclude.origin.report.3" value="*"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -43,7 +46,7 @@ OTgzY2Y7]]>
 		<property name="com.jaspersoft.studio.field.label" value="radioCorporacion"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="corporacion"/>
 	</field>
-	<field name="fecha" class="java.time.LocalDate">
+	<field name="fecha" class="java.time.LocalDateTime">
 		<property name="com.jaspersoft.studio.field.label" value="fecha"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="consulta_placa"/>
 	</field>
@@ -177,7 +180,7 @@ OTgzY2Y7]]>
 				<reportElement style="Column header" x="682" y="0" width="120" height="15" forecolor="#736343" uuid="b45b4066-1be6-4a72-b0e6-900a8f23146c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dea463a4-e2af-443c-a8e8-b67e07393081"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Coordenadas]]></text>
@@ -193,7 +196,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="27e4d599-f985-4eb5-9e41-d95b576a3655"/>
 					</reportElement>
 					<textElement textAlignment="Center">
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{radioIssi}]]></textFieldExpression>
 				</textField>
@@ -202,7 +205,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cf2f9148-2617-4128-90d9-a4d1a97a6709"/>
 					</reportElement>
 					<textElement>
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{radioResponsable}]]></textFieldExpression>
 				</textField>
@@ -211,7 +214,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ed202cc7-432c-4f89-9c5c-9d1d5eed7c1c"/>
 					</reportElement>
 					<textElement textAlignment="Left">
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{radioMunicipio}]]></textFieldExpression>
 				</textField>
@@ -220,25 +223,25 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="90d7ed7c-7587-4ccb-b5a1-bf5d968b1a5a"/>
 					</reportElement>
 					<textElement textAlignment="Left">
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{radioCorporacion}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" pattern="yyyy-mm-dd HH:mm:ss">
+				<textField isStretchWithOverflow="true" pattern="yyyy-MM-dd HH:mm:ss">
 					<reportElement style="Detail" x="296" y="0" width="80" height="15" uuid="b5b887d1-bae9-4a8a-8ab9-e5430a2f6116">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ecd371a3-c2fe-45aa-9a58-f6af7c492f19"/>
 					</reportElement>
 					<textElement>
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
-					<textFieldExpression><![CDATA[java.util.Date.from($F{fecha}.atStartOfDay(java.time.ZoneId.systemDefault()).toInstant())]]></textFieldExpression>
+					<textFieldExpression><![CDATA[java.util.Date.from($F{fecha}.atZone(java.time.ZoneId.systemDefault()).toInstant())]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="376" y="0" width="68" height="15" uuid="aaac8934-e4ea-4744-b0d2-d60592735bc4">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="79c1ace6-7867-4072-9d55-604f0713870c"/>
 					</reportElement>
 					<textElement>
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{consulta}]]></textFieldExpression>
 				</textField>
@@ -247,7 +250,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="09bbaf78-8ef0-4192-808f-d5e680f13fbc"/>
 					</reportElement>
 					<textElement textAlignment="Center">
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{metodo}]]></textFieldExpression>
 				</textField>
@@ -256,7 +259,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ebd53466-f08f-4242-a0c6-5e6e7ce7a6b7"/>
 					</reportElement>
 					<textElement textAlignment="Center">
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 				</textField>
@@ -265,7 +268,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8b002a93-501d-415c-955d-d8bd11d86724"/>
 					</reportElement>
 					<textElement>
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{resultado}]]></textFieldExpression>
 				</textField>
@@ -273,8 +276,8 @@ OTgzY2Y7]]>
 					<reportElement style="Detail" x="682" y="0" width="120" height="15" uuid="e7d80255-82e1-4d7a-a5c8-e69cda622c8d">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dea463a4-e2af-443c-a8e8-b67e07393081"/>
 					</reportElement>
-					<textElement>
-						<font fontName="Arial"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{coordenadas}]]></textFieldExpression>
 				</textField>
