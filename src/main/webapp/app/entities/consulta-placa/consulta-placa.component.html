@@ -16,18 +16,18 @@
     <div class="row">
         <div class="row col-md-12">
             <div class="col-md-1">
-                <input type="text" class="form-control" placeholder="Issi" [(ngModel)]="busquedaIssi"/>
+                <input type="text" class="form-control input-sm" placeholder="Issi" [(ngModel)]="busquedaIssi"/>
             </div>
-            <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="Municipio" [(ngModel)]="busquedaMunicipio"/>
+            <div class="col-md-1">
+                <input type="text" class="form-control input-sm" placeholder="Municipio" [(ngModel)]="busquedaMunicipio"/>
             </div>
-            <div class="col-md-2">
-                <input type="text" class="form-control" placeholder="Corporación" [(ngModel)]="busquedaCorporacion"/>
+            <div class="col-md-1">
+                <input type="text" class="form-control input-sm" placeholder="Corporación" [(ngModel)]="busquedaCorporacion"/>
             </div>
             <div class="col-md-2">
                 <div class="input-group">
                     <label class="form-control-label">Estado: </label>
-                    <select class="form-control" [(ngModel)]="busquedaEstado">
+                    <select class="form-control" [(ngModel)]="busquedaEstado" >
                         <option value="Positivo">Positivo</option>
                         <option value="Negativo">Negativo</option>
                         <option value="Ambos">Ambos</option>
@@ -58,6 +58,8 @@
                         </button>
                     </span>
                 </div>
+            </div>
+            <div class="col-md-2">
             </div>
             <div class="col-md-1">
                 <button (click)="findConsultas()" class="btn btn-success float-right">
