@@ -10,6 +10,9 @@ dWx0YVBsYWNhc2AucmFkaW8gLDE2MiwxNSw0MGNjODM0My1mNjE1LTQzZjQtODA2MS1hM2RkYmVi
 OTgzY2Y7]]>
 	</property>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <property name="net.sf.jasperreports.export.xlsx.exclude.origin.group.3" value="Group2"/>
+    <property name="net.sf.jasperreports.export.xlsx.exclude.origin.band.3" value="groupHeader"/>
+    <property name="net.sf.jasperreports.export.xlsx.exclude.origin.report.3" value="*"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
