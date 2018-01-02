@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.seguritech.cp</groupId>
-    <artifactId>consulta-placas</artifactId>
-    <version>0.0.1-RELEASE</version>
+    <artifactId>consulta-de-placas</artifactId>
+    <version>1.0-RELEASE</version>
     <packaging>war</packaging>
-    <name>Consulta Placas</name>
+    <name>Consulta de Placas</name>
 
     <properties>
         <!-- Build properties -->

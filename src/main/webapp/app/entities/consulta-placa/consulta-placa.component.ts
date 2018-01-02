@@ -129,14 +129,10 @@ export class ConsultaPlacaComponent implements OnInit, OnDestroy {
         //this.loadAll();
         var now = new Date();
         var now2 = new Date();
-        console.log(now);
         now2.setDate(now2.getDate() - 7);
-        console.log(now2);
         this.busquedaFechaFinal = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
         this.busquedaFechaInicial = {year: now2.getFullYear(), month: now2.getMonth() + 1, day: now2.getDate()};
 
-        console.log(this.busquedaFechaInicial);
-        console.log(this.busquedaFechaFinal);
         this.principal.identity().then((account) => {
             this.currentAccount = account;
         });
