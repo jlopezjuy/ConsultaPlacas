@@ -4,6 +4,7 @@ import org.seguritech.cp.service.dto.ConsultaPlacaDTO;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -28,15 +29,15 @@ public class ConsultaPlacaPredicates {
         return p -> p.isEstado().equals(estado);
     }
 
-    public static Predicate<ConsultaPlacaDTO> getDesdePredicate(LocalDate desde) {
+    public static Predicate<ConsultaPlacaDTO> getDesdePredicate(LocalDateTime desde) {
         return p -> p.getFecha().isAfter(desde) && p.getFecha().isBefore(desde);
     }
 
-    public static Predicate<ConsultaPlacaDTO> getHastaPredicate(LocalDate hasta) {
+    public static Predicate<ConsultaPlacaDTO> getHastaPredicate(LocalDateTime hasta) {
         return p -> p.getFecha().isBefore(hasta) && p.getFecha().isAfter(hasta);
     }
 
-    public static Predicate<ConsultaPlacaDTO> getDesdeHastaPredicate(LocalDate desde, LocalDate hasta) {
+    public static Predicate<ConsultaPlacaDTO> getDesdeHastaPredicate(LocalDateTime desde, LocalDateTime hasta) {
         return p -> p.getFecha().isAfter(desde) && p.getFecha().isBefore(hasta);
     }
 

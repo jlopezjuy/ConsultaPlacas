@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.*;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -100,8 +101,8 @@ public interface ConsultaPlacaRepository extends JpaRepository<ConsultaPlaca, Lo
                                        @Param("municipio") String municipio,
                                        @Param("corporacion") String corporacion,
                                        @Param("estado") Boolean estado,
-                                       @Param("desde") LocalDate desde,
-                                       @Param("hasta") LocalDate hasta,
+                                       @Param("desde") LocalDateTime desde,
+                                       @Param("hasta") LocalDateTime hasta,
                                        Pageable var1);
 
     @Query(value = "SELECT cp " +
