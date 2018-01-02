@@ -180,7 +180,7 @@
                         {{consultaPlaca.radioCorporacion}}
                     </div>
                 </td>
-                <td>{{consultaPlaca.fecha | date:'yyyy-mm-dd HH:mm:ss'}}</td>
+                <td>{{consultaPlaca.fechaTransient | date:'YYYY-MM-DDTHH:mm:ss'}}</td>
                 <td>{{consultaPlaca.consulta}}</td>
                 <td>{{consultaPlaca.metodo}}</td>
                 <td *ngIf="consultaPlaca.estado">Positivo</td>

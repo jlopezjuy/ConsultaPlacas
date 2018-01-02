@@ -50,7 +50,10 @@ export class ConsultaPlacaService {
     queryFilter(req?: any): Observable<ResponseWrapper> {
         const options = createRequestFilterOption(req);
         return this.http.get(this.resourceUrl+'/filter', options)
-            .map((res: Response) => this.convertResponse(res));
+            .map((res: Response) => {
+                console.log(res);
+                return this.convertResponse(res)
+            });
     }
 
     delete(id: number): Observable<Response> {
@@ -140,6 +143,7 @@ export class ConsultaPlacaService {
         for (let i = 0; i < jsonResponse.length; i++) {
             result.push(this.convertItemFromServer(jsonResponse[i]));
         }
+        console.log(result);
         return new ResponseWrapper(res.headers, result, res.status);
     }
 
@@ -148,6 +152,9 @@ export class ConsultaPlacaService {
      */
     private convertItemFromServer(json: any): ConsultaPlaca {
         const entity: ConsultaPlaca = Object.assign(new ConsultaPlaca(), json);
+        console.log(entity.fecha);
+        entity.fechaTransient = new JhiDateUtils().toDate(entity.fecha);
+        console.log(entity.fechaTransient);
         entity.fecha = this.dateUtils
             .convertLocalDateFromServer(json.fecha);
         return entity;

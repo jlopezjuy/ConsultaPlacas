@@ -27,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 
@@ -45,8 +46,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = ConsultaPlacasApp.class)
 public class ConsultaPlacaResourceIntTest {
 
-    private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDateTime DEFAULT_FECHA = LocalDateTime.now();
+    private static final LocalDateTime UPDATED_FECHA = LocalDateTime.now(ZoneId.systemDefault());
 
     private static final String DEFAULT_CONSULTA = "AAAAAAAAAA";
     private static final String UPDATED_CONSULTA = "BBBBBBBBBB";

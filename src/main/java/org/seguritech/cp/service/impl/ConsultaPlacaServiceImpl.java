@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -102,22 +103,28 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
         }
         LocalDate desde = null == desde_p ? null : LocalDate.parse(desde_p);//desde_p.equals("undefined") ? null : LocalDate.parse(desde_p, formatter);
         LocalDate hasta = null == hasta_p ? null : LocalDate.parse(hasta_p);
+        LocalDateTime localDateTimeD = null;
+        LocalDateTime localDateTimeH = null;
 
         Page<ConsultaPlacaDTO> listOut = null;
-        if (null == desde && null != hasta) {
-            listOut = consultaPlacaRepository.findAllByRadioHasta(issi, municipio, corporacion, estado, hasta, pageable).map(consultaPlacaMapper::toDto);
-        }
-
-        if (null != desde && null == hasta) {
-            listOut = consultaPlacaRepository.findAllByRadioDesde(issi, municipio, corporacion, estado, desde, pageable).map(consultaPlacaMapper::toDto);
-        }
-
-        if (null == desde && null == hasta) {
-            listOut = consultaPlacaRepository.findAllByRadioSinFecha(issi, municipio, corporacion, estado, pageable).map(consultaPlacaMapper::toDto);
+//        if (null == desde && null != hasta) {
+//            listOut = consultaPlacaRepository.findAllByRadioHasta(issi, municipio, corporacion, estado, hasta, pageable).map(consultaPlacaMapper::toDto);
+//        }
+//
+//        if (null != desde && null == hasta) {
+//            listOut = consultaPlacaRepository.findAllByRadioDesde(issi, municipio, corporacion, estado, desde, pageable).map(consultaPlacaMapper::toDto);
+//        }
+//
+//        if (null == desde && null == hasta) {
+//            listOut = consultaPlacaRepository.findAllByRadioSinFecha(issi, municipio, corporacion, estado, pageable).map(consultaPlacaMapper::toDto);
+//        }
+        if(null != desde){
+            localDateTimeD = desde.atStartOfDay();
+            localDateTimeH = hasta.atStartOfDay();
         }
 
         if (null != desde && null != hasta) {
-            listOut = consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, desde, hasta, pageable).map(consultaPlacaMapper::toDto);
+            listOut = consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, localDateTimeD, localDateTimeH, pageable).map(consultaPlacaMapper::toDto);
         }
         return listOut;
     }
