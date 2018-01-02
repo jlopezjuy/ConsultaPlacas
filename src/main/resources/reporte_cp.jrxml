@@ -177,7 +177,7 @@ OTgzY2Y7]]>
 				<reportElement style="Column header" x="682" y="0" width="120" height="15" forecolor="#736343" uuid="b45b4066-1be6-4a72-b0e6-900a8f23146c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dea463a4-e2af-443c-a8e8-b67e07393081"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Coordenadas]]></text>
@@ -273,7 +273,7 @@ OTgzY2Y7]]>
 					<reportElement style="Detail" x="682" y="0" width="120" height="15" uuid="e7d80255-82e1-4d7a-a5c8-e69cda622c8d">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dea463a4-e2af-443c-a8e8-b67e07393081"/>
 					</reportElement>
-					<textElement>
+					<textElement textAlignment="Center">
 						<font fontName="Arial"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{coordenadas}]]></textFieldExpression>
