@@ -1,0 +1,214 @@
+<div>
+    <h2>
+        <span jhiTranslate="consultaPlacasApp.consultaPlaca.home.title">Consulta Placas</span>
+        <!--<button class="btn btn-primary float-right jh-create-entity create-consulta-placa"-->
+                <!--[routerLink]="['/', { outlets: { popup: ['consulta-placa-new'] } }]">-->
+            <!--<span class="fa fa-plus"></span>-->
+            <!--<span jhiTranslate="consultaPlacasApp.consultaPlaca.home.createLabel">-->
+                <!--Create new Consulta Placa-->
+            <!--</span>-->
+        <!--</button>-->
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="row">
+        <div class="row col-md-12">
+            <div class="col-md-1">
+                <input type="text" class="form-control input-sm" placeholder="Issi" [(ngModel)]="busquedaIssi"/>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control input-sm" placeholder="Municipio" [(ngModel)]="busquedaMunicipio"/>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control input-sm" placeholder="Corporación" [(ngModel)]="busquedaCorporacion"/>
+            </div>
+            <div class="col-md-2">
+                <div class="input-group">
+                    <label class="form-control-label">Estado: </label>
+                    <select class="form-control" [(ngModel)]="busquedaEstado" >
+                        <option value="Positivo">Positivo</option>
+                        <option value="Negativo">Negativo</option>
+                        <option value="Ambos">Ambos</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="input-group">
+                    <label class="form-control-label">Desde: </label>
+                    <input type="text" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #fechaDpInicial="ngbDatepicker"
+                           [(ngModel)] ="busquedaFechaInicial" (ngModelChange)="busquedaFechaInicial = $event"
+                           disabled/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-secondary" (click)="fechaDpInicial.toggle()">
+                            <i class="fa fa-calendar"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="input-group">
+                    <label class="form-control-label">Hasta: </label>
+                    <input type="text" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #fechaDpFinal="ngbDatepicker"
+                           [(ngModel)]="busquedaFechaFinal" (ngModelChange)="busquedaFechaFinal = $event" disabled/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-secondary" (click)="fechaDpFinal.toggle()">
+                            <i class="fa fa-calendar"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-1">
+                <button (click)="findConsultas()" class="btn btn-success float-right">
+                    <span class="fa fa-search"></span>
+                    <span>Buscar</span>
+                </button>
+            </div>
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-8">
+
+            </div>
+            <div class="col-md-1">
+                <button (click)="printReportPdf()" class="btn btn-danger float-right">
+                    <span class="fa fa-file-pdf-o"></span>
+                    <span>PDF</span>
+                </button>
+            </div>
+            <div class="col-md-1">
+                <button (click)="printReportXls()" class="btn btn-success float-right">
+                    <span class="fa fa-file-excel-o"></span>
+                    <span>XLS</span>
+                </button>
+            </div>
+            <div class="col-md-1">
+                <button (click)="printReportXlsx()" class="btn btn-success float-right" disabled>
+                    <span class="fa fa-file-excel-o"></span>
+                    <span>XLSX</span>
+                </button>
+            </div>
+            <div class="col-md-1">
+                <button (click)="printReportCsv()" class="btn btn-dark float-right">
+                    <span class="fa fa-file-text"></span>
+                    <span>CSV</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive" *ngIf="consultaPlacas">
+        <p></p>
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                <!--<th jhiSortBy="id">-->
+                    <!--<span jhiTranslate="global.field.id">ID</span>-->
+                    <!--<span class="fa fa-sort"></span>-->
+                <!--</th>-->
+                <th jhiSortBy="radio">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.radio">Issi</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="radio.responsable">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.responsable">Responsable</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="radio.municipio">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.municipio">Municipio</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="radio.corporacion">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.corporacion">Corporacion</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="fecha">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.fecha">Fecha</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="consulta">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.consulta">Consulta</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="metodo">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.metodo">Metodo</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="estado">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.estado">Estado</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="resultado">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.resultado">Resultado</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th jhiSortBy="coordenadas">
+                    <span jhiTranslate="consultaPlacasApp.consultaPlaca.coordenadas">Coordenadas</span>
+                    <span class="fa fa-sort"></span>
+                </th>
+
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let consultaPlaca of consultaPlacas; trackBy: trackId">
+                <!--<td>-->
+                    <!--<a [routerLink]="['../consulta-placa', consultaPlaca.id ]">{{consultaPlaca.id}}</a>-->
+                <!--</td>-->
+                <td>
+                    <div *ngIf="consultaPlaca.radioIssi">
+                        {{consultaPlaca.radioIssi}}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="consultaPlaca.radioResponsable">
+                        {{consultaPlaca.radioResponsable}}
+                    </div>
+                <td>
+                    <div *ngIf="consultaPlaca.radioMunicipio">
+                        {{consultaPlaca.radioMunicipio}}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="consultaPlaca.radioCorporacion">
+                        {{consultaPlaca.radioCorporacion}}
+                    </div>
+                </td>
+                <td>{{consultaPlaca.fecha | date:'yyyy-mm-dd HH:mm:ss'}}</td>
+                <td>{{consultaPlaca.consulta}}</td>
+                <td>{{consultaPlaca.metodo}}</td>
+                <td *ngIf="consultaPlaca.estado">Positivo</td>
+                <td *ngIf="!consultaPlaca.estado">Negativo</td>
+                <td>{{consultaPlaca.resultado}}</td>
+                <td>{{consultaPlaca.coordenadas}}</td>
+
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit" [routerLink]="['../consulta-placa', consultaPlaca.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="consultaPlacas && consultaPlacas.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5"
+                            [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [maxSize]="5" [pageSize]="itemsPerPage" [(page)]="page"
+                            (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

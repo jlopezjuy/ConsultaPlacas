@@ -1,0 +1,21 @@
+{
+    "consultaPlacasApp": {
+        "tipoRadio" : {
+            "home": {
+                "title": "Tipos de Radios",
+                "createLabel": "Crear nuevo Tipo de Radio",
+                "createOrEditLabel": "Crear o editar Tipo de Radio"
+            },
+            "created": "Un nuevo Tipo de Radio ha sido creado con el identificador {{ param }}",
+            "updated": "Un Tipo de Radio ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Tipo de Radio ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el Tipo de Radio {{ id }}?"
+            },
+            "detail": {
+                "title": "Tipo de Radio"
+            },
+            "descripcion": "Descripción"
+        }
+    }
+}

@@ -8,5 +8,5 @@ ${AnsiColor.BLUE} ╚██████╗╚██████╔╝██║ �
 ${AnsiColor.BLUE} ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚══════╝╚═╝   ╚═╝  ╚═╝    ╚═════╝ ╚══════╝    ╚═╝     ╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝
 
 ${AnsiColor.WHITE}█████████████████████████████████████████████████████████████████████████████████████████████████████
-${AnsiColor.BRIGHT_BLUE}:: JHipster 🤓  :: Running Spring Boot ${spring-boot.version} ::
-:: http://jhipster.github.io ::${AnsiColor.DEFAULT}
+${AnsiColor.BRIGHT_BLUE}:: Seguritech 🤓  :: Running Spring Boot ${spring-boot.version} ::
+:: http://seguritech.com ::${AnsiColor.DEFAULT}

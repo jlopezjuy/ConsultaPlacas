@@ -141,3 +141,7 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
+
+\.directory
+
+yarn\.lock

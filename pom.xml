@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.seguritech.cp</groupId>
-    <artifactId>consulta-placas</artifactId>
-    <version>0.0.1-RELEASE</version>
+    <artifactId>consulta-de-placas</artifactId>
+    <version>1.0-RELEASE</version>
     <packaging>war</packaging>
-    <name>Consulta Placas</name>
+    <name>Consulta de Placas</name>
 
     <properties>
         <!-- Build properties -->
@@ -98,6 +98,17 @@
     </dependencyManagement>
 
     <dependencies>
+    	<dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.5.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.17</version>
+        </dependency>
         <dependency>
             <groupId>io.github.jhipster</groupId>
             <artifactId>jhipster</artifactId>
@@ -314,6 +325,10 @@
             <artifactId>spring-security-data</artifactId>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-core</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -906,6 +921,12 @@
                             <verbose>true</verbose>
                             <scalaVersion>${scala.version}</scalaVersion>
                         </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.jvnet.jaxb2.maven2</groupId>
+                        <artifactId>maven-jaxb2-plugin</artifactId>
+                        <version>0.13.1</version>
+
                     </plugin>
                 </plugins>
             </build>

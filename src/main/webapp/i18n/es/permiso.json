@@ -1,0 +1,10 @@
+{
+    "consultaPlacasApp": {
+        "Permiso" : {
+            "null": "",
+            "AUTOS_ROBADOS": "Autos Robados",
+            "PADRON_VEHICULAR": "Padrón Vehicular",
+            "AMBOS": "Ambos"
+        }
+    }
+}

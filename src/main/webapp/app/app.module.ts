@@ -12,6 +12,7 @@ import { ConsultaPlacasAccountModule } from './account/account.module';
 import { ConsultaPlacasEntityModule } from './entities/entity.module';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -35,6 +36,7 @@ import {
         ConsultaPlacasAdminModule,
         ConsultaPlacasAccountModule,
         ConsultaPlacasEntityModule,
+        NgxPaginationModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [

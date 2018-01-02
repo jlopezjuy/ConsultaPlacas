@@ -1,0 +1,92 @@
+<div>
+    <h2>
+        <span jhiTranslate="consultaPlacasApp.radio.home.title">Radios</span>
+        <button class="btn btn-primary float-right jh-create-entity create-radio" [routerLink]="['/', { outlets: { popup: ['radio-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="consultaPlacasApp.radio.home.createLabel">
+            Create new Radio
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="radios">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ISSI</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="descripcion"><span jhiTranslate="consultaPlacasApp.radio.descripcion">Descripcion</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="permiso"><span jhiTranslate="consultaPlacasApp.radio.permiso">Permiso</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="responsable"><span jhiTranslate="consultaPlacasApp.radio.responsable">Responsable</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="marcaDescripcion"><span jhiTranslate="consultaPlacasApp.radio.marca">Marca</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="municipioDescripcion"><span jhiTranslate="consultaPlacasApp.radio.municipio">Municipio</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="corporacionDescripcion"><span jhiTranslate="consultaPlacasApp.radio.corporacion">Corporacion</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tipoRadioDescripcion"><span jhiTranslate="consultaPlacasApp.radio.tipoRadio">Tipo Radio</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let radio of radios ;trackBy: trackId">
+                <td><a [routerLink]="['../radio', radio.issi ]">{{radio.issi}}</a></td>
+                <td>{{radio.descripcion}}</td>
+                <td jhiTranslate="{{'consultaPlacasApp.Permiso.' + radio.permiso}}">{{radio.permiso}}</td>
+                <td>{{radio.responsable}}</td>
+                <td>
+                    <div *ngIf="radio.marcaId">
+                        <a [routerLink]="['../marca', radio.marcaId  ]" >{{radio.marcaDescripcion}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="radio.municipioId">
+                        <a [routerLink]="['../municipio', radio.municipioId  ]" >{{radio.municipioDescripcion}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="radio.corporacionId">
+                        <a [routerLink]="['../corporacion', radio.corporacionId  ]" >{{radio.corporacionDescripcion}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="radio.tipoRadioId">
+                        <a [routerLink]="['../tipo-radio', radio.tipoRadioId  ]" >{{radio.tipoRadioDescripcion}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../radio', radio.issi ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'radio/'+ radio.issi + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'radio/'+ radio.issi + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="radios && radios.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [maxSize]="5" [pageSize]="itemsPerPage" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

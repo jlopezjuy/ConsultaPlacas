@@ -7,6 +7,13 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entidades",
+                "marca": "Marca",
+                "municipio": "Municipio",
+                "corporacion": "Corporación",
+                "radio": "Radio",
+                "tipoRadio": "Tipo de Radio",
+                "consultaPlaca": "Reporte Consulta de Placa",
+                "consultaPlaca": "Consulta Placa",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -128,5 +135,5 @@
         "emailexists": "Email is already in use!",
         "idexists": "A new {{entityName}} cannot already have an ID"
     },
-    "footer": "Consulta de Placas -  Todos los Derechos Reservados"
+    "footer": "Consulta de Placas. Todos los derechos reservados."
 }

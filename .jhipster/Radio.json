@@ -1,0 +1,68 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "marca",
+            "otherEntityName": "marca",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "descripcion"
+        },
+        {
+            "relationshipName": "municipio",
+            "otherEntityName": "municipio",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "descripcion"
+        },
+        {
+            "relationshipName": "corporacion",
+            "otherEntityName": "corporacion",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "descripcion"
+        },
+        {
+            "relationshipName": "tipoRadio",
+            "otherEntityName": "tipoRadio",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "descripcion"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "permiso",
+            "fieldType": "Permiso",
+            "fieldValues": "AUTOS_ROBADOS, PADRON_VEHICULAR, AMBOS"
+        },
+        {
+            "fieldName": "responsable",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171130175833",
+    "dto": "mapstruct",
+    "service": "serviceImpl",
+    "entityTableName": "radio",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

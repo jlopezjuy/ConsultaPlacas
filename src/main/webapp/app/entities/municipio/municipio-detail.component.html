@@ -1,0 +1,25 @@
+
+<div *ngIf="municipio">
+    <h2><span jhiTranslate="consultaPlacasApp.municipio.detail.title">Municipio</span> {{municipio.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="consultaPlacasApp.municipio.descripcion">Descripcion</span></dt>
+        <dd>
+            <span>{{municipio.descripcion}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'municipio/'+ municipio.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

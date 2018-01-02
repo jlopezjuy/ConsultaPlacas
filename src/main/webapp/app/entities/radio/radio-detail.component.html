@@ -1,0 +1,61 @@
+
+<div *ngIf="radio">
+    <h2><span jhiTranslate="consultaPlacasApp.radio.detail.title">Radio</span> {{radio.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>ISSI</span></dt>
+        <dd>
+            <span>{{radio.issi}}</span>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.radio.descripcion">Descripcion</span></dt>
+        <dd>
+            <span>{{radio.descripcion}}</span>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.radio.permiso">Permiso</span></dt>
+        <dd>
+            <span jhiTranslate="{{'consultaPlacasApp.Permiso.' + radio.permiso}}">{{radio.permiso}}</span>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.radio.responsable">Responsable</span></dt>
+        <dd>
+            <span>{{radio.responsable}}</span>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.radio.marca">Marca</span></dt>
+        <dd>
+            <div *ngIf="radio.marcaId">
+                <a [routerLink]="['/marca', radio.marcaId]">{{radio.marcaDescripcion}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.radio.municipio">Municipio</span></dt>
+        <dd>
+            <div *ngIf="radio.municipioId">
+                <a [routerLink]="['/municipio', radio.municipioId]">{{radio.municipioDescripcion}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.radio.corporacion">Corporacion</span></dt>
+        <dd>
+            <div *ngIf="radio.corporacionId">
+                <a [routerLink]="['/corporacion', radio.corporacionId]">{{radio.corporacionDescripcion}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="consultaPlacasApp.radio.tipoRadio">Tipo Radio</span></dt>
+        <dd>
+            <div *ngIf="radio.tipoRadioId">
+                <a [routerLink]="['/tipo-radio', radio.tipoRadioId]">{{radio.tipoRadioDescripcion}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'radio/'+ radio.issi + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
