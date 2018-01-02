@@ -193,7 +193,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="27e4d599-f985-4eb5-9e41-d95b576a3655"/>
 					</reportElement>
 					<textElement textAlignment="Center">
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{radioIssi}]]></textFieldExpression>
 				</textField>
@@ -202,7 +202,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cf2f9148-2617-4128-90d9-a4d1a97a6709"/>
 					</reportElement>
 					<textElement>
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{radioResponsable}]]></textFieldExpression>
 				</textField>
@@ -211,7 +211,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ed202cc7-432c-4f89-9c5c-9d1d5eed7c1c"/>
 					</reportElement>
 					<textElement textAlignment="Left">
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{radioMunicipio}]]></textFieldExpression>
 				</textField>
@@ -220,7 +220,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="90d7ed7c-7587-4ccb-b5a1-bf5d968b1a5a"/>
 					</reportElement>
 					<textElement textAlignment="Left">
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{radioCorporacion}]]></textFieldExpression>
 				</textField>
@@ -229,7 +229,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ecd371a3-c2fe-45aa-9a58-f6af7c492f19"/>
 					</reportElement>
 					<textElement>
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[java.util.Date.from($F{fecha}.atStartOfDay(java.time.ZoneId.systemDefault()).toInstant())]]></textFieldExpression>
 				</textField>
@@ -238,7 +238,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="79c1ace6-7867-4072-9d55-604f0713870c"/>
 					</reportElement>
 					<textElement>
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{consulta}]]></textFieldExpression>
 				</textField>
@@ -247,7 +247,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="09bbaf78-8ef0-4192-808f-d5e680f13fbc"/>
 					</reportElement>
 					<textElement textAlignment="Center">
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{metodo}]]></textFieldExpression>
 				</textField>
@@ -256,7 +256,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ebd53466-f08f-4242-a0c6-5e6e7ce7a6b7"/>
 					</reportElement>
 					<textElement textAlignment="Center">
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 				</textField>
@@ -265,7 +265,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8b002a93-501d-415c-955d-d8bd11d86724"/>
 					</reportElement>
 					<textElement>
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{resultado}]]></textFieldExpression>
 				</textField>
@@ -274,7 +274,7 @@ OTgzY2Y7]]>
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dea463a4-e2af-443c-a8e8-b67e07393081"/>
 					</reportElement>
 					<textElement textAlignment="Center">
-						<font fontName="Arial"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{coordenadas}]]></textFieldExpression>
 				</textField>
