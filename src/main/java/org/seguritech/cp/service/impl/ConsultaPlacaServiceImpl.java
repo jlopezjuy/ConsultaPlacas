@@ -107,24 +107,14 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
         LocalDateTime localDateTimeH = null;
 
         Page<ConsultaPlacaDTO> listOut = null;
-//        if (null == desde && null != hasta) {
-//            listOut = consultaPlacaRepository.findAllByRadioHasta(issi, municipio, corporacion, estado, hasta, pageable).map(consultaPlacaMapper::toDto);
-//        }
-//
-//        if (null != desde && null == hasta) {
-//            listOut = consultaPlacaRepository.findAllByRadioDesde(issi, municipio, corporacion, estado, desde, pageable).map(consultaPlacaMapper::toDto);
-//        }
-//
-//        if (null == desde && null == hasta) {
-//            listOut = consultaPlacaRepository.findAllByRadioSinFecha(issi, municipio, corporacion, estado, pageable).map(consultaPlacaMapper::toDto);
-//        }
+
         if(null != desde){
             localDateTimeD = desde.atStartOfDay();
             localDateTimeH = hasta.atStartOfDay();
         }
 
         if (null != desde && null != hasta) {
-            listOut = consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, localDateTimeD, localDateTimeH, pageable).map(consultaPlacaMapper::toDto);
+            listOut = consultaPlacaRepository.findAllByRadioPageable(issi, municipio, corporacion, estado, localDateTimeD, localDateTimeH, pageable).map(consultaPlacaMapper::toDto);
         }
         return listOut;
     }
@@ -196,26 +186,22 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
                 }
             }
         }
-        LocalDate desde = desde_p.equals("null") ? null : LocalDate.parse(desde_p);//desde_p.equals("undefined") ? null : LocalDate.parse(desde_p, formatter);
-        LocalDate hasta = hasta_p.equals("null") ? null : LocalDate.parse(hasta_p);//hasta_p.equals("undefined") ? null : LocalDate.parse(hasta_p, formatter);
+
+        LocalDate desde = null == desde_p ? null : LocalDate.parse(desde_p);//desde_p.equals("undefined") ? null : LocalDate.parse(desde_p, formatter);
+        LocalDate hasta = null == hasta_p ? null : LocalDate.parse(hasta_p);
+        LocalDateTime localDateTimeD = null;
+        LocalDateTime localDateTimeH = null;
+
         ModelAndView model = null;
 
         Map<String, Object> params = new HashMap<>();
         List<ConsultaPlacaDTO> listOut = new ArrayList<>();
-        if (null == desde && null != hasta) {
-            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadioHasta(issi, municipio, corporacion, estado, hasta));
+        if(null != desde){
+            localDateTimeD = desde.atStartOfDay();
+            localDateTimeH = hasta.atStartOfDay();
         }
-
-        if (null != desde && null == hasta) {
-            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadioDesde(issi, municipio, corporacion, estado, desde));
-        }
-
-        if (null == desde && null == hasta) {
-            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadioSinFecha(issi, municipio, corporacion, estado));
-        }
-
         if (null != desde && null != hasta) {
-            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, desde, hasta));
+            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, localDateTimeD, localDateTimeH));
         }
 
 

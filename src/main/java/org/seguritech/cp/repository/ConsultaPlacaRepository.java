@@ -36,54 +36,8 @@ public interface ConsultaPlacaRepository extends JpaRepository<ConsultaPlaca, Lo
                                        @Param("municipio") String municipio,
                                        @Param("corporacion") String corporacion,
                                        @Param("estado") Boolean estado,
-                                       @Param("desde") LocalDate desde,
-                                       @Param("hasta") LocalDate hasta);
-
-    @Query(value = "SELECT cp " +
-        "FROM ConsultaPlaca cp " +
-        "LEFT OUTER JOIN Radio radio ON cp.radio.issi = radio.issi " +
-        "LEFT OUTER JOIN Municipio mun ON radio.municipio.id = mun.id " +
-        "LEFT OUTER JOIN Corporacion corp ON radio.corporacion.id = corp.id " +
-        "WHERE (:issi is null OR radio.issi = :issi) " +
-        "AND (:estado is null OR cp.estado = :estado) " +
-        "AND (:municipio is null OR mun.descripcion = :municipio )" +
-        "AND (:corporacion is null OR corp.descripcion =:corporacion )" +
-        "AND cp.fecha between :desde and :desde")
-    List<ConsultaPlaca> findAllByRadioDesde(@Param("issi") Long issi,
-                                       @Param("municipio") String municipio,
-                                       @Param("corporacion") String corporacion,
-                                       @Param("estado") Boolean estado,
-                                       @Param("desde") LocalDate desde);
-
-    @Query(value = "SELECT cp " +
-        "FROM ConsultaPlaca cp " +
-        "LEFT OUTER JOIN Radio radio ON cp.radio.issi = radio.issi " +
-        "LEFT OUTER JOIN Municipio mun ON radio.municipio.id = mun.id " +
-        "LEFT OUTER JOIN Corporacion corp ON radio.corporacion.id = corp.id " +
-        "WHERE (:issi is null OR radio.issi = :issi) " +
-        "AND (:estado is null OR cp.estado = :estado) " +
-        "AND (:municipio is null OR mun.descripcion = :municipio )" +
-        "AND (:corporacion is null OR corp.descripcion =:corporacion )" +
-        "AND cp.fecha between :hasta and :hasta")
-    List<ConsultaPlaca> findAllByRadioHasta(@Param("issi") Long issi,
-                                       @Param("municipio") String municipio,
-                                       @Param("corporacion") String corporacion,
-                                       @Param("estado") Boolean estado,
-                                       @Param("hasta")LocalDate hasta);
-
-    @Query(value = "SELECT cp " +
-        "FROM ConsultaPlaca cp " +
-        "LEFT OUTER JOIN Radio radio ON cp.radio.issi = radio.issi " +
-        "LEFT OUTER JOIN Municipio mun ON radio.municipio.id = mun.id " +
-        "LEFT OUTER JOIN Corporacion corp ON radio.corporacion.id = corp.id " +
-        "WHERE (:issi is null OR radio.issi = :issi) " +
-        "AND (:estado is null OR cp.estado = :estado) " +
-        "AND (:municipio is null OR mun.descripcion = :municipio )" +
-        "AND (:corporacion is null OR corp.descripcion =:corporacion )")
-    List<ConsultaPlaca> findAllByRadioSinFecha(@Param("issi") Long issi,
-                                       @Param("municipio") String municipio,
-                                       @Param("corporacion") String corporacion,
-                                       @Param("estado") Boolean estado);
+                                       @Param("desde") LocalDateTime desde,
+                                       @Param("hasta") LocalDateTime hasta);
 
     /****/
 
@@ -97,7 +51,7 @@ public interface ConsultaPlacaRepository extends JpaRepository<ConsultaPlaca, Lo
         "AND (:municipio is null OR mun.descripcion = :municipio )" +
         "AND (:corporacion is null OR corp.descripcion =:corporacion )" +
         "AND cp.fecha between :desde and :hasta")
-    Page<ConsultaPlaca> findAllByRadio(@Param("issi") Long issi,
+    Page<ConsultaPlaca> findAllByRadioPageable(@Param("issi") Long issi,
                                        @Param("municipio") String municipio,
                                        @Param("corporacion") String corporacion,
                                        @Param("estado") Boolean estado,
@@ -105,52 +59,4 @@ public interface ConsultaPlacaRepository extends JpaRepository<ConsultaPlaca, Lo
                                        @Param("hasta") LocalDateTime hasta,
                                        Pageable var1);
 
-    @Query(value = "SELECT cp " +
-        "FROM ConsultaPlaca cp " +
-        "LEFT OUTER JOIN Radio radio ON cp.radio.issi = radio.issi " +
-        "LEFT OUTER JOIN Municipio mun ON radio.municipio.id = mun.id " +
-        "LEFT OUTER JOIN Corporacion corp ON radio.corporacion.id = corp.id " +
-        "WHERE (:issi is null OR radio.issi = :issi) " +
-        "AND (:estado is null OR cp.estado = :estado) " +
-        "AND (:municipio is null OR mun.descripcion = :municipio )" +
-        "AND (:corporacion is null OR corp.descripcion =:corporacion )" +
-        "AND cp.fecha between :desde and :desde")
-    Page<ConsultaPlaca> findAllByRadioDesde(@Param("issi") Long issi,
-                                            @Param("municipio") String municipio,
-                                            @Param("corporacion") String corporacion,
-                                            @Param("estado") Boolean estado,
-                                            @Param("desde") LocalDate desde,
-                                            Pageable var1);
-
-    @Query(value = "SELECT cp " +
-        "FROM ConsultaPlaca cp " +
-        "LEFT OUTER JOIN Radio radio ON cp.radio.issi = radio.issi " +
-        "LEFT OUTER JOIN Municipio mun ON radio.municipio.id = mun.id " +
-        "LEFT OUTER JOIN Corporacion corp ON radio.corporacion.id = corp.id " +
-        "WHERE (:issi is null OR radio.issi = :issi) " +
-        "AND (:estado is null OR cp.estado = :estado) " +
-        "AND (:municipio is null OR mun.descripcion = :municipio )" +
-        "AND (:corporacion is null OR corp.descripcion =:corporacion )" +
-        "AND cp.fecha between :hasta and :hasta")
-    Page<ConsultaPlaca> findAllByRadioHasta(@Param("issi") Long issi,
-                                            @Param("municipio") String municipio,
-                                            @Param("corporacion") String corporacion,
-                                            @Param("estado") Boolean estado,
-                                            @Param("hasta")LocalDate hasta,
-                                            Pageable var1);
-
-    @Query(value = "SELECT cp " +
-        "FROM ConsultaPlaca cp " +
-        "LEFT JOIN Radio radio ON cp.radio.issi = radio.issi " +
-        "LEFT JOIN Municipio mun ON radio.municipio.id = mun.id " +
-        "LEFT JOIN Corporacion corp ON radio.corporacion.id = corp.id " +
-        "WHERE (:issi is null OR radio.issi = :issi) " +
-        "AND (:estado is null OR cp.estado = :estado) " +
-        "AND (:municipio is null OR mun.descripcion = :municipio )" +
-        "AND (:corporacion is null OR corp.descripcion =:corporacion )")
-    Page<ConsultaPlaca> findAllByRadioSinFecha(@Param("issi") Long issi,
-                                               @Param("municipio") String municipio,
-                                               @Param("corporacion") String corporacion,
-                                               @Param("estado") Boolean estado,
-                                               Pageable var1);
 }

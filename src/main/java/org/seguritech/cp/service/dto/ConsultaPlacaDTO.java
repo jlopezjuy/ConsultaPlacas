@@ -59,8 +59,6 @@ public class ConsultaPlacaDTO implements Serializable {
     }
 
     public LocalDateTime getFecha() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        log.info(fecha.toString());
         return fecha;
     }
 
