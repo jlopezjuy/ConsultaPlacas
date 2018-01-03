@@ -207,6 +207,14 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
         if(null != desde){
             localDateTimeD = desde.atStartOfDay();
             localDateTimeH = hasta.atStartOfDay();
+//            localDateTimeD = localDateTimeD.plusHours(23);
+//            localDateTimeD = localDateTimeD.plusMinutes(59);
+//            localDateTimeD = localDateTimeD.plusSeconds(59);
+            log.info(localDateTimeD.toString());
+            localDateTimeH = localDateTimeH.plusHours(23);
+            localDateTimeH = localDateTimeH.plusMinutes(59);
+            localDateTimeH = localDateTimeH.plusSeconds(59);
+            log.info(localDateTimeH.toString());
         }
         if (null != desde && null != hasta) {
             listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, localDateTimeD, localDateTimeH));
