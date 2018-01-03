@@ -16,7 +16,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span>ISSI</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="issi"><span>ISSI</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="descripcion"><span jhiTranslate="consultaPlacasApp.radio.descripcion">Descripcion</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="permiso"><span jhiTranslate="consultaPlacasApp.radio.permiso">Permiso</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="responsable"><span jhiTranslate="consultaPlacasApp.radio.responsable">Responsable</span> <span class="fa fa-sort"></span></th>
@@ -67,13 +67,6 @@
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'radio/'+ radio.issi + '/delete'} }]"
-                                replaceUrl="true"
-                                class="btn btn-danger btn-sm">
-                            <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
                     </div>
                 </td>
