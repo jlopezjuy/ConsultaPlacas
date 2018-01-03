@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 
@@ -26,7 +27,7 @@ public class ConsultaPlaca implements Serializable {
 
     @NotNull
     @Column(name = "fecha", nullable = false)
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     @NotNull
     @Column(name = "consulta", nullable = false)
@@ -60,16 +61,16 @@ public class ConsultaPlaca implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public ConsultaPlaca fecha(LocalDate fecha) {
+    public ConsultaPlaca fecha(LocalDateTime fecha) {
         this.fecha = fecha;
         return this;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 

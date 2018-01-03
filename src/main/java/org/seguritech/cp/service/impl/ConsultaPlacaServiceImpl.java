@@ -1,12 +1,11 @@
 package org.seguritech.cp.service.impl;
 
-import org.seguritech.cp.domain.predicate.ConsultaPlacaPredicates;
 import org.seguritech.cp.service.ConsultaPlacaService;
 import org.seguritech.cp.domain.ConsultaPlaca;
 import org.seguritech.cp.repository.ConsultaPlacaRepository;
 import org.seguritech.cp.service.dto.ConsultaPlacaDTO;
 import org.seguritech.cp.service.mapper.ConsultaPlacaMapper;
-import org.seguritech.cp.service.util.DateUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.*;
 
+import javax.sql.DataSource;
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
-import static org.seguritech.cp.domain.predicate.ConsultaPlacaPredicates.*;
 
 
 /**
@@ -46,6 +44,8 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
 
     @Autowired
     private ApplicationContext context;
+    @Autowired
+    private DataSource dataSource;
 
     public ConsultaPlacaServiceImpl(ConsultaPlacaRepository consultaPlacaRepository, ConsultaPlacaMapper consultaPlacaMapper) {
         this.consultaPlacaRepository = consultaPlacaRepository;
@@ -102,22 +102,27 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
         }
         LocalDate desde = null == desde_p ? null : LocalDate.parse(desde_p);//desde_p.equals("undefined") ? null : LocalDate.parse(desde_p, formatter);
         LocalDate hasta = null == hasta_p ? null : LocalDate.parse(hasta_p);
+        LocalDateTime localDateTimeD = null;
+        LocalDateTime localDateTimeH = null;
 
         Page<ConsultaPlacaDTO> listOut = null;
-        if (null == desde && null != hasta) {
-            listOut = consultaPlacaRepository.findAllByRadioHasta(issi, municipio, corporacion, estado, hasta, pageable).map(consultaPlacaMapper::toDto);
-        }
 
-        if (null != desde && null == hasta) {
-            listOut = consultaPlacaRepository.findAllByRadioDesde(issi, municipio, corporacion, estado, desde, pageable).map(consultaPlacaMapper::toDto);
-        }
+        if(null != desde){
+            localDateTimeD = desde.atStartOfDay();
+            localDateTimeH = hasta.atStartOfDay();
+//            localDateTimeD = localDateTimeD.plusHours(23);
+//            localDateTimeD = localDateTimeD.plusMinutes(59);
+//            localDateTimeD = localDateTimeD.plusSeconds(59);
+            log.info(localDateTimeD.toString());
+            localDateTimeH = localDateTimeH.plusHours(23);
+            localDateTimeH = localDateTimeH.plusMinutes(59);
+            localDateTimeH = localDateTimeH.plusSeconds(59);
+            log.info(localDateTimeH.toString());
 
-        if (null == desde && null == hasta) {
-            listOut = consultaPlacaRepository.findAllByRadioSinFecha(issi, municipio, corporacion, estado, pageable).map(consultaPlacaMapper::toDto);
         }
 
         if (null != desde && null != hasta) {
-            listOut = consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, desde, hasta, pageable).map(consultaPlacaMapper::toDto);
+            listOut = consultaPlacaRepository.findAllByRadioPageable(issi, municipio, corporacion, estado, localDateTimeD, localDateTimeH, pageable).map(consultaPlacaMapper::toDto);
         }
         return listOut;
     }
@@ -189,26 +194,30 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
                 }
             }
         }
-        LocalDate desde = desde_p.equals("null") ? null : LocalDate.parse(desde_p);//desde_p.equals("undefined") ? null : LocalDate.parse(desde_p, formatter);
-        LocalDate hasta = hasta_p.equals("null") ? null : LocalDate.parse(hasta_p);//hasta_p.equals("undefined") ? null : LocalDate.parse(hasta_p, formatter);
+
+        LocalDate desde = null == desde_p ? null : LocalDate.parse(desde_p);//desde_p.equals("undefined") ? null : LocalDate.parse(desde_p, formatter);
+        LocalDate hasta = null == hasta_p ? null : LocalDate.parse(hasta_p);
+        LocalDateTime localDateTimeD = null;
+        LocalDateTime localDateTimeH = null;
+
         ModelAndView model = null;
 
         Map<String, Object> params = new HashMap<>();
         List<ConsultaPlacaDTO> listOut = new ArrayList<>();
-        if (null == desde && null != hasta) {
-            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadioHasta(issi, municipio, corporacion, estado, hasta));
+        if(null != desde){
+            localDateTimeD = desde.atStartOfDay();
+            localDateTimeH = hasta.atStartOfDay();
+//            localDateTimeD = localDateTimeD.plusHours(23);
+//            localDateTimeD = localDateTimeD.plusMinutes(59);
+//            localDateTimeD = localDateTimeD.plusSeconds(59);
+            log.info(localDateTimeD.toString());
+            localDateTimeH = localDateTimeH.plusHours(23);
+            localDateTimeH = localDateTimeH.plusMinutes(59);
+            localDateTimeH = localDateTimeH.plusSeconds(59);
+            log.info(localDateTimeH.toString());
         }
-
-        if (null != desde && null == hasta) {
-            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadioDesde(issi, municipio, corporacion, estado, desde));
-        }
-
-        if (null == desde && null == hasta) {
-            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadioSinFecha(issi, municipio, corporacion, estado));
-        }
-
         if (null != desde && null != hasta) {
-            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, desde, hasta));
+            listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, localDateTimeD, localDateTimeH));
         }
 
 
@@ -264,6 +273,7 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
         JasperReportsXlsxView view = new JasperReportsXlsxView();
         view.setUrl("classpath:reporte_cp.jrxml");
         view.setApplicationContext(context);
+        view.setJdbcDataSource(dataSource);
         return new ModelAndView(view, params);
     }
 

@@ -1,9 +1,14 @@
 package org.seguritech.cp.service.dto;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -13,10 +18,12 @@ import java.util.Objects;
  */
 public class ConsultaPlacaDTO implements Serializable {
 
+    private final Logger log = LoggerFactory.getLogger(ConsultaPlacaDTO.class);
+
     private Long id;
 
     @NotNull
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     @NotNull
     private String consulta;
@@ -51,11 +58,11 @@ public class ConsultaPlacaDTO implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 

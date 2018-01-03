@@ -89,12 +89,12 @@
                     <span>XLS</span>
                 </button>
             </div>
-            <div class="col-md-1">
-                <button (click)="printReportXlsx()" class="btn btn-success float-right" disabled>
-                    <span class="fa fa-file-excel-o"></span>
-                    <span>XLSX</span>
-                </button>
-            </div>
+            <!--<div class="col-md-1">-->
+                <!--<button (click)="printReportXlsx()" class="btn btn-success float-right">-->
+                    <!--<span class="fa fa-file-excel-o"></span>-->
+                    <!--<span>XLSX</span>-->
+                <!--</button>-->
+            <!--</div>-->
             <div class="col-md-1">
                 <button (click)="printReportCsv()" class="btn btn-dark float-right">
                     <span class="fa fa-file-text"></span>
@@ -180,7 +180,7 @@
                         {{consultaPlaca.radioCorporacion}}
                     </div>
                 </td>
-                <td>{{consultaPlaca.fecha | date:'yyyy-mm-dd HH:mm:ss'}}</td>
+                <td>{{consultaPlaca.fechaTransient | date:'yyyy-MM-dd T HH:mm:ss'}}</td>
                 <td>{{consultaPlaca.consulta}}</td>
                 <td>{{consultaPlaca.metodo}}</td>
                 <td *ngIf="consultaPlaca.estado">Positivo</td>
