@@ -1,12 +1,11 @@
 package org.seguritech.cp.service.impl;
 
-import org.seguritech.cp.domain.predicate.ConsultaPlacaPredicates;
 import org.seguritech.cp.service.ConsultaPlacaService;
 import org.seguritech.cp.domain.ConsultaPlaca;
 import org.seguritech.cp.repository.ConsultaPlacaRepository;
 import org.seguritech.cp.service.dto.ConsultaPlacaDTO;
 import org.seguritech.cp.service.mapper.ConsultaPlacaMapper;
-import org.seguritech.cp.service.util.DateUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.*;
 
+import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
-import static org.seguritech.cp.domain.predicate.ConsultaPlacaPredicates.*;
 
 
 /**
@@ -47,6 +44,8 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
 
     @Autowired
     private ApplicationContext context;
+    @Autowired
+    private DataSource dataSource;
 
     public ConsultaPlacaServiceImpl(ConsultaPlacaRepository consultaPlacaRepository, ConsultaPlacaMapper consultaPlacaMapper) {
         this.consultaPlacaRepository = consultaPlacaRepository;
@@ -111,6 +110,15 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
         if(null != desde){
             localDateTimeD = desde.atStartOfDay();
             localDateTimeH = hasta.atStartOfDay();
+//            localDateTimeD = localDateTimeD.plusHours(23);
+//            localDateTimeD = localDateTimeD.plusMinutes(59);
+//            localDateTimeD = localDateTimeD.plusSeconds(59);
+            log.info(localDateTimeD.toString());
+            localDateTimeH = localDateTimeH.plusHours(23);
+            localDateTimeH = localDateTimeH.plusMinutes(59);
+            localDateTimeH = localDateTimeH.plusSeconds(59);
+            log.info(localDateTimeH.toString());
+
         }
 
         if (null != desde && null != hasta) {
@@ -199,6 +207,14 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
         if(null != desde){
             localDateTimeD = desde.atStartOfDay();
             localDateTimeH = hasta.atStartOfDay();
+//            localDateTimeD = localDateTimeD.plusHours(23);
+//            localDateTimeD = localDateTimeD.plusMinutes(59);
+//            localDateTimeD = localDateTimeD.plusSeconds(59);
+            log.info(localDateTimeD.toString());
+            localDateTimeH = localDateTimeH.plusHours(23);
+            localDateTimeH = localDateTimeH.plusMinutes(59);
+            localDateTimeH = localDateTimeH.plusSeconds(59);
+            log.info(localDateTimeH.toString());
         }
         if (null != desde && null != hasta) {
             listOut = consultaPlacaMapper.toDto(consultaPlacaRepository.findAllByRadio(issi, municipio, corporacion, estado, localDateTimeD, localDateTimeH));
@@ -257,6 +273,7 @@ public class ConsultaPlacaServiceImpl implements ConsultaPlacaService {
         JasperReportsXlsxView view = new JasperReportsXlsxView();
         view.setUrl("classpath:reporte_cp.jrxml");
         view.setApplicationContext(context);
+        view.setJdbcDataSource(dataSource);
         return new ModelAndView(view, params);
     }
 
