@@ -4,6 +4,7 @@ export const enum Permiso {
     'AUTOS_ROBADOS',
     'PADRON_VEHICULAR',
     'AMBOS'
+    'NINGUNO'
 }
 
 export class Radio implements BaseEntityRadio {
