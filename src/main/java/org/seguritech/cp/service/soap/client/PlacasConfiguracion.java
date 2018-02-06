@@ -30,8 +30,8 @@ public class PlacasConfiguracion {
 		ClientWebService client = new ClientWebService();
 		//client.setDefaultUri(p.getProperty("endPoint"));
 		//client.setDefaultUri("http://HYADOCANONB:8090/");
-		client.setDefaultUri("http://HYADOCANONB:9100/");
-		//client.setDefaultUri("http://10.16.161.16/WebServiceCBD/ConsultaBDC5.asmx?WSDL");
+		//client.setDefaultUri("http://HYADOCANONB:9100/");
+		client.setDefaultUri("http://10.16.161.16/WebServiceCBD/ConsultaBDC5.asmx?WSDL");
 		client.setMarshaller(marshaller);
 		client.setUnmarshaller(marshaller);
 		return client;
