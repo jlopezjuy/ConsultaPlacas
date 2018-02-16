@@ -79,11 +79,20 @@ public class ConsultaPlacaResourceConsulta {
             guardarConsultaPlacas(placaObject,"La radio con nro de issi: "+placaObject.getIssi()+" no existe en la base de datos de radios",false,false);
             return "La radio con nro de issi "+placaObject.getIssi()+" no existe en la base de datos de radios";
         }
+        if(resultRadioDto.getPermiso().compareTo(Permiso.NINGUNO)==0 )
+        {
+            guardarConsultaPlacas(placaObject,"La radio registrada con nro de issi: "+placaObject.getIssi()+" no tiene ningun permiso de acceso a las bases de datos de consulta",false,false);
+            return "La radio registrada con nro de issi: "+placaObject.getIssi()+"  no tiene ningun permiso de acceso a las bases de datos de consulta";
+        }
+
         ConsultaBDResponse response = this.clientService.getConsultaDBResponse("WasConBD",placaObject.getPlaca(),placaObject.getTipo());
 
         System.out.println(response.getConsultaBDResult());
         String respuestaPadron=response.getConsultaBDResult();
         String respuestaAR=response.getConsultaBDResult();
+
+
+
         if(placaObject.getTipo().trim().equals("Padron"))
         {	//System.out.println(respuestaPadron);
             if(resultRadioDto.getPermiso().compareTo(Permiso.PADRON_VEHICULAR)==0 || resultRadioDto.getPermiso().compareTo(Permiso.AMBOS)==0)

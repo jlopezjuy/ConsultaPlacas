@@ -49,7 +49,7 @@
         {
             "fieldName": "permiso",
             "fieldType": "Permiso",
-            "fieldValues": "AUTOS_ROBADOS, PADRON_VEHICULAR, AMBOS"
+            "fieldValues": "AUTOS_ROBADOS, PADRON_VEHICULAR, AMBOS, NINGUNO"
         },
         {
             "fieldName": "responsable",

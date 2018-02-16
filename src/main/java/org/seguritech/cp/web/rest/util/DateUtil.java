@@ -1,25 +1,27 @@
 package org.seguritech.cp.web.rest.util;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 public final class DateUtil {
 
 
     public static LocalDateTime getActualDate()
     {
-        Calendar c2 = new GregorianCalendar();
-        int dia = c2.get(Calendar.DATE);
-        int mes = c2.get(Calendar.MONTH);
-        int annio = c2.get(Calendar.YEAR);
+        Date today = new Date();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy hh:mm:ss");
+        //If you print Date, you will get un formatted output
+        System.out.println("Today is : " + today);
 
-        String date = dia+"/"+(mes+1)+"/"+annio;
-        LocalDateTime localDate = LocalDateTime.parse(date, formatter);
-        return localDate;
+        //formatting date in Java using SimpleDateFormat
+        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String date = DATE_FORMAT.format(today);
+        System.out.println(date);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+        return dateTime;
     }
 }
