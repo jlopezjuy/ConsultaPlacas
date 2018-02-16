@@ -1,0 +1,57 @@
+REQUEST PARA PADRON VEHICULAR
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://localhost/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loc:ConsultaBD>
+         <!--Optional:-->
+         <loc:Placa>GVP2315</loc:Placa>
+         <!--Optional:-->
+         <loc:Tipo>PV</loc:Tipo>
+         <!--Optional:-->
+         <loc:Code>WasConBD</loc:Code>
+      </loc:ConsultaBD>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+
+RESPONSE PARA PADRON VEHICULAR
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <soap:Body>
+      <ConsultaBDResponse xmlns="http://localhost/">
+         <ConsultaBDResult>[{"Placa":"GVP2315","Clase":"AUTOMOVIL","Marca":"VOLKSWAGEN","Modelo":"2016","Color":"ROJO","VIN":"3VWWB6AU3GM020661"}]</ConsultaBDResult>
+      </ConsultaBDResponse>
+   </soap:Body>
+</soap:Envelope>
+
+
+
+
+
+
+REQUEST PARA AUTOS ROBADOS
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://localhost/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <loc:ConsultaBD>
+         <!--Optional:-->
+         <loc:Placa>Abc123</loc:Placa>
+         <!--Optional:-->
+         <loc:Tipo>AR</loc:Tipo>
+         <!--Optional:-->
+         <loc:Code>WasConBD</loc:Code>
+      </loc:ConsultaBD>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+
+
+
+RESPONSE AUTOS ROBADOS
+
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <soap:Body>
+      <ConsultaBDResponse xmlns="http://localhost/">
+         <ConsultaBDResult>[{"Placa":"ABC123", "Niv":"HGH765765","Averiguacion":"RV/055/99954/02-08"},{"Placa":"ABC1234", "Niv":"","Averiguacion":"17702/2000"}]</ConsultaBDResult>
+      </ConsultaBDResponse>
+   </soap:Body>
+</soap:Envelope>
